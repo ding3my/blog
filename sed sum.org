@@ -1,0 +1,143 @@
+* 序言
+用于处理文本行。
+* 测试数据
+#+BEGIN_SRC  
+echo -e 'aaa\nbbb\nccc'
+#+END_SRC
+* 模式空间
+* 指定地址
+ref 77
+** 指定地址，所有行
+#+BEGIN_SRC  
+# 1,$
+echo -e 'a\nb\nc'|sed -n '1,$p'
+#+END_SRC
+** 指定地址，第一行
+#+BEGIN_SRC  
+# 1
+echo -e 'a\nb\nc'|sed -n '1p'
+#+END_SRC
+** 指定地址，最后一行
+#+BEGIN_SRC  
+# $
+echo -e 'a\nb\nc'|sed -n '$p'
+#+END_SRC
+** 指定地址，指定行
+#+BEGIN_SRC  
+# num
+echo -e 'a\nb\nc'|sed -n '2p'
+#+END_SRC
+** 指定地址，指定范围行
+#+BEGIN_SRC  
+# start_num,end_num
+echo -e 'a\nb\nc'|sed -n '2,3p'
+#+END_SRC
+** 指定地址，所有空行
+#+BEGIN_SRC  
+# /^$/
+echo -ne '\n\n'|sed -n '/^$/p'
+echo -ne '\n\n'|sed -n '' # 参照对比
+#+END_SRC
+** 指定地址，第一行到第一个空行
+#+BEGIN_SRC  
+# 1,/^$/
+echo -e 'a\n\nc'|sed -n '1,/^$/p'
+#+END_SRC
+** 指定地址，正则范围，含a字符行到含b字符行
+#+BEGIN_SRC  
+# /regex1/,/regex2/
+echo -e '1a1\n2b2\n3c3'|sed -n '/a/,/b/p'
+#+END_SRC
+** 指定地址，范围取反
+#+BEGIN_SRC  
+# !
+echo -e 'a\nb\nc'|sed -n '1!p'
+#+END_SRC
+* 分组命令
+ref 97
+#+BEGIN_SRC  
+# {}
+echo -e 'a\nb\nc'|sed -n '2{s/b/c/;s/c/d/p}'
+#+END_SRC
+* 文本行
+** 删除所有文本行
+#+BEGIN_SRC  
+d
+#+END_SRC
+** 删除指定行的文本行
+#+BEGIN_SRC  
+${n}d
+#+END_SRC
+** 删除最后一行的文本行
+#+BEGIN_SRC  
+$d
+#+END_SRC
+** 新增文本行到文本，追加
+#+BEGIN_SRC  
+echo -e 'aaa\nbbb\nccc'|sed -n '1{a000;p}' # 语法错误，';p}'被当做a的操作数处理。
+echo -e 'aaa\nbbb\nccc'|sed -n '1{a000
+p}' # 逻辑错误，只会输出一行
+echo -e 'aaa\nbbb\nccc'|sed -n '1a000
+p' 
+#+END_SRC
+** 新增文本行到文本，插入
+#+BEGIN_SRC  
+echo -e 'aaa\nbbb\nccc'|sed -n '1i000
+p' 
+#+END_SRC
+** 修改文本行,c命令
+#+BEGIN_SRC  
+echo -e 'aaa\nbbb\nccc'|sed -n '1c000
+p' 
+#+END_SRC
+** 修改文本行，替换该行匹配字符串，第n次
+ref 99
+#+BEGIN_SRC  
+# 1,$s/regex/replace/1 默认1次
+echo -e 'aaa\nbbb\nccc'|sed -n 's/./A/p'
+echo -e 'aaa\nbbb\nccc'|sed -n 's/./A/2p'
+#+END_SRC
+** 修改文本行，替换该行所有的匹配字符串
+ref 99
+#+BEGIN_SRC  
+# 1,$s/regex/replace/g
+echo -e 'aaa\nbbb\nccc'|sed -n 's/./A/gp'
+#+END_SRC
+* 替换命令s
+ref 100
+* 替换内容
+ref 100 103
+** 新增所有的匹配内容到替换内容，&
+#+BEGIN_SRC  
+echo -e 'aaa\nbbb\nccc'|sed -n 's/.../&&/p'
+#+END_SRC
+** 新增组的匹配内容到替换内容，\n
+#+BEGIN_SRC  
+echo -e 'a\nb\nc'|sed -n 's/\(.\)/\1\1/p'
+echo -e 'a\nb\nc'|sed -En 's/(.)/\1\1/p' # 扩展的正则表达式，带元字符
+echo -e 'a\nb\nc'|sed -n 's/./\1\1/p' # 匹配内容没有括号指定组，则报错 sed: -e expression #1, char 10: invalid reference \1 on `s' command's RHS
+
+#+END_SRC
+
+* 删除命令d
+ref 106
+* FAQ
+** 如何注释？
+ref 99
+#+BEGIN_SRC  
+#
+#+END_SRC
+** 如何指定s命令的定界符？
+ref 100
+#+BEGIN_SRC  
+s/regex/replace/p
+s|regex|replace|p
+#+END_SRC
+** 如何转义替换内容中的符号？
+ref 101
+\
+
+
+* 参考
+sed与awk 2ed
+https://www.youtube.com/playlist?list=PLUQzXLQ6jvHL-Kw9I5H6dvFHal-ynWSTA

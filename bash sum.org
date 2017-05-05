@@ -1,0 +1,119 @@
+
+* 序言
+
+* 文本行
+** 检索指定列的文本行字段，cut
+分隔符只能是一个字符。
+#+BEGIN_SRC  
+cut -d "$separator" -f $n1,$n2 $file
+#+END_SRC
+** 检索指定字符单位范围的文本行字段，cut
+范围是数字范围。
+#+BEGIN_SRC  
+cut -c $start-$end $file
+cut -c $start- $file #从指定开头到结尾
+cut -c -$end $file #从开头到指定结尾
+#+END_SRC
+** 检索指定关键字的文本行，grep
+#+BEGIN_SRC  
+grep $key $file
+#+END_SRC
+** 检索指定关键字的文本行，grep，显示行号
+#+BEGIN_SRC  
+grep $key $file -n
+#+END_SRC
+** 检索指定关键字的文本行，grep，扩展正则
+不需要转义元字符
+#+BEGIN_SRC  
+grep -E $key $file
+#+END_SRC
+** 检索指定关键字的文本行，grep，perl正则
+可以使用回溯。
+#+BEGIN_SRC  
+grep -P $key $file
+#+END_SRC
+** TODO 检索排序文本行，sort
+#+BEGIN_SRC  
+LANG=C sort $file
+#+END_SRC
+google linux sort ignore blank
+** 检索排序文本行，逆向，sort
+#+BEGIN_SRC  
+LANG=C sort $file -r
+#+END_SRC
+** 检索排序文本行，忽略大小写，sort
+#+BEGIN_SRC  
+sort $file -f
+#+END_SRC
+** 检索排序文本行，忽略文本行开头空白部分，sort
+#+BEGIN_SRC  
+sort $file -b
+#+END_SRC
+** 检索排序文本行，英文月份缩写排序，sort
+#+BEGIN_SRC  
+sort $file -M
+#+END_SRC
+** 检索排序文本行，数字排序，sort
+#+BEGIN_SRC  
+sort $file -n
+#+END_SRC
+** 检索排序文本行，不重复，sort
+#+BEGIN_SRC  
+sort $file -u
+#+END_SRC
+** 检索排序文本行，指定字段，sort
+#+BEGIN_SRC  
+sort $file -t "$separator" -k $n1
+#+END_SRC
+** 检索文本行集合，不重复，uniq
+#+BEGIN_SRC  
+uniq $file
+#+END_SRC
+** 检索文本行集合，统计相同文本行数量，uniq
+#+BEGIN_SRC  
+uniq $file -c
+#+END_SRC
+** 检索文本行集合，统计行数、词数、字符数
+#+BEGIN_SRC  
+wc $file
+#+END_SRC
+** 新增文本行，等值连接，join
+#+BEGIN_SRC  
+join $file1 $file2 -t '$separator' -1 field1 -2 field2
+#+END_SRC
+** 新增文本行，拼接，paste
+#+BEGIN_SRC  
+paste -d $separator $file1 $file2
+#+END_SRC
+** 删除文本行中所有指定的字符，tr
+删除字符，不是字符串，可以间隔。
+#+BEGIN_SRC  
+cat $file | tr -d "$c1$c2"
+#+END_SRC
+** 修改文本行，替换tab制表符为空格
+#+BEGIN_SRC  
+col -x $file
+#+END_SRC
+** 修改文本行中所有指定的字符，tr
+删除字符，不是字符串，可以间隔。
+#+BEGIN_SRC  
+cat $file | tr "$c11$c12" "$c21$c22"
+#+END_SRC
+** 修改文本行，替换tab制表符为指定数量的空格
+#+BEGIN_SRC  
+expand -t $num $file
+#+END_SRC
+   
+
+* FAQ
+** 如何使用split分割文件？
+#+BEGIN_SRC  
+split -b $size $file $prefix
+# split -b 50k /usr/bin/ls ls
+#+END_SRC
+** 如何合并split分割的文件？
+#+BEGIN_SRC  
+split -b $size $file $prefix
+cat ls*>>ls
+# split -b 50k /usr/bin/ls ls
+#+END_SRC

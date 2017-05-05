@@ -1,0 +1,75 @@
+* 序言
+搭建本地知识库，代替evernote，结合github。
+* dired mode
+** 如何进入dired mode？
+c-x c-f
+** 如何刷新dired mode？
+g
+* 文件行
+** 检索当前文件夹的文件的所有行，指定关键字
+grep-find find . -type f -exec grep --color -nH -e  {} +
+find-grep find . -type f -exec grep --color -nH -e  {} +
+
+* 普通文件
+ref google non folder file
+** 检索当前文件夹的所有文件，时间排序
+s键
+
+默认是命名排序
+** 检索，查看文件
+v，无法修改，q键退出
+** 检索，查看文件，在其他窗口
+c-o
+** DONE 检索指定文件名关键字的所有文件
+find-name-dired *key*
+需要补全通配符
+
+** DONE 检索指定文件内容关键字的所有文件
+find-grep-dired
+** 新增文件
+c-x c-f
+
+ref google emacs dired new file
+** 删除文件
+D 或 d x
+** 修改文件名
+R
+** 修改文件为压缩包
+Z
+** 修改文件，编辑
+f 或 e
+** 修改文件，编辑，在其他窗口
+o
+** 如何复制文件？
+C
+
+* 目录文件
+  
+** 新增目录
++
+
+* 标记
+** 新增操作标记
+m
+** 新增操作标记，正则表达式
+%m
+** 新增删除标记，正则表达式
+%d
+** 新增删除标记，所有自动保存文件
+\#
+** 新增删除标记，所有备份文件
+~
+** 删除标记
+u
+** 删除所有标记
+U
+
+   
+* unix命令
+  
+** 如何运行unix命令？
+!
+* 参考
+学习GNU Emacs 2ed-Cameron
+GNU Emacs Manual 17ed
+* 版本

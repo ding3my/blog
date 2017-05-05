@@ -1,0 +1,226 @@
+* 序言
+  <2017-04-16 Sun>
+  文本通用性强，emacs定制性强，学习使用emacs，对文本进行操作。
+  大部分IDE都需要鼠标协作，但是鼠标会降低效率，而且IDE定制性不好，不够自由，所以使用emacs进行开发，而且emacs本身就是IDE的原型。
+* TODO 帮助文档
+* Emacs
+** 新建emacs X11进程
+   emacs
+** 新建emacs cli进程
+   emacs -nw
+** 删除emacs进程
+   cxcc
+* 文件
+** 新建文件，在启动Emacs后
+   emacs -nw filename
+** 新建文件
+   cxcf cxcs
+** 新建文件，在其他窗口打开
+   cx4f cxcs
+* 缓冲区
+** 检索缓冲区集合，在其他窗口显示
+   cxcb
+** 新建缓冲区
+   cxcf
+** 删除当前缓冲区
+   cxk
+** 修改缓冲区名字
+* 窗口
+** 新建窗口，在当前窗口之下
+   c-x2
+** TODO 新建窗口，在当前窗口之下，并修改新建的窗口为当前窗口
+** 新建窗口，在当前窗口之右
+   c-x3
+** 删除当前窗口
+   c-x0
+** 删除其他窗口
+   c-x1
+** 修改其他窗口为当前窗口
+   c-xo
+** 修改窗口集合排列，平均排列
+   balance-windows
+   
+   ref Emacs 学习笔记：Emacs 编辑操作 https://wolfsonliu.github.io/archive/emacs-xue-xi-bi-ji-emacs-bian-ji-cao-zuo.html ref google emacs 平均 窗口
+* 光标
+** 修改光标位置，字符
+   c-f c-b
+   c-n c-p
+** 修改光标位置，词
+   m-f m-b
+** 修改光标位置，行
+   c-e c-a
+   m-m 移动到可见字符行首
+** 修改光标位置，句
+   m-e m-a
+   
+   句子以.或双换行为间隔
+** 修改光标位置，段
+   m-} m-{
+** 修改光标位置，页
+   c-x ]
+   c-x [
+** 修改光标位置，文章
+   m-> m-<
+* 文本
+** 检索文本，关键字
+c-s
+** 检索文本，正则表达式
+C-M-s Begin incremental regexp search (isearch-forward-regexp).
+C-M-r Begin reverse incremental regexp search (isearch-backward-regexp).
+
+ref GNU Emacs Manual 17ed 100
+** 删除字符
+   c-d BS
+** 删除词
+   m-d m-BS
+** 删除到行尾
+   c-k
+** 删除句
+   m-k c-x BS
+** 删除段
+   kill-paragraph
+   backward-kill-paragraph
+* 文本块
+** 新增文本块
+   c-@ 或 c-SPC 设置文本标记，移动参考光标
+** 删除文本块
+   BS
+** 删除文本块，并复制文本块到剪切环
+   c-w
+** 修改文本块光标位置，文本块开头和结尾
+   cxcx
+
+* Unix/Linux命令
+** 使用Emacs执行Unix命令
+   m-!
+** 使用Emacs执行Unix命令，并插入输出
+   1 m-!
+   ref With prefix argument, insert the COMMAND’s output at point. ref c-hk m-!
+** 使用Emacs执行unix命令，文本块作为输入
+   m-|
+** 使用Emacs执行unix命令，文本块作为输入，并插入输出
+   1 m-|
+ 
+   
+* 包
+** 检索可安装的包
+   m-x list-packages
+** 检索已安装的包
+   m-x list-packages
+   c-s installed
+** 检索已安装的包的版本
+   m-x list-packages
+   c-s installed
+** 检索已安装的包的文件内容
+   m-! ls ~/.emacs.d/elpa/
+** 检索包的默认安装路径
+   m-: package-user-dir
+   m-: package-directory-list
+   package-directory-list for sys administrators
+
+* 包源
+** 检索所有的包源
+   m-: package-archives
+** 新增包源到配置文件
+   (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
+** 新增包源到配置文件，交互式
+   m-x customize-variable [RET] package-archives [RET]
+   [INS] RET
+   
+
+* 模式
+** 检索所有当前的模式
+   c-hm
+** 新增模式
+* 宏
+ 
+** 检索宏，输出到当前缓冲区
+   m-x insert-kbd-macro macroname
+** 检索匿名宏，输出到当前缓冲区
+   m-x insert-kbd-macro
+   插入是完整的elisp宏代码
+** 检索匿名宏，输出到mini缓冲区、message缓冲区
+   m-: last-kbd-macro
+   插入是宏参数代码
+** 新建匿名宏
+   c-x( ops c-x) 或 F3 F4
+** 新建匿名宏，并命名
+   c-x( ops c-x)
+   name-last-kbd-macro
+** 新建匿名宏，并保存
+   c-x( ops c-x)
+   c-x c-f macro_filename
+   insert-kbd-macro
+   c-x c-s
+** 新建匿名宏，并命名，并保存
+   c-x( ops c-x)
+   name-last-kbd-macro
+   c-x c-f macro_filename
+   insert-kbd-macro macroname
+   c-x c-s
+** 删除宏
+   (fmakunbound 'name-of-macro)
+
+   google emacs remove macro
+** 删除匿名宏
+   C-x C-k C-d
+
+** 运行宏
+   m-x macroname
+** 运行匿名宏
+   c-xe
+* 别名
+* DONE 按键绑定 这个不是emacs考虑而是elisp
+** 检索所有的按键绑定
+   c-hb
+   ref google emacs show all key map
+** 检索指定函数的按键绑定
+   c-hf
+** 检索当前模式的按键绑定
+   c-hm
+** 新增全局按键绑定
+(global-set-key "\C-cg" 'goto-line)
+
+ref An Introduction to Programming in Emacs Lisp 3ed 191
+** 新增按键绑定，指定keymap
+(define-key global-map "\C-cg" 'goto-line)
+
+ref 学习GNU Emacs 2ed-Cameron 355
+** 删除全局按键绑定
+(global-unset-key "\C-cg")
+** 删除按键绑定，指定keymap
+(define-key global-map "\C-cg" nil)
+
+ref GNU Emacs Lisp Reference Manual 3ed 413
+* TODO 按键映射表 keymap 这个不是emacs考虑而是elisp
+** TODO 检索所有的按键映射表
+
+
+
+* 前缀按键 这个不是emacs考虑而是elisp
+A prefix key is a key sequence whose binding is a keymap.
+** TODO 检索前缀按键
+** 检索不冲突按键前缀
+c-hk
+** 新增前缀按键
+(define-prefix-command 'ctl-z-map)
+(global-set-key (kbd "C-z") 'ctl-z-map)
+(global-set-key (kbd "C-z C-c") 'find-file)
+
+(global-set-key [f2] 'dired-jump)
+(global-set-key (kbd "<f2>") 'open-init-file)
+ref google emacs 绑定 f2
+
+ref google emacs 前缀 按键 http://jixiuf.github.io/blog/00005-emacs-keybind.html/
+** 新增前缀按键，覆盖已有快捷键
+例如evil的c-z
+
+
+
+** 删除前缀按键
+
+* 参考
+  ref 为什么不少程序员极度推崇 Vim 和 Emacs，却对 IDE 嗤之以鼻？
+  ref GNU Emacs Lisp Reference Manual 3ed
+  ref https://www.emacswiki.org/emacs/ELPA
+  ref http://longlycode.github.io/2016/02/02/emacs完全补完计划-三/
