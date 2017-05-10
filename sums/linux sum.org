@@ -241,60 +241,6 @@ echo 'a b c'|awk '{print $1d}'
 #+BEGIN_SRC  
 echo 'a b c'|awk 'BEGIN {FS=" "}{print $1d}'
 #+END_SRC
-* shell
-** 检索所有可用shell
-#+BEGIN_SRC  
-cat /etc/shells
-#+END_SRC
-ref 鸟哥的Linux私房菜 基础学习篇 3ed-鸟哥 296
-** 检索用户默认shell
-#+BEGIN_SRC  
-cat /etc/passwd | grep $user
-#+END_SRC
-** 检索当前终端的shell，ps
-#+BEGIN_SRC  
-ps -ef | grep `echo $$` | grep -v grep | grep -v ps
-ps aux | grep `echo $$` | grep -v grep | grep -v ps
-#+END_SRC
-
-google 查看 当前 shell
-** 检索当前终端的shell
-#+BEGIN_SRC  
-echo $SHELL
-# 终端切换shell后，例如bash切换为csh，不会修改$SHELL变量
-#+END_SRC
-
-ref 鸟哥的Linux私房菜 基础学习篇 3ed-鸟哥 304
-** 新增指定shell，dnf
-#+BEGIN_SRC  
-sudo dnf install -y $shell
-#+END_SRC
-** 删除指定shell，dnf
-#+BEGIN_SRC  
-sudo dnf remove -y $shell
-#+END_SRC
-** 修改默认shell，其他帐号，/etc/passwd
-#+BEGIN_SRC  
-sudo vim /etc/passwd
-#+END_SRC
-
-google change shell
-https://unix.stackexchange.com/questions/22729/where-do-i-change-my-shell
-
-** 修改默认shell，其他帐号，usermod
-#+BEGIN_SRC  
-usermod -s /bin/$shell $user
-#+END_SRC
-
-google change shell
-https://unix.stackexchange.com/questions/22729/where-do-i-change-my-shell
-** 修改默认shell，自己帐号，chsh -s /bin/ksh
-#+BEGIN_SRC  
-chsh -s /bin/$shell
-#+END_SRC
-
-google change shell
-https://unix.stackexchange.com/questions/22729/where-do-i-change-my-shell
 * 用户
 ref 鸟哥的Linux私房菜 基础学习篇 3ed-鸟哥 14章
 ** 检索所有用户

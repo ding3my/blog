@@ -1,4 +1,3 @@
-
 * 序言
 
 * 文本行
@@ -104,8 +103,267 @@ cat $file | tr "$c11$c12" "$c21$c22"
 expand -t $num $file
 #+END_SRC
    
+* shell
+鸟哥的Linux私房菜 基础学习篇 3ed 296
+** 检索所有可用shell
+#+BEGIN_SRC  
+cat /etc/shells
+#+END_SRC
+ref 鸟哥的Linux私房菜 基础学习篇 3ed-鸟哥 296
+** 检索用户默认shell
+#+BEGIN_SRC  
+cat /etc/passwd | grep $user
+#+END_SRC
+** 检索当前终端的shell，ps
+#+BEGIN_SRC  
+ps -ef | grep `echo $$` | grep -v grep | grep -v ps
+ps aux | grep `echo $$` | grep -v grep | grep -v ps
+#+END_SRC
 
+google 查看 当前 shell
+** 检索当前终端的shell
+#+BEGIN_SRC  
+echo $SHELL
+# 终端切换shell后，例如bash切换为csh，不会修改$SHELL变量
+#+END_SRC
+
+ref 鸟哥的Linux私房菜 基础学习篇 3ed-鸟哥 304
+** 新增指定shell，dnf
+#+BEGIN_SRC  
+sudo dnf install -y $shell
+#+END_SRC
+** 删除指定shell，dnf
+#+BEGIN_SRC  
+sudo dnf remove -y $shell
+#+END_SRC
+** 修改默认shell，其他帐号，/etc/passwd
+#+BEGIN_SRC  
+sudo vim /etc/passwd
+#+END_SRC
+
+google change shell
+https://unix.stackexchange.com/questions/22729/where-do-i-change-my-shell
+
+** 修改默认shell，其他帐号，usermod
+#+BEGIN_SRC  
+usermod -s /bin/$shell $user
+#+END_SRC
+
+google change shell
+https://unix.stackexchange.com/questions/22729/where-do-i-change-my-shell
+** 修改默认shell，自己帐号，chsh -s /bin/ksh
+#+BEGIN_SRC  
+chsh -s /bin/$shell
+#+END_SRC
+
+google change shell
+https://unix.stackexchange.com/questions/22729/where-do-i-change-my-shell
+
+* 变量
+
+** 检索所有变量
+#+BEGIN_SRC  
+set
+#+END_SRC
+https://www.gnu.org/software/bash/manual/bash.html#The-Set-Builtin
+鸟哥的Linux私房菜 基础学习篇 3ed 305
+** 检索变量，echo stdout
+#+BEGIN_SRC  
+echo ${var}
+echo $var
+#+END_SRC
+鸟哥的Linux私房菜 基础学习篇 3ed 301
+
+** 新增变量
+#+BEGIN_SRC  
+var="$val"
+var=$val
+#+END_SRC
+   
+** 删除变量
+#+BEGIN_SRC  
+unset $var
+#+END_SRC
+https://www.gnu.org/software/bash/manual/bash.html#Bourne-Shell-Builtins
+** 修改变量
+参考"新增变量"
+* 全局变量
+全局变量==环境变量，不同终端的全局变量不能通用
+** 检索所有的全局变量（包括值）
+env不是内置命令
+#+BEGIN_SRC  
+env
+#+END_SRC
+鸟哥的Linux私房菜 基础学习篇 3ed 304
+** 新增全局变量，export
+#+BEGIN_SRC  
+export $var="$val"
+#+END_SRC
+https://www.gnu.org/software/bash/manual/bash.html#Bourne-Shell-Builtins
+** 新增全局变量，转换局部变量
+#+BEGIN_SRC  
+export $var
+#+END_SRC
+** 新增全局变量，declare
+#+BEGIN_SRC  
+declare -x $var="$val"
+#+END_SRC
+https://www.gnu.org/software/bash/manual/bash.html#Bash-Builtins
+** 删除全局变量，unset
+#+BEGIN_SRC  
+unset $var
+#+END_SRC
+https://www.gnu.org/software/bash/manual/bash.html#Bourne-Shell-Builtins
+** 修改全局变量
+参考"局部变量"
+* 语言编码
+** 检索语言编码
+鸟哥的Linux私房菜 基础学习篇 3ed 309
+#+BEGIN_SRC  
+locale -a
+#+END_SRC
+** 检索语言编码变量
+#+BEGIN_SRC  
+locale
+#+END_SRC
+* 别名
+** 检索别名
+#+BEGIN_SRC  
+alias
+#+END_SRC
+https://www.gnu.org/software/bash/manual/bash.html#Bash-Builtins
+** 新增别名
+#+BEGIN_SRC  
+alias $ali="$commands"
+#+END_SRC
+** 删除别名
+#+BEGIN_SRC  
+unalias $ali
+#+END_SRC
+4.2 Bash Builtin Commands
+** 修改别名
+参考"新增别名"
+* 历史命令
+鸟哥的Linux私房菜 基础学习篇 3ed 318
+** 检索历史命令
+#+BEGIN_SRC  
+history
+#+END_SRC
+** 检索历史命令，指定关键字
+#+BEGIN_SRC  
+C-r
+#+END_SRC
+** 检索历史命令的最大数量
+#+BEGIN_SRC  
+echo $HISTSIZE
+#+END_SRC
+** 新增历史命令
+运行命令即可
+** 新增历史命令到内存
+#+BEGIN_SRC  
+history -r $file
+#+END_SRC
+不会覆盖内存已有的。
+** 新增历史命令到文件
+#+BEGIN_SRC  
+history -a $file
+#+END_SRC
+** 新增历史命令到历史命令文件，~/.bash_history
+#+BEGIN_SRC  
+history -a
+#+END_SRC
+** 删除历史命令
+#+BEGIN_SRC  
+history -c
+#+END_SRC
+zsh报错
+** 修改历史命令到文件，（覆盖）
+#+BEGIN_SRC  
+history -w $file
+#+END_SRC
+** 修改历史命令到历史命令文件（覆盖），~/.bash_history
+#+BEGIN_SRC  
+history -w
+#+END_SRC
+** 运行历史命令
+#+BEGIN_SRC  
+!$num
+#+END_SRC
+** 运行历史命令，上一条
+#+BEGIN_SRC  
+!!
+!-1
+#+END_SRC
+** 运行历史命令，指定开头
+#+BEGIN_SRC  
+!$start
+#+END_SRC
+* 全局配置文件
+鸟哥的Linux私房菜 基础学习篇 3ed 322
+/etc/profile
+/etc/bashrc
+* 终端tty
+** 检索终端信息
+#+BEGIN_SRC  
+stty -a
+#+END_SRC
+* login shell
+** sudo bash中bash是什么意思？
+sudo /bin/bash This means that you call sudo with the command /bin/bash
+
+google sudo bash mean
+https://askubuntu.com/questions/376199/sudo-su-vs-sudo-i-vs-sudo-bin-bash-when-does-it-matter-which-is-used
+** 如何sudo运行function函数？
+http://stackoverflow.com/questions/9448920/how-can-i-execute-a-bash-function-using-sudo
+** 如何sudo运行alias缩写？
+#+BEGIN_SRC  
+alias sudo='sudo '
+#+END_SRC
+https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
+** 检索当前bash是否是login shell
+#+BEGIN_SRC  
+shopt -q login_shell && echo 'Login shell' || echo 'Not login shell'
+#+END_SRC
+https://unix.stackexchange.com/questions/26676/how-to-check-if-a-shell-is-login-interactive-batch
 * FAQ
+** sudo su区别是什么？
+
+http://www.jb51.net/LINUXjishu/12713.html
+** su -中的-表示什么？
+- -l --login
+
+man su
+** 如何检验bash是否是interactive shell？
+#+BEGIN_SRC  
+[[ $- == *i* ]] && echo 'Interactive' || echo 'Not interactive'
+#+END_SRC
+** 如何检验bash是否是login shell？
+#+BEGIN_SRC  
+shopt -q login_shell && echo 'Login shell' || echo 'Not login shell'
+#+END_SRC
+https://unix.stackexchange.com/questions/26676/how-to-check-if-a-shell-is-login-interactive-batch
+** login shell bash如何读取配置文件？
+/etc/profile
+$HOME/.bash_profile（会读取$HOME/.bashrc；$HOME/.bashrc会读取/etc/bashrc）
+
+6.2 Bash Startup Files
+Linux命令行与Shell脚本编程大全 2ed 112
+** interactive non-login shell bash如何读取配置文件？
+$HOME/.bashrc
+** non-interactive non-login shell bash如何读取配置文件？
+不读取
+** 如何运行interactive login shell？
+#+BEGIN_SRC  
+su -
+#+END_SRC
+https://unix.stackexchange.com/questions/38175/difference-between-login-shell-and-non-login-shell
+** 查找命令的顺序是什么？
+相对路径或绝对路径
+alias
+bash内置
+$PATH
+
+鸟哥的Linux私房菜 基础学习篇 3ed 320
 ** 如何使用split分割文件？
 #+BEGIN_SRC  
 split -b $size $file $prefix
@@ -117,3 +375,9 @@ split -b $size $file $prefix
 cat ls*>>ls
 # split -b 50k /usr/bin/ls ls
 #+END_SRC
+* 参考
+https://www.gnu.org/software/bash/manual/bash.html
+鸟哥的Linux私房菜 基础学习篇 3ed
+Linux命令行与Shell脚本编程大全 2ed
+https://www.howtogeek.com/howto/ubuntu/keyboard-shortcuts-for-bash-command-shell-for-ubuntu-debian-suse-redhat-linux-etc/
+https://ss64.com/bash/syntax-keyboard.html
