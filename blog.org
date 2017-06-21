@@ -1,0 +1,135 @@
+* Blog
+** 如何git到github？
+** 170620
+** 如何fedora安装sougou输入法？
+
+https://www.google.com/search?q=fcitx+搜狗+fedora
+http://haoma.sogou.com/bbs/forum.php?mod=viewthread&tid=2592776
+
+#+BEGIN_SRC  
+# 安装fcitx框架以及配置工具
+sudo dnf install fcitx fcitx-configtool -y
+
+# 下载安装sougou输入法 
+url="http://cdn2.ime.sogou.com/dl/index/1491565850/sogoupinyin_2.1.0.0086_amd64.deb?st=Kj48P6ir4tzyKa3NvRUwsA&e=1497962043&fn=sogoupinyin_2.1.0.0086_amd64.deb"
+name=sougou.deb
+wget $url -O ./$name
+ar vx ./$name
+sudo tar -Jxvf data.tar.xz  -C /
+
+# 用sogou的库覆盖fcitx原生的库,此步必须有!!
+sudo cp /usr/lib/x86_64-linux-gnu/fcitx/fcitx-sogoupinyin.so  /usr/lib64/fcitx/fcitx-sogoupinyin.so
+#+END_SRC
+
+#+BEGIN_SRC  
+# 添加到shell的profile文件中，bash为"~/.bash_profile"
+export XIM=fcit
+export XIM_PROGRAM=fcitx
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
+eval `dbus-launch --sh-syntax --exit-with-session` # 解决terminal下不能用fcitx问题
+fcitx & # 使fcitx随系统启动
+#+END_SRC
+** DONE 如何wget指定下载文件名？
+	 CLOSED: [2017-06-21 Wed 10:43]
+？用于制作sougou安装脚本。
+
+https://www.google.com/search?q=wget+指定+文件名&ie=utf-8&oe=utf-8
+http://www.360doc.com/content/11/0526/22/606382_119642374.shtml
+#+BEGIN_SRC  
+-O
+#+END_SRC
+** DONE 如何检索tar包内容？
+	 CLOSED: [2017-06-20 Tue 21:09]
+？用于查看搜狗deb包解压后的data包。
+#+BEGIN_SRC  
+tar -tf data.tar.xz | less
+#+END_SRC
+
+** 如何linux安装fcitx输入法？
+https://www.baidu.com/s?wd=fedora fcitx
+http://blog.chinaunix.net/uid-14735472-id-5604579.html
+
+https://www.google.com/search?q=ibus+fcitx&ie=utf-8&oe=utf-8
+https://www.ubuntukylin.com/ukylin/forum.php?mod=viewthread&tid=522
+sogou输入法使用的fcitx框架
+
+https://www.google.com/search?q=安装+fcitx+fedora
+https://my.oschina.net/hevakelcj/blog/482756#comment-list
+http://blog.gaoyuan.xyz/2013/10/26/fcitx-fedora/
+
+安装和配置fcitx
+#+BEGIN_SRC bash 
+# 分别安装fcitx框架、配置工具、输入法库
+sudo dnf install fcitx fcitx-configtool fcitx-table-chinese -y
+
+# 添加到shell的profile文件中，bash为"~/.bash_profile"
+export XIM=fcit
+export XIM_PROGRAM=fcitx
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
+eval `dbus-launch --sh-syntax --exit-with-session` # 解决terminal下不能用fcitx问题
+fcitx & # 使fcitx随系统启动
+
+# 重新登录或重新启动，因为login interactive shell会重新读取全局变量。
+#+END_SRC
+
+添加中文输入法
+#+BEGIN_SRC  
+fcitx configuration - input method - add
+添加pinyin（去掉"only show current language"，搜索"pinyin"）
+#+END_SRC
+
+修改输入法快捷键。为什么？避免和emacs快捷键冲突。
+#+BEGIN_SRC  
+fcitx configuration - global config - hotkey - trigger input method
+shift+space
+#+END_SRC
+
+添加云输入功能。为什么？智能补全生僻词汇
+#+BEGIN_SRC  
+# 安装fcitx-cloudpinyin
+sudo dnf install fcitx-cloudpinyin -y
+
+fcitx configuration - addon - cloud pinyin - cloud pinyin source
+baidu
+#+END_SRC
+
+** DONE 如何切换fedora cli shell为gui shell？
+	 CLOSED: [2017-06-20 Tue 19:29]
+为什么切换？ 用于测试fcitx。
+
+https://www.google.com/search?q=fedora+命令行启动&oq=fedora+命令行
+http://blog.csdn.net/nightelve/article/details/17386661
+vi /etc/inittab
+
+fedora 24没有使用inittab文件来控制默认shell，/etc/inittab内容如下
+#+BEGIN_SRC  
+# inittab is no longer used.
+#
+# ADDING CONFIGURATION HERE WILL HAVE NO EFFECT ON YOUR SYSTEM.
+#
+# Ctrl-Alt-Delete is handled by /usr/lib/systemd/system/ctrl-alt-del.target
+#
+# systemd uses 'targets' instead of runlevels. By default, there are two main targets:
+#
+# multi-user.target: analogous to runlevel 3
+# graphical.target: analogous to runlevel 5
+#
+# To view current default target, run:
+# systemctl get-default
+#
+# To set a default target, run:
+# systemctl set-default TARGET.target
+#+END_SRC
+
+#+BEGIN_SRC  
+systemctl get-default # 查看默认启动shell
+systemctl set-default graphical.target # 默认gui启动
+systemctl set-default multi-user.target # 默认cli启动
+#+END_SRC
+
+** 如何virtualbox gui克隆镜像？
+为什么？用于测试代码。
