@@ -1,7 +1,747 @@
 * Blog
+  
+https://stackoverflow.com/questions/9387816/how-to-call-interactive-emacs-lisp-function-with-a-prefix-argument-from-another
+匿名函数
+#+BEGIN_SRC  
+(call-interactively '(lambda ()
+                       (interactive)
+                       (flyspell-mode '(4))))
+#+END_SRC
+  
+https://www.google.com/search?q=grub2+boot+fedora
+** DONE 如何emacs lisp导入el文件？
+   CLOSED: [2017-06-27 Tue 11:33]
+？研发emacs插件。
+
+https://www.google.com/search?q=emacs+import+el+file&ie=utf-8&oe=utf-8
+https://stackoverflow.com/questions/7252793/importing-files-in-emacs-lisp-emacs-configuration-file-in-the-same-directory
+#+BEGIN_SRC  
+(load-file "/el/path")
+#+END_SRC
+** DONE 如何定义emacs函数？
+   CLOSED: [2017-06-27 Tue 11:19]
+？学习调用org函数。
+
+https://www.gnu.org/software/emacs/manual/html_node/eintr/index.html
+https://www.gnu.org/software/emacs/manual/html_node/eintr/defun.html#defun
+#+BEGIN_SRC  
+(defun multiply-by-seven (number)
+"Multiply NUMBER by seven."
+(* 7 number))
+
+m-: (multiply-by-seven 2) ; 需要输入小括号parentheses。
+#+END_SRC
+** DONE 如何定义emacs interactive交互函数？
+   CLOSED: [2017-06-27 Tue 11:19]
+   
+
+https://www.gnu.org/software/emacs/manual/html_node/eintr/index.html
+https://www.gnu.org/software/emacs/manual/html_node/eintr/Interactive-multiply_002dby_002dseven.html#Interactive-multiply_002dby_002dseven
+
+#+BEGIN_SRC  
+(defun multiply-by-seven (number)       ; Interactive version.
+	"Multiply NUMBER by seven."
+	(interactive "p")
+	(message "The result is %d" (* 7 number)))
+
+; 无法输入参数number
+#+END_SRC
+
+https://www.gnu.org/software/emacs/manual/html_node/eintr/index.html
+https://www.gnu.org/software/emacs/manual/html_node/elisp/Command-Loop.html#Command-Loop
+https://www.gnu.org/software/emacs/manual/html_node/elisp/Interactive-Codes.html#Interactive-Codes
+#+BEGIN_SRC  
+
+(defun multiply-by-seven (number)       ; Interactive version.
+	"Multiply NUMBER by seven."
+	(interactive "n")
+	(message "The result is %d" (* 7 number)))
+
+; 可以输入参数number，修改p为n。
+#+END_SRC
+** DONE 如何emacs调用interactive交互函数？
+   CLOSED: [2017-06-27 Tue 11:06]
+？调用org交互函数
+
+https://www.google.com/search?q=emacs+lisp+call+interactive+function
+https://emacs.stackexchange.com/questions/5973/how-to-use-interactive-arguments-when-calling-the-command-from-code
+
+https://www.gnu.org/software/emacs/manual/html_node/elisp/index.html
+https://www.gnu.org/software/emacs/manual/html_node/elisp/Functions.html#Functions
+https://www.gnu.org/software/emacs/manual/html_node/elisp/Defining-Functions.html#Defining-Functions
+
+case: call-interactively
+#+BEGIN_SRC  
+(defun foo(str)
+  (interactive "s")
+  (message str))
+
+(call-interactively 'foo)
+#+END_SRC
+
+case: directly
+#+BEGIN_SRC  
+(defun foo(str)
+  (interactive "s")
+  (message str)
+  (message "inter"))
+
+(foo "hi")
+#+END_SRC
+** 如何emacs c-h k查看emacs org s-tab 2次的快捷键？
+？hack org函数。
+
+** DONE 如何emacs org检索指定时间段的日程？
+   CLOSED: [2017-06-27 Tue 09:13] SCHEDULED: <2017-06-27 Tue>
+？回顾日程
+
+http://orgmode.org/guide/Document-Structure.html#Document-Structure
+http://orgmode.org/guide/Sparse-trees.html#Sparse-trees
+#+BEGIN_SRC  
+C-c / D
+17-6-27
+17-6-27 8:00 # 8:0 无效
+#+END_SRC
+
+
+** 什么是fdisk type和mkfs type的区别？
+？用于制作u盘安装盘。
+
+https://www.google.com/search?q=fdisk+type+id+difference+mkfs
+https://superuser.com/questions/317724/difference-between-file-system-created-by-fdisk-and-file-system-created-by-mkfs
+So fdisk isn't really creating a filesystem, it's setting up the hard drive so that a filesystem can be created on it.
+https://unix.stackexchange.com/questions/18510/why-do-we-need-to-specify-partition-type-in-fdisk-and-later-again-in-mkfs
+The partition type code that fdisk puts in the msdos partition table is only a hint and is pretty much ignored by non Microsoft operating systems.
+** DONE 如何解决python报错"You are trying to run the Python 2 version of Beautiful Soup under Python 3."
+   CLOSED: [2017-06-26 Mon 16:30]
+？运行bs脚本报错。
+
+https://www.google.com/search?q=You+are+trying+to+run+the+Python+2+version+of+Beautiful+Soup+under+Python+3
+https://stackoverflow.com/questions/35422243/beautiful-soup-python-installation-not-working
+You can reinstall the BeautifulSoup package using pip
+#+BEGIN_SRC  
+sudo python2 -m pip uninstall beautifulsoup4 
+sudo python3 -m pip install beautifulsoup4
+#+END_SRC
+
+https://www.google.com/search?q=You+are+trying+to+run+the+Python+2+version+of+Beautiful+Soup+under+Python+3&ie=utf-8&oe=utf-8
+** DONE 如何解决运行bs4脚本警告"No parser was explicitly specified"？
+   CLOSED: [2017-06-26 Mon 17:51]
+？运行bs4脚本。
+
+https://www.google.com/search?q=No+parser+was+explicitly+specified&ie=utf-8&oe=utf-8
+https://stackoverflow.com/questions/33511544/how-to-get-rid-of-beautifulsoup-user-warning
+
+修改
+#+BEGIN_SRC  
+bsObj = BeautifulSoup(html.read())
+#+END_SRC
+为
+#+BEGIN_SRC  
+bsObj = BeautifulSoup(html.read(),"lxml")
+#+END_SRC
+书内容过时。
+
+** 什么是pip？
+？安装bs库使用。
+
+https://docs.python.org/3/installing/index.html
+** 什么是pip和python version的关系？
+？使用pip安装bs4。
+
+https://www.google.com/search?q=pip+version+python
+** 如何检索pip使用的默认python version？
+
+https://www.google.com/search?q=pip+tutorial
+https://packaging.python.org/tutorials/installing-packages/
+** 如何在virtualenv下使用pip install？
+？解决安装bs4提示"Requirement already satisfied"
+
+** 如何使用virtualenv？
+？避免python版本环境冲突（fedora24的dnf依赖python2，学习使用的python版本是3）。
+
+https://docs.python.org/3/installing/index.html
+virtualenv
+
+Python网络数据采集 p6
+#+BEGIN_SRC  
+# 创建虚拟环境
+virtualenv $path
+
+# 激活虚拟环境
+source "$path/bin/activate" # shell脚本
+
+# 取消激活虚拟环境
+deactivate
+
+#+END_SRC
+
+https://www.google.com/search?q=virtualenv
+http://pythonguidecn.readthedocs.io/zh/latest/dev/virtualenvs.html
+#+BEGIN_SRC  
+virtualenv -p "$python_interpreter_path" "$venv_dir" # /usr/bin/python2.7
+#+END_SRC
+
+** DONE 如何检索virtualenv目录的python版本？
+   CLOSED: [2017-06-26 Mon 13:22]
+？学习爬虫。
+
+https://www.google.com/search?q=how+to+know+virtualenv+python+version
+https://stackoverflow.com/questions/1534210/use-different-python-version-with-virtualenv
+#+BEGIN_SRC  
+# which
+which python
+
+# type
+type python
+
+# ls -l
+ls -l $env/bin
+#+END_SRC
+
+https://stackoverflow.com/questions/44753233/what-is-the-right-way-to-know-the-python-version-used-by-virtualenv-directory
+#+BEGIN_SRC  
+source test_proj/bin/activate
+python --version
+#+END_SRC
+
+** DONE 如何安装python beautifulsoup？
+   CLOSED: [2017-06-26 Mon 10:19]
+？学习爬虫。
+
+Python网络数据采集 p5
+#+BEGIN_SRC  
+sudo pip install beautifulsoup4
+#+END_SRC
+
+检验
+#+BEGIN_SRC  
+# 进入python交互程序检验。
+from bs4 import BeautifulSoup
+#+END_SRC
+
+** DONE 如何使用linux dd制作fedora安装优盘？
+   CLOSED: [2017-06-21 Wed 19:53]
+？解决ultraiso、poweriso写入优盘无法启动的问题。
+
+http://hongxchen.github.io/2014/07/19/making-fedora-usb-media-with-dd/
+很多人在windows下直接用一些工具直接将iso写入U盘或者硬盘，这个是U盘安装windows的方法，在fedora上是不行的，因为fedora的iso其实是分轨镜像，在一个iso镜像里有若干个分区，正确的方法是在Linux或者mac下使用dd来做，windows请下载MinGW。
+
+#+BEGIN_SRC  
+iso="/home/yjr/Downloads/Fedora-Workstation-Live-x86_64-24-1.2.iso"
+disk="/dev/sdc"
+
+dd if="$iso" of="$disk"
+#+END_SRC
+
+adata威刚成功，netac朗科失败
+
+** 如何检索fdisk中l选项的详细信息？
+https://www.google.com/search?q=partition+type+partition+table
+https://en.wikipedia.org/wiki/Partition_type
+
+** 如何检索笔记本电脑主板是uefi或efi或bios类型？
+   
+https://www.google.com/search?q=how+to+know+motherboard+uefi+bios
+http://www.thewindowsclub.com/check-if-uefi-or-bios
+#+BEGIN_SRC  
+If your PC supports UEFI, then if you go through your BIOS settings, you will see the Secure Boot option.
+#+END_SRC
+** 什么是grub2优盘dos gpt分区表区别？ 
+** 如何解决linux umount报错"target is busy"？
+？解决拔出优盘问题。
+** DONE 如何设置软件工程目录（测试）的各目录？
+   CLOSED: [2017-06-23 Fri 00:17]
+？开发grub2脚本需要使用。
+
+https://www.google.com/search?q=junit+目录+结构&ie=utf-8&oe=utf-8
+http://blog.csdn.net/jadyer/article/details/9280581
+test是src子目录。
+
+https://www.google.com/search?q=maven+unit+test+hierarchy
+https://stackoverflow.com/questions/1540324/java-unit-tests-directory-layout
+http://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html
+#+BEGIN_SRC  
+module/
+  src/
+    main/
+      java/
+    test/
+      java/
+#+END_SRC
+
+选择apache的目录结构。
+
+** 如何设置emacs shell当前目录为emacs dired当前目录？
+？高效率设置emacs shell默认目录。
+** 如何解决emacs shell调用bash脚本输入密码为明文？
+？保护隐私。
+** DONE 什么是yasnippet目录？
+   CLOSED: [2017-06-22 Thu 19:35]
+？上传到github。
+
+http://joaotavora.github.io/yasnippet/
+http://joaotavora.github.io/yasnippet/snippet-organization.html
+~/.emacs.d/snippets
+** DONE 如何编写软件文档？
+   CLOSED: [2017-06-22 Thu 19:21]
+？用于相关人员检索参考。
+
+https://en.wikipedia.org/wiki/Software_documentation
+https://zh.wikipedia.org/wiki/软件文档
+软件工程 9ed
+需求工程
+unix编程艺术
+卓有成效的程序员
+
+#+BEGIN_SRC  
+目录结构
+引言 Introduce
+User
+教程 Tutorial
+手册 Manual
+问题 FAQ
+Developer
+需求 Requirement
+设计 Design
+实现&测试 Implement&Test
+运维 Maintance
+
+#+END_SRC
+** DONE 如何解决linux date +%X不是24小时制？
+   CLOSED: [2017-06-22 Thu 18:22]
+？用于git commit，默认信息为时间。
+
+https://www.google.com/search?biw=1920&bih=853&q=date++%X+why+pm+am
+http://man.linuxde.net/date
+#+BEGIN_SRC  
+date +"%F %H:%M:%S"
+#+END_SRC
+** DONE 哪个好，环境变量PATH放在bashrc或bash_profile？
+   CLOSED: [2017-06-22 Thu 14:56]
+？解决环境变量放置问题，避免部署时，行动产生歧义。
+
+https://www.google.com/search?q=path+bashrc+bash_profile&ie=utf-8&oe=utf-8
+https://unix.stackexchange.com/questions/26047/how-to-correctly-add-a-path-to-path
+Note that ~/.bash_rc is not read by any program, and ~/.bashrc is the configuration file of interactive instances of bash.
+
+总结：bash_profile更稳定，bashrc更方便（新增export，无需重新登录，新建terminal即可）
+
+** 如何git commit不输入信息message？
+？高效率commit。
+
+** 如何解决xargs并行执行时输出顺序混乱？
+？解决并行ping时，输出乱序。
+
+https://www.google.com/search?biw=1920&bih=853&q=ping+xargs+顺序
+https://stackoverflow.com/questions/14439755/how-to-ping-each-ip-in-a-file
+#+BEGIN_SRC  
+cat ips | xargs echo ping -c 2
+#+END_SRC
+
+https://www.google.com/search?biw=1920&bih=853&q=ping+xargs+并行
+https://www.zhihu.com/question/20082099
+整个命令用（）套上重定向就行。
+
+** DONE 什么是xargs -i -I的区别？
+   CLOSED: [2017-06-22 Thu 12:44]
+？解决xargs指定参数位置时，选项-i、-I的理解。
+
+https://www.google.com/search?q=xargs+并行&ie=utf-8&oe=utf-8
+https://www.zhihu.com/question/20082099
+https://stackoverflow.com/questions/845863/how-to-use-in-an-xargs-command
+-I指定参数的位置符号，-i默认使用{}作为参数的位置符号。
+#+BEGIN_SRC  
+ls -1 | xargs -I{} "grep ABC '{}' > '{}'.out"
+#+END_SRC
+
+** DONE 如何xargs指定参数位置？
+   CLOSED: [2017-06-22 Thu 12:37]
+？用于ping命令指定ip参数位置。
+
+https://www.google.com/search?q=+xargs+specific&ie=utf-8&oe=utf-8
+http://www.linuxask.com/questions/how-to-adjust-the-argument-position-in-xargs
+#+BEGIN_SRC  
+echo "foo" | xargs -i echo {} "bar"
+#+END_SRC
+
+** DONE 如何bash读取内联输入重定向<<的内容？（如何bash从标准输入stdin读取多行内容？）
+   CLOSED: [2017-06-22 Thu 12:16]
+？用于批量生成ss脚本。
+
+Linux命令行与Shell脚本编程大全 2ed p209
+
+https://stackoverflow.com/questions/41563044/how-to-use-shell-keyword-select-to-get-parameters-by-pipeline
+#+BEGIN_SRC  
+mapfile -t input </dev/stdin
+#+END_SRC
+
+man mapfile
+mapfile readarray
+
+
+https://www.gnu.org/software/bash/manual/html_node/Bash-Builtins.html
+readarray
+A synonym for mapfile. 
+
+https://www.google.com/search?q=how+to+read+from+standard+input+bash&ie=utf-8&oe=utf-8
+https://stackoverflow.com/questions/6980090/how-to-read-from-file-or-stdin-in-bash
+#+BEGIN_SRC  
+while read line
+do
+  echo "$line"
+done < "${1:-/dev/stdin}"
+#+END_SRC
+https://stackoverflow.com/questions/212965/how-to-read-mutliline-input-from-stdin-into-variable-and-how-to-print-one-out-in
+#+BEGIN_SRC  
+myVar=$(</dev/stdin)
+#+END_SRC
+
+** 如何使用grub2引导winpe？
+？测试出结果再归纳。
+https://www.google.com/search?q=grub2+winpe
+http://www.xzcblog.com/post-243.html
+首先我们要获得syslinux的memdisk模块，如果是Linux系统那么基本上都自带了此模块。
+/usr/lib/syslinux/memdisk
+
+#+BEGIN_SRC  
+find / -name *memdis*
+#+END_SRC
+
+menuentry 'Boot Windows PE ISO'{
+		#set root='(hd0,msdos1)'
+		echo 'Loading Memdisk...'
+		#insmod memdisk
+		linux16 /boot/memdisk iso raw
+		echo 'Loading ISO...'
+		initrd16 (hd1,msdos8)/iso/PE2013.iso
+}
+** 如何解决grub2 shell加载模块报错"file not found memdisk"
+？解决grub2引导winpe。 
+
+https://www.google.com/search?biw=960&bih=853&q=grub+shell+file+not+found+memdisk
+https://unix.stackexchange.com/questions/48823/new-menu-entry-in-grub2-file-not-found-and-you-need-to-load-the-kernel-first
+Because you have a dedicated /boot partition ( you probably don't need one ), that partition has no directory named /boot, hence why the files are not found. Remove the /boot from the path.
+** 如何grub2 shell切换分区？
+？需要加载不在/boot分区里的iso镜像文件（因为/boot空间不足）
+
+https://www.google.com/search?q=how+to+change+boot+partition+grub2+shell
+https://askubuntu.com/questions/84501/how-can-i-change-convert-a-ubuntu-mbr-drive-to-a-gpt-and-make-ubuntu-boot-from
+#+BEGIN_SRC  
+
+#+END_SRC
+https://www.linux.com/learn/how-rescue-non-booting-grub-2-linux
+#+BEGIN_SRC  
+What's all this msdos stuff? That means this system has the old-style MS-DOS partition table, rather than the shiny new Globally Unique Identifiers partition table (GPT).
+#+END_SRC
+** 如何linux增加分区空间？
+？解决fedora虚拟机/boot分区空间不足放入winpe的iso镜像，grub2无法加载镜像的问题。
+** DONE 如何查看linux分区的文件系统类型？
+   CLOSED: [2017-06-21 Wed 23:55]
+？用于grub2切换分区时，加载文件系统的模块，解决"error unknown filesystem"问题。
+
+https://www.google.com/search?q=linux+how+to+know+partition+filesystem+type
+https://askubuntu.com/questions/309047/how-do-i-find-out-what-filesystem-my-partitions-are-using
+#+BEGIN_SRC  
+df -T
+#+END_SRC
+** 如何解决grub2 shell切换分区报错"error unknown filesystem"？
+
+** 如何进入grub2 shell？
+？用于测试加载memdisk模块，引导winpe镜像。
+
+#+BEGIN_SRC  
+c #grub2提示
+#+END_SRC
+
+** DONE 如何解决virtualbox fedora linux安装addition增强包报错"failed to set up service vboxadd"
+   CLOSED: [2017-06-22 Thu 21:12]
+？用于从宿主拷贝winpe镜像到虚拟机，测试grub2。
+
+新安装的fedora24。
+   
+https://www.google.com/search?q=failed+to+set+up+service+vboxadd+fedora
+https://ask.fedoraproject.org/en/question/89829/error-adding-guest-additions-in-f24/
+#+BEGIN_SRC  
+# 测试后，主要是kernel-devel没装。
+sudo dnf update # 更新repo，之后就可以使用tab补全kernel-devel了。
+
+sudo dnf install kernel-devel # tab补全
+
+# 安装增强包
+cd /run/media/$your_name/$VBox # 补全用户名和VB目录，2次
+sudo ./VBoxL # tab补全
+
+# 安装完毕，reboot
+#+END_SRC
+
+** TODO 如何解决virtualbox fedora linux挂载共享文件报错"unknown filesystem type vboxsf"？
+？用于拷贝宿主的winpe镜像，测试grub2。
+
+https://www.google.com/search?q=unknown+filesystem+type+vboxsf&ie=utf-8&oe=utf-8
+https://askubuntu.com/questions/456400/why-cant-i-access-a-shared-folder-from-within-my-virtualbox-machine
+安装addition增强包。
+
+
+** DONE 如何宿主共享文件夹给virtualbox fedora linux？
+   CLOSED: [2017-06-21 Wed 21:14]
+？用于下载grub2引导winpe用的镜像。
+
+https://www.google.com/search?q=virtualbox+linux+shared+folder
+https://serverfault.com/questions/674974/how-to-mount-a-virtualbox-shared-folder/674978
+#+BEGIN_SRC  
+dir="Downloads"
+
+mkdir ~/share
+sudo mount -t vboxsf "$dir" ~/share/
+#+END_SRC
+
+
+** TODO 如何解决插入优盘被virtualbox windows虚拟机优先识别？
+？解决制作安装优盘时，fdisk -l查看不到优盘。
+
+virtualbox manager - 右键 - usb
+删除filter内容即可。
+
+没有文档支持。
+** DONE 如何修改grub2启动界面内容？
+   CLOSED: [2017-06-21 Wed 19:28]
+？用于测试grub2。
+
+https://www.google.com/search?q=grub2+启动
+http://blog.csdn.net/lu_embedded/article/details/44353499
+/boot/grub/grub.cfg
+#+BEGIN_SRC  
+sudo vim /boot/grub/grub2.cfg # fedora 24 重命名grub为grub2
+
+# /menuentry 检索到菜单位置。
+#+END_SRC
+** 如何使用grub2安装fedora？
+为什么使用grub2？fedora 24使用grub2,而不是grub
+
+https://www.google.com/search?q=gpt+mbr+分区表&ie=utf-8&oe=utf-8
+http://news.mydrivers.com/1/503/503560.htm
+UEFI和GPT是相辅相成的，二者缺一不可，要想使用GPT分区表则必须是UEFI BIOS环境。
+
+[%m:%~] $ grub2-install --force --no-floppy --boot-directory=/mnt/gr /dev/sdb
+Installing for x86_64-efi platform.
+grub2-install: error: cannot find EFI directory.
+
+https://www.baidu.com/s?wd=grub2%20优盘
+http://blog.csdn.net/u010875635/article/details/70170129
+fdisk将优盘分区表变为gpt
+#+BEGIN_SRC  
+grub2-install --no-floppy --root-directory=/mnt/gr /dev/sdc1
+
+# 安装成功
+#+END_SRC
+
+** TODO 如何制作grub2 bios mbr安装优盘？
+？解决暂时没有uefi gpt文档，学习bios mbr，再学习uefi gpt。
+
+https://www.google.com/search?q=优盘+安装+grub2+urfi
+http://bbs.archlinuxcn.org/viewtopic.php?id=2954
+
+#+BEGIN_SRC  
+mount /dev/sdb1 /mnt
+
+grub2-install --target=i386-pc --recheck --boot-directory=/mnt /dev/sdb
+# 安装失败
+#+END_SRC
+
+https://www.google.com/search?biw=1920&bih=861&q=grub2+U盘+安装
+https://www.zouyesheng.com/install-grub-on-udisk.html
+#+BEGIN_SRC  
+# 切换为root
+su
+
+fdisk -l # 查看，避免误删除
+
+device="/dev/sdc"
+mnt_point="/mnt"
+
+cfg="/boot/grub2/grub.cfg" # 需要文档
+
+partition="${device}1" # 默认分区1。
+target_cfg_dir="${mnt_point}/boot/grub2"
+
+cat<<end
+$device
+$mnt_point
+$cfg
+$partition
+$target_cfg_dir
+end
+
+umount "$partition"
+mkfs.vfat -F 32 -n MULTIBOOT "$partition"
+
+# 安装grub2
+mount "$partition" "$mnt_point"
+grub2-install --force --no-floppy --root-directory="$mnt_point" "$device"
+
+# 复制备份文件，不规范，应该是自动生成。缺乏文档，需要补上
+cp "$cfg" "$target_cfg_dir"
+
+# u3000成功，k650不成功。
+
+cp /boot/extlinux/memdisk /mnt/boot/
+
+#+END_SRC
+
+** 如何避免误删除或误格式化？
+？解决安装grub2误操作问题。
+** DONE 什么是bios和uefi的区别？
+   CLOSED: [2017-06-23 Fri 12:39]
+？解决fdisk操作优盘时，选择分区表类型。
+
+https://www.google.com/search?q=bios&ie=utf-8&oe=utf-8
+https://en.wikipedia.org/wiki/BIOS
+BIOS is non-volatile firmware.
+
+https://en.wikipedia.org/wiki/Unified_Extensible_Firmware_Interface
+UEFI is firmware.
+
+https://en.wikipedia.org/wiki/BIOS
+https://en.wikipedia.org/wiki/Firmware
+firmware is a type of software that provides control, monitoring and data manipulation of engineered products and systems.
+
+
+** DONE 什么是优盘分区表和grub2的关系？
+   CLOSED: [2017-06-23 Fri 14:13]
+？使用优盘启动，需要知道其关系。
+
+https://www.google.com/search?q=grub2+mbr+gpt
+https://wiki.gentoo.org/wiki/GRUB2/zh-cn
+bios主板可以使用mbr、gpt引导，uefi主板使用gpt引导。
+https://wiki.archlinux.org/index.php/GRUB_(简体中文)
+
+https://www.google.com/search?q=uefi+only+gpt&ei=cp1MWYXCA4qF8gW2k5PwAg&start=10&sa=N&biw=1920&bih=861
+https://community.acer.com/t5/Legacy-Laptops-and-Netbooks/UEFI-BIOS-MBR-GPT-disks-and-multi-boot/m-p/271940
+UEFI ONLY supports GPT disks
+
+https://www.google.com/search?q=bios+支持+gpt
+https://wzyboy.im/post/1049.html
+2009 年之后的主板基本是 BIOS + UEFI 双配置
+http://www.cfan.com.cn/2016/0905/127259.shtml
+BIOS只支持MBR引导系统，而GPT仅支持UEFI引导系统。所以，现在电脑的主板大多采用BIOS集成UEFI，或UEFI集成BIOS的方式达到同时兼容MBR和GPT引导系统的目的。
+
+https://www.google.com/search?biw=1920&bih=861&q=bios+只支持+mbr
+http://iknow.lenovo.com/detail/dc_123214.html
+BIOS只支持MBR引导系统，而GPT仅可用UEFI引导系统。
+
+** DONE 什么是grub2-install和grub-install区别？
+   CLOSED: [2017-06-23 Fri 11:56]
+？fedora 24只有grub2-install。
+
+man grub2-install
+
+https://www.google.com/search?q=grub2-install命令
+https://www.ibm.com/developerworks/cn/linux/l-grub2/
+有些发行版将命令重命名为 grub2-install。
+
+** 如何解决umount: /mnt/gr: target is busy？
+？解决无法卸载grub2优盘。
+** 如何解决grub2没有/boot/grub/menu.lst文件？
+？配置菜单项。
+
+https://www.google.com/search?q=grub2+menu.lst&ie=utf-8&oe=utf-8
+https://www.howtogeek.com/196655/how-to-configure-the-grub2-boot-loaders-settings/
+GRUB2 doesn’t use a menu.lst file. Instead, its main configuration file is the /boot/grub/grub.cfg file.
+Your own GRUB settings are stored in the /etc/default/grub file. Edit this file to change GRUB2’s settings. 
+
+fedora2 24： /boot/grub2/grub.cfg
+** DONE 什么是磁盘分区表的区别？
+   CLOSED: [2017-06-21 Wed 18:53]
+？用于制作grub启动盘。
+
+https://www.google.com/search?q=分区表+dos+gpt
+http://dengqi.blog.51cto.com/5685776/1348951
+MBR磁盘分区是一种使用最为广泛的分区结构，它也被称为DOS分区结构，但它并不仅仅应用于Windows系统平台，也应用于Linux，基于X86的UNIX等系统平台。它位于磁盘的0号扇区（一扇区等于512字节），是一个重要的扇区（简称MBR扇区）。
+
+https://www.google.com/search?q=mbr+dos+difference
+https://serverfault.com/questions/42608/what-is-the-difference-between-a-dos-and-solaris-mbr
+I believe the difference is that DOS uses the IBM Standard Master Boot Record format defined by IBM back in the early 80's
+** 如何使用windows制作fedora usb优盘安装盘？
+https://www.google.com/search?q=制作+usb+fedora++安装盘
+
+
+使用ultraiso启动会报错"Warning: dracut-initqueue timeout - starting timeout scripts"
+使用poweriso启动会报错"Warning: dracut-initqueue timeout - starting timeout scripts"
+https://www.google.com/search?q=warning+dracut-initqueue+timeout&ie=utf-8&oe=utf-8
+
+** DONE 如何linux cli shell格式化优盘为ntfs？
+   CLOSED: [2017-06-21 Wed 15:52]
+？使用优盘传输fedora iso。
+
+ref 鸟哥的Linux私房菜 基础学习篇 3ed p217
+fdisk mkfs
+
+https://www.google.com/search?biw=1920&bih=861&q=fdisk+ntfs
+https://unix.stackexchange.com/questions/252625/how-can-i-use-fdisk-to-create-a-ntfs-partition-on-dev-sdx
+
+#+BEGIN_SRC  
+sudo fdisk $dev
+
+sudo mkfs.ntfs $partition --fast
+#+END_SRC
+** 如何解决linux格式化优盘时报错"Re-reading the partition table failed.: Device or resource busy"？
+？解决格式化完毕后报错。
+
+** DONE 如何linux快速格式化优盘？
+   CLOSED: [2017-06-21 Wed 15:43]
+？mkfs.ntfs格式化太慢，因为使用0填充优盘。
+
+https://www.google.com/search?q=mkfs+ntfs+fast
+-f或--fast参数 
+
+** DONE 如何选择usb优盘的文件系统格式？
+   CLOSED: [2017-06-21 Wed 13:40]
+？用于通用windows、linux、mac
+
+https://www.google.com/search?q=linux+mac+通用+格式
+https://www.v2ex.com/t/96483
+ntfs
+
+https://www.google.com/search?q=windows+linux++通用+格式
+https://www.zhihu.com/question/20448164
+hfs+
+ext4
+
+https://www.google.com/search?q=mac+支持+ext
+http://bbs.feng.com/read-htm-tid-7503752.html
+mac不支持ext4
+
+** 如何使用loopback loop命令？
+？解决grub2引导指定镜像iso。
+
+https://www.google.com/search?q=loopback+grub2
+https://www.gnu.org/software/grub/manual/grub.html#loopback
+Make the device named device correspond to the contents of the filesystem image in file. For example: 
+** DONE 如何下载指定版本的fedora iso镜像？
+   CLOSED: [2017-06-21 Wed 20:11]
+？解决环境统一或上下文一致问题，避免软件因为环境异常。
+
+https://www.google.com/search?q=fedora+old+version
+https://dl.fedoraproject.org/pub/fedora/linux/releases/
+
+** 如何安装fedora linux？
+** 如何使用linux制作fedora usb安装盘？
 ** 如何git到github？
+** DONE 如何解决git clone时报错目录不为空"fatal: destination path '.' already exists and is not an empty directory."？
+   CLOSED: [2017-06-21 Wed 11:42]
+？用于添加新文件到已存在git仓库里。
+https://www.google.com/search?q=fatal:+destination+path+'.'+already+exists+and+is+not+an+empty+directory.
+http://carl830.pixnet.net/blog/post/61044299-git-想把檔案匯到某個存在的目錄下
+#+BEGIN_SRC  
+git init
+git remote add origin $gitpath
+git fetch
+git branch master origin/master
+git checkout master
+#+END_SRC
 ** 170620
-** 如何fedora安装sougou输入法？
+** 如何fedora安装sougou搜狗输入法？
 
 https://www.google.com/search?q=fcitx+搜狗+fedora
 http://haoma.sogou.com/bbs/forum.php?mod=viewthread&tid=2592776
@@ -131,5 +871,10 @@ systemctl set-default graphical.target # 默认gui启动
 systemctl set-default multi-user.target # 默认cli启动
 #+END_SRC
 
-** 如何virtualbox gui克隆镜像？
+** DONE 如何virtualbox gui克隆镜像？
+   CLOSED: [2017-06-21 Wed 11:44]
 为什么？用于测试代码。
+
+右键镜像 - clone
+clone type: full clone
+点击clone，等待完成。
