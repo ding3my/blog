@@ -1,5 +1,7 @@
 * Blog
   
+m-9 vimp返回最后一个tab
+  
 https://stackoverflow.com/questions/9387816/how-to-call-interactive-emacs-lisp-function-with-a-prefix-argument-from-another
 匿名函数
 #+BEGIN_SRC  
@@ -9,12 +11,1651 @@ https://stackoverflow.com/questions/9387816/how-to-call-interactive-emacs-lisp-f
 #+END_SRC
   
 https://www.google.com/search?q=grub2+boot+fedora
+
+
+如何解决sed不支持非贪婪*？
+- https://www.google.com/search?q=sed+posix+match+replacement
+- https://stackoverflow.com/questions/1103149/non-greedy-regex-matching-in-sed
+perl -pe 's|(http://.*?/).*|\1|'
+
+printf 孙 | iconv -f utf-8 -t gbk | od -h --endian=big
+http://tool.haooyou.com/code?group=convert&type=strToHex&charset=GB2312
+** DONE 如何emacs dired切换shell时，shell目录为dired的当前目录？
+   CLOSED: [2017-07-17 Mon 20:03]
+？开发ken_script项目，git push时切换（dired不支持git输入帐号密码）
+
+#+BEGIN_SRC  
+https://www.google.com/search?q=emacs+shell+dired+current+dir
+https://emacs.stackexchange.com/questions/5676/how-can-i-keep-dired-in-sync-with-a-shell-buffer
+
+(add-hook 'dired-after-readin-hook (lambda()
+                     (unless (get-buffer "*shell*") (shell "*shell*"))
+                     (process-send-string (get-buffer "*shell*") (format "cd %s\n" default-directory))
+                     (message "Switched to new directory")))
+#+END_SRC
+
+** 为什么emacs的manual pdf和html的目录不一致？
+？emacs --batch和--script需要引用。
+** 如何emacs使用elisp脚本转换org文档为html？
+？--batch不如--script通用，使用移动设备阅读org文档。
+
+可移植性shebang（windows中使用emacs --script可用）
+#+BEGIN_SRC  
+https://www.google.com/search?q=emacs+命令行+elisp+脚本
+https://github.com/xuchunyang/blog/blob/master/posts/2016/06/Emacs-Lisp-as-script-language.org
+#+END_SRC
+
+直接使用(org-html-export-to-html)，报错
+#+BEGIN_SRC  
+Symbol’s function definition is void: org-html-export-to-html
+#+END_SRC
+** DONE 如何emacs使用elisp函数转换org文档为html？
+   CLOSED: [2017-07-17 Mon 17:51]
+？使用移动设备阅读org文档。
+
+#+BEGIN_SRC  
+https://www.google.com/search?q=emacs+lisp+bash++org+html
+https://stackoverflow.com/questions/22072773/batch-export-of-org-mode-files-from-the-command-line
+
+emacs myorgfile.org --batch -f org-html-export-to-html --kill
+
+emacs t.org -f org-html-export-to-html
+#+END_SRC
+
+参考
+#+BEGIN_SRC  
+https://www.google.com/search?q=emacs+manual+funcall&ie=utf-8&oe=utf-8
+https://www.gnu.org/software/emacs/manual/html_mono/emacs.html
+C.1 Action Arguments
+https://www.gnu.org/software/emacs/manual/pdf/emacs.pdf
+C.1    Action Arguments
+#+END_SRC
+** DONE 如何linux bash运行emacs lisp脚本？
+   CLOSED: [2017-07-17 Mon 16:03]
+？转换org文档为html。
+
+#+BEGIN_SRC  
+https://www.google.com/search?q=emacs+lisp+script+cli&ie=utf-8&oe=utf-8
+http://ergoemacs.org/emacs/elisp_running_script_in_batch_mode.html
+
+emacs --script process_log.el
+
+https://www.google.com/search?q=emacs+--script+manual&ie=utf-8&oe=utf-8
+https://www.gnu.org/software/emacs/manual/html_node/emacs/Initial-Options.html
+#+END_SRC
+
+t.el
+#+BEGIN_SRC  
+(message "hi")
+#+END_SRC
+
+#+BEGIN_SRC  
+emacs --script t.el # windows也能用
+#+END_SRC
+** 如何gnome terminal解决emacs c-m-s快捷键无法使用正则检索功能（m被占用）？
+** 如何bash使用bool变量？
+？判断目录是否被挂载，用于挂载安卓设备。
+
+** 如何linux mount安卓设备？
+？复制gtd目录。
+
+#+BEGIN_SRC  
+https://www.google.com/search?q=android+linux+mount
+simple-mtpfs -l
+
+https://github.com/phatina/simple-mtpfs
+
+mount1
+simple-mtpfs mountpoint [options]
+simple-mtpfs --device <number> mountpoint
+
+unmount
+fusermount -u <mountpoint>
+#+END_SRC
+
+simple-mtpfs不稳定。
+
+** DONE 如何linux fusermount -u解决Device or resource busy？
+   CLOSED: [2017-07-17 Mon 13:46]
+？卸载已挂载安卓的目录。
+
+#+BEGIN_SRC  
+https://www.google.com/search?q=Device+or+resource+busy
+https://unix.stackexchange.com/questions/11238/how-to-get-over-device-or-resource-busy
+
+lsof +D /path
+kill -9
+#+END_SRC
+
+
+** 如何linux切换shell？
+？切换zsh为bash。
+
+** 如何emacs org检索标题？
+？解决内容检索慢问题。
+
+^\*.*key.*
+** 什么是linux发布规则？
+？发布ahk_foxit，需要标注foxit版本号。
+
+ahk_foxit
+AHK script for pdf reader FoxitReader-8.1
+#+BEGIN_SRC  
+Unix编程艺术 p444
+
+foo-1.2.3.tar.gz
+#+END_SRC
+** 如何emacs dired切换为shell时，shell当前目录为dired的当前目录？
+？用于git push，发布ken_script。
+** 如何emacs快速部署到windows？
+？开发ahk foxit。
+** 如何emacs定义宏？
+？开发ahk foxit，需要批量转换send,为send % "
+
+
+** 什么bash和python的区别？
+？使用python代替bash作为脚本（emacs调用）。
+** DONE 如何linux gnome更换terminal的颜色主题？
+   CLOSED: [2017-07-16 Sun 10:22]
+？解决gnome-terminal默认主题刺眼（黑白，参考emacs的dark系列）
+
+#+BEGIN_SRC  
+https://www.google.com/search?q=gnome+terminal+theme&ie=utf-8&oe=utf-8
+https://help.gnome.org/users/gnome-terminal/stable/app-colors.html.en
+
+Select Edit ▸ Profile Preferences ▸ Colors.
+
+solarized dark
+#+END_SRC
+** 如何emacs将选中区域作为bash shell命令的参数？
+？使用firefox打开选中的链接。
+
+** DONE 如何emacs转换编码（ansi模式的gbk编码为utf-8编码）？
+   CLOSED: [2017-07-15 Sat 19:51]
+？解决windows下开发富甲天下3V5的ahk宏，注释乱码。
+
+#+BEGIN_SRC  
+emacs编码操作参考集合
+https://www.google.com/search?q=emacs+convert+encoding
+http://ergoemacs.org/emacs/emacs_encoding_decoding_faq.html
+
+How to open a file with specific coding system?
+Open it normally, then Alt+x revert-buffer-with-coding-system, then type a coding system. Press Tab to list possible ones.
+
+How to set a encoding system for saving file?
+Alt+x set-buffer-file-coding-system, then type the encoding system you want. Press Tab to see a list of possible values.
+After you set a encoding system, you can save the file and it'll be saved in the new encoding system.
+#+END_SRC
+
+综上，正确流程是，emacs使用revert-buffer-with-coding-system设置正确的编码（和文件一致的编码），解码文件（已打开），然后使用set-buffer-file-coding-system去转换当前显示的内容的编码，保存到文件（此时文件编码就是转换后的编码了）。
+
+** DONE 为什么emacs转换编码时，首先需要使用正确的编码（和文件一致的编码）打开（解码）文件？
+   CLOSED: [2017-07-15 Sat 19:46]
+？解决windows下开发富甲天下3V5的ahk宏，注释乱码。
+
+#+BEGIN_SRC  
+如果emacs使用错误的编码（和文件不一致的编码）打开（解码）文件，会得到错误的内容显示（逻辑上错误，物理上正确），此时再把错误的内容转换编码，依然是错误的。
+#+END_SRC
+
+案例：
+#+BEGIN_SRC  
+# LANG=en_US.UTF-8 # locale
+
+# 生成gbk编码的"你好"文件t
+echo 你好 | iconv --from-code=utf-8 --to-code=gbk > t
+
+# emacs使用utf-8（错误的编码），解码打开文件t（文件编码是gbk）
+emacs -nw t
+revert-buffer-with-coding-system utf-8
+显示：ÄãºÃ
+
+# emacs将utf-8解码的文本"ÄãºÃ"（文件编码是gbk）转换编码为utf-8，使用gbk去解码打开文件t（文件编码是utf-8）
+set-buffer-file-coding-system utf-8
+revert-buffer-with-coding-system gbk # 错误的编码
+显示：脛茫潞脙
+
+已经不是"你好"了。
+#+END_SRC
+
+** DONE 如何linux转换文件编码（utf-8转换为gbk）？
+   CLOSED: [2017-07-15 Sat 19:46]
+？论证emacs转换编码的正确流程（为什么emacs转换编码时，首先需要使用正确的编码（和文件一致的编码）打开（解码）文件？）
+
+#+BEGIN_SRC  
+# LANG=en_US.UTF-8 # locale
+
+# 生成gbk编码的"你好"文件t
+echo 你好 | iconv --from-code=utf-8 --to-code=gbk > t
+#+END_SRC
+
+** DONE 如何linux检索当前环境的编码（shell）？
+   CLOSED: [2017-07-15 Sat 19:19]
+？论证emacs转换编码的正确流程（为什么emacs转换编码时，首先需要使用正确的编码（和文件一致的编码）打开（解码）文件？）
+
+#+BEGIN_SRC  
+locale
+https://www.google.com/search?q=linux+check+current+encoding&ie=utf-8&oe=utf-8
+https://stackoverflow.com/questions/5306153/how-to-get-terminals-character-encoding
+locale
+
+LC_ALL=$encoding $cmd
+https://www.google.com/search?q=LC_ALL&ie=utf-8&oe=utf-8
+https://unix.stackexchange.com/questions/87745/what-does-lc-all-c-do
+$ LC_ALL=es_ES man
+¿Qué página de manual desea?
+$ LC_ALL=C man
+What manual page do you want?
+
+LC_ALL=C含义
+https://www.google.com/search?q=LC_ALL+c+mean
+https://askubuntu.com/questions/801933/what-does-c-in-lc-all-c-mean
+'C' is the old UNIX default, which is 127-bit ASCII with a charmap setting of ANSI_X3.4-1968.
+
+LC_ALL=C含义（来源）
+http://pubs.opengroup.org/onlinepubs/009695399/basedefs/xbd_chap07.html#tag_07_02
+The POSIX locale can be specified by assigning to the appropriate environment variables the values "C" or "POSIX".
+
+LC_ALL=C含义
+https://www.google.com/search?q=POSIX+charset
+https://en.wikipedia.org/wiki/Portable_character_set
+
+LC_ALL和LANG优先级的关系
+https://www.google.com/search?q=LC_ALL
+https://my.oschina.net/luan/blog/79875
+LC_ALL和LANG优先级的关系： LC_ALL > LC_* >LANG   
+
+LC_ALL和LANG优先级的关系（来源）
+https://www.gnu.org/software/bash/manual/bash.html#Bash-Variables
+LC_ALL
+    This variable overrides the value of LANG and any other LC_ variable specifying a locale category.
+#+END_SRC
+
+locale
+** DONE 如何emacs查看文件的编码（不是emacs解码（查看）用的编码）？
+   CLOSED: [2017-07-15 Sat 13:27]
+？解决windows下开发富甲天下3V5的ahk宏，注释乱码。
+
+#+BEGIN_SRC  
+https://www.google.com/search?q=emacs+check+file+encoding&ie=utf-8&oe=utf-8
+http://ergoemacs.org/emacs/emacs_encoding_decoding_faq.html
+
+How to find out what's the current coding system used for opening and saving files?
+
+Alt+x describe-coding-system then press Enter ↵.
+#+END_SRC
+
+#+BEGIN_SRC  
+https://www.google.com/search?q=emacs+detect+file+encoding&ie=utf-8&oe=utf-8
+https://www.gnu.org/software/emacs/manual/html_node/emacs/Recognize-Coding.html
+
+Whenever Emacs reads a given piece of text, it tries to recognize which coding system to use. This applies to files being read, output from subprocesses, text from X selections, etc. Emacs can select the right coding system automatically most of the time—once you have specified your preferences. 
+#+END_SRC
+
+综上，emacs是自动检测。
+
+** DONE 如何linux检测查看文件的编码？
+   CLOSED: [2017-07-15 Sat 20:00]
+？解决windows下开发富甲天下3V5的ahk宏，注释乱码。
+
+#+BEGIN_SRC  
+https://www.google.com/search?q=linux+detect+encoding
+https://stackoverflow.com/questions/805418/how-to-find-encoding-of-a-file-in-unix-via-scripts
+https://unix.stackexchange.com/questions/11602/how-can-i-test-the-encoding-of-a-text-file-is-it-valid-and-what-is-it
+
+file -i $file
+#+END_SRC
+
+综上，使用file命令，但不一定准确（问题显示charset表示的是编码而不是字符集。）
+** DONE 如何emacs指定编码（encoding）来解码查看（decoding）文件？
+   CLOSED: [2017-07-15 Sat 10:36]
+？解决windows下开发富甲天下3V5的ahk宏，注释乱码。
+
+#+BEGIN_SRC  
+https://www.google.com/search?q=how+emacs+check+file+encoding&ie=utf-8&oe=utf-8
+http://ergoemacs.org/emacs/emacs_encoding_decoding_faq.html
+
+Open it normally, then Alt+x revert-buffer-with-coding-system, then type a coding system. Press Tab to list possible ones.
+#+END_SRC
+
+使用函数revert-buffer-with-coding-system，快捷键C-x RET r。
+** DONE 什么是ansi编码和gbk编码的区别？
+   CLOSED: [2017-07-15 Sat 11:51]
+？解决windows下开发富甲天下3V5的ahk宏，注释乱码。windows7中文默认ansi编码（notepad++）
+
+#+BEGIN_SRC  
+https://www.google.com/search?q=ansi+wiki
+https://en.wikipedia.org/wiki/ANSI_character_set
+
+The phrase ANSI character set has no official meaning and has been used to refer to the following, among other things:
+
+https://en.wikipedia.org/wiki/Windows_code_page
+
+Windows code pages are sets of characters or code pages (known as character encodings in other operating systems) used in Microsoft Windows from the 1980s and 1990s. Windows code pages were gradually superseded when Unicode was implemented in Windows, although they are still supported both within Windows and other platforms.
+#+END_SRC
+
+#+BEGIN_SRC  
+https://www.google.com/search?q=ansi+gbk&ie=utf-8&oe=utf-8
+https://www.zhihu.com/question/20650946
+
+所以，跨平台兼容性最好的其实就是不用记事本。
+建议用 Notepad++ 等正常的专业文本编辑器保存为不带 BOM 的 UTF-8。
+
+比如 ASCII 这部标准本身就直接规定了字符和字符编码的方式，所以既是字符集又是编码方案；而 GB 2312 只是一个区位码形式的字符集标准，不过实际上基本都用 EUC-CN 来编码，所以提及「GB 2312」时也说的是一个字符集和编码连锁的方案；GBK 和 GB 18030 等向后兼容于 GB 2312 的方案也类似。
+
+Windows 里说的「ANSI」其实是 Windows code pages，这个模式根据当前 locale 选定具体的编码，比如简中 locale 下是 GBK。把自己这些 code page 称作「ANSI」是 Windows 的臭毛病。在 ASCII 范围内它们应该是和 ASCII 一致的。
+https://en.wikipedia.org/wiki/Windows_code_page
+#+END_SRC
+
+#+BEGIN_SRC  
+https://www.google.com/search?q=EUC-CN&ie=utf-8&oe=utf-8
+https://en.wikipedia.org/wiki/Extended_Unix_Code
+
+Extended Unix Code (EUC) is a multibyte character encoding system used primarily for Japanese, Korean, and simplified Chinese.
+#+END_SRC
+
+综上
+- ansi是一种系统，不是字符集，也不是编码算法，是根据locale来确定字符集和编码算法。
+- gbk是一种字符集，使用euc编码算法。
+** DONE 什么是字符集（character set）和编码(encoding)的区别？
+   CLOSED: [2017-07-15 Sat 11:20]
+？解决windows下开发富甲天下3V5的ahk宏，注释乱码（什么是ansi编码和gbk编码的区别？）。
+
+#+BEGIN_SRC  
+https://www.google.com/search?q=Character+set
+https://en.wikipedia.org/wiki/Character_encoding
+
+In computing, a character encoding is used to represent a repertoire of characters by some kind of encoding system.
+
+A character set is a collection of characters that might be used by multiple languages.
+#+END_SRC
+
+#+BEGIN_SRC  
+https://www.google.com/search?q=character+set+encoding+difference&ie=utf-8&oe=utf-8
+http://www.grauw.nl/blog/entry/254
+
+In these two terms, ‘set’ refers to the set of characters and their numbers (code points), and ‘encoding’ refers to the representation of these code points. For example, Unicode is a character set, and UTF-8 and UTF-16 are different character encodings of Unicode.
+#+END_SRC
+
+#+BEGIN_SRC  
+https://www.google.com/search?q=ansi+gbk&ie=utf-8&oe=utf-8
+https://www.zhihu.com/question/20650946
+
+关于字符集（character set）和编码（encoding），某几篇答案中似乎有些混淆。
+
+对于 ASCII、GB 2312、Big5、GBK、GB 18030 之类的遗留方案来说，基本上一个字符集方案只使用一种编码方案。
+
+对于 Unicode，字符集和编码是明确区分的。Unicode/UCS 标准首先是个统一的字符集标准。而 Unicode/UCS 标准同时也定义了几种可选的编码方案，在标准文档中称作「encoding form」，主要包括 UTF-8、UTF-16 和 UTF-32。
+#+END_SRC
+
+#+BEGIN_SRC  
+https://www.google.com/search?q=utf-8字符集
+http://cenalulu.github.io/linux/character-encoding/
+#+END_SRC
+
+综上，字符集类似数据，编码类似算法。
+** 如何firefox解析github的html文件？
+？浏览ken_script的README文件（html版本有目录）。
+
+** 如何保证单元测试代码正确？
+？开发tart脚本，调试单元测试。
+** DONE 如何emacs org快速检索shunit2下的bash -x的追踪信息？
+   CLOSED: [2017-07-14 Fri 17:55]
+？开发tart脚本，调试单元测试。
+
+#+BEGIN_SRC  
+/eval test_tart
+#+END_SRC
+
+** 如何emacs org加粗符号*需要空格才有效？
+？解决编写文档时增加可读性（为什么工程（项目）需要根目录的概念？）
+
+** 为什么工程（项目）需要根目录的概念？
+？开发tart脚本，开发单元测试。
+
+减少干扰，增加 *阅读性* ，例如：
+#+BEGIN_SRC  
+test_file="${test_dir}/test"
+test_file_compressed="${test_dir}/test.tar.gz"
+test_file_extracted="${test_dir}/test_extracted"
+
+cd "${test_dir}"
+test_file="test"
+test_file_compressed="test.tar.gz"
+test_file_extracted="test_extracted"
+#+END_SRC
+
+缺少引用。
+** DONE 如何解决bash tar报错tar: Removing leading `/' from member names？
+   CLOSED: [2017-07-14 Fri 17:14]
+？开发tart脚本，开发单元测试，创建测试数据。
+
+#+BEGIN_SRC  
+tar --create --gzip --file "${test_file_compressed}" "${test_file}" --verbose # bug
+#+END_SRC
+
+#+BEGIN_VERSE
+https://www.google.com/search?q=tar:+Removing+leading+`/'+from+member+names
+
+https://unix.stackexchange.com/questions/59243/tar-removing-leading-from-member-names
+Use the --absolute-names or -P option to disable this feature.
+
+This is the correct answer, but be aware, that in most cases, this is not what you want, cause it results in an archive that extracts in complete paths! – rubo77 Nov 21 '13 at 10:04 
+#+END_VERSE
+
+总结，原因是${test_file_compressed}使用了绝对路径，tar打包压缩时，将完整路径都打包压缩了，解压时就会出现完整路径的目录。
+
+综上，使用tar打包压缩，不要使用绝对路径。
+
+** 如何快速检索emacs org文档？
+？编写"如何bash -x只是替换而不执行？"文档时，需要查看着重标记。
+** 如何emacs org使用markdown的反引号？
+？编写"如何bash -x只是替换而不执行？"文档，需要引用。
+   
+** 如何阅读bash -x的追踪信息？
+？开发tart脚本，debug单元测试脚本，追踪shunit2的信息过多。
+
+** 如何emacs显示空白字符（空格、制表符、换行符等）？
+？学习bash debug，复制调试选项时会有空格和制表符混用。
+
+#+BEGIN_VERSE
+https://www.google.com/search?q=how+bash+debug
+http://xiaowang.net/bgb-cn/ch02s03.html
+短符号 	长符号 	结果
+set -f 	set -o noglob 	禁止特殊字符用于文件名扩展。
+set -v 	set -o verbose 	打印读入shell的输入行。
+set -x 	set -o xtrace 	执行命令之前打印命令。
+#+END_VERSE
+
+** DONE 如何bash -x只是替换而不执行？
+   CLOSED: [2017-07-14 Fri 15:34]
+？开发tart脚本，代替cmd变量和eval调试（重复调试cmd、echo、eval低效率）。
+
+无法，不执行如何替换？例如：
+#+BEGIN_SRC  
+v="hi"
+echo "${v}"
+#+END_SRC
+不执行`v="hi"`，无法替换`echo "${v}"`。
+** TODO 如何bash debug？
+？开发tart脚本，代替cmd、echo、eval调试（重复调试cmd、echo、eval低效率）。
+
+#+BEGIN_VERSE
+https://www.google.com/search?q=how+bash+debug
+https://stackoverflow.com/questions/951336/how-to-debug-a-bash-script
+http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_02_03.html
+
+http://xiaowang.net/bgb-cn/ch02s03.html
+短符号 	长符号 	结果
+set -f 	set -o noglob 	禁止特殊字符用于文件名扩展。
+set -v 	set -o verbose 	打印读入shell的输入行。
+set -x 	set -o xtrace 	执行命令之前打印命令。
+#+END_VERSE
+
+-v
+#+BEGIN_VERSE
+鸟哥的Linux私房菜 基础学习篇 3ed p397
+https://www.gnu.org/software/bash/manual/bash.html#The-Set-Builtin
+    Print shell input lines as they are read.
+#+END_VERSE
+显示读入代码（未替换变量），效果不如-x。
+
+-x
+#+BEGIN_VERSE
+鸟哥的Linux私房菜 基础学习篇 3ed p397
+https://www.gnu.org/software/bash/manual/bash.html#The-Set-Builtin
+    Print a trace of simple commands, for commands, case commands, select commands, and arithmetic for commands and their arguments or associated word lists after they are expanded and before they are executed. The value of the PS4 variable is expanded and the resultant value is printed before the command and its expanded arguments.
+#+END_VERSE
+执行时，追踪实际执行的代码（即替换后的）。
+
+综上使用cmd变量配合bash -x可以解决问题，只是开关eval比较麻烦。
+** 如何bash解决cmd变量配合bash -x调试，开关eval麻烦问题？
+？开发tart脚本，代替cmd、echo、eval调试（重复调试cmd、echo、eval低效率）。
+
+
+** 如何bash单步调试？
+？开发tart脚本，调试单元测试脚本，cmd、echo、eval太麻烦，bash -x是直接执行，避免出现rm的误操作。
+
+#+BEGIN_VERSE
+https://www.google.com/search?q=bash+单步调试&ie=utf-8&oe=utf-8
+http://coolshell.cn/articles/1379.html
+bashdb， 一个Bash的专用调试器。
+#+END_VERSE
+
+
+** 为什么代码最终目的是阅读，不仅是运行？
+？开发tart脚本，选项使用完整名，不使用缩写。
+
+** 如何bash判断文件1是文件2（目录）的子文件？
+？开发tart脚本，单元测试删除测试目录。
+
+#+BEGIN_VERSE
+https://www.google.com/search?q=how+bash+file+is+sub+file+&ie=utf-8&oe=utf-8
+https://stackoverflow.com/questions/12989615/check-if-file-is-in-a-given-directory-or-sub-directory-in-bash
+man find
+#+END_VERSE
+
+#+BEGIN_SRC  
+find $directory_path -name $file_name | wc --lines # 针对文件名
+
+find $directory_path -path $path | wc --lines # 针对路径
+#+END_SRC
+
+** 如何bash查看脚本执行的历史命令？
+？开发tart脚本，避免使用cmd变量和eval来执行。
+
+** 如何linux tar解压指定文件名或目录？
+？开发tart脚本，单元测试断言使用。
+
+无法指定文件名，可以指定目录
+#+BEGIN_SRC  
+-C
+--directory=DIR
+#+END_SRC
+
+** 如何bash shunit2断言文件存在？
+？开发tart脚本，单元测试。
+
+https://github.com/kward/shunit2#asserts
+#+BEGIN_SRC  
+assertTrue [message] condition
+#+END_SRC
+
+** DONE 什么tar打包压缩格式的区别（gz、bz2、xz）？
+   CLOSED: [2017-07-14 Fri 11:28]
+？开发tart脚本，单元测试需要创建测试数据（压缩包）。
+
+#+BEGIN_VERSE
+https://www.google.com/search?q=gz+bz+vs+xz
+
+https://www.rootusers.com/gzip-vs-bzip2-vs-xz-performance-comparison/
+
+https://blog.gtwang.org/linux/linux-why-are-tar-archive-formats-switching-to-xz-compression-to-replace-bzip2-and-what-about-gzip/
+在 UNIX/Linux 社群中，傳統上如果要壓縮檔案通常都是使用 tar 加上 gzip 的壓縮方式，而後來 gzip 漸漸被 bzip2 所取代，而現在有越來越多人改用以 LZMA2 為基礎的 xz 來壓縮 tar 檔，連 kernel.org 也從 2013 年的年底開始，同時採用 tar.gz 與 tar.xz 兩種壓縮格式釋出 Linux 核心原始碼，而位於首頁的超連結則是直接使用 tar.xz 這個格式，以往的 tar.bz2 則是直接被捨棄。
+剩下的就是壓縮率以及相容性的問題，傳統上的 gzip 無庸置疑是相容性最好的壓縮格式，現在應該每一種 UNIX/Linux 系統都可以解壓縮這種格式，所以如果若要確保每一位使用者都可以解壓縮，gzip 是首選。
+#+END_VERSE
+
+
+** DONE 什么是日期、时间格式规范？
+   CLOSED: [2017-07-14 Fri 10:49]
+？开发tart脚本，创建时间目录存放删除文件。
+
+- https://www.google.com/search?q=date+specification&ie=utf-8&oe=utf-8
+- https://en.wikipedia.org/wiki/ISO_8601
+  
+#+BEGIN_VERSE
+man date
+rfc3339
+#+END_VERSE
+
+** DONE 什么是rfc、iso区别？
+   CLOSED: [2017-07-14 Fri 10:49]
+？开发tart脚本，选择时间标准，创建删除目录。
+
+#+BEGIN_VERSE
+https://www.zhihu.com/search?type=content&q=rfc%20iso
+为什么大多ISO标准都收费才能阅读？
+#+END_VERSE
+
+RFC免费、ISO收费。
+** 如何vim删除当前光标到结尾的字符串？
+？编写文档，编辑google引用链接，删除多余非信息部分。
+
+#+BEGIN_SRC  
+D
+#+END_SRC
+
+缺乏引用。
+** DONE 如何linux模拟windows的回收站（trash标准或规范）？
+   CLOSED: [2017-07-14 Fri 10:09]
+？开发tart脚本，解决误删除。
+
+- https://www.google.com/search?q=linux+trash+fedora
+- https://ask.fedoraproject.org/en/question/75130/how-to-access-trash-folder-on-terminal/
+#+BEGIN_SRC  
+cd ~/.local/share/Trash/files
+#+END_SRC
+
+- https://www.google.com/search?q=linux+回收站
+- https://www.zhihu.com/question/32294243
+#+BEGIN_VERSE
+有关 Linux 回收站的具体技术标准可以参见 http://freedesktop.org 的相关定义 
+#+END_VERSE
+
+- https://www.google.com/search?q=linux+trash+standard&ie=utf-8&oe=utf-8
+- https://www.freedesktop.org/wiki/Specifications/trash-spec/
+- https://specifications.freedesktop.org/trash-spec/trashspec-latest.html
+#+BEGIN_SRC  
+Its name and location are $XDG_DATA_HOME/Trash 3; $XDG_DATA_HOME is the base directory for user-specific data, as defined in the Desktop Base Directory Specification . 
+
+ref https://specifications.freedesktop.org/basedir-spec/latest/ar01s03.html
+$XDG_DATA_HOME defines the base directory relative to which user specific data files should be stored. If $XDG_DATA_HOME is either not set or empty, a default equal to $HOME/.local/share should be used. 
+
+The $trash/files directory contains the files and directories that were trashed.
+#+END_SRC
+
+综上，使用"$HOME/.local/share/Trash/files"
+
+** 为什么不使用/tmp作为回收站？
+？开发tart脚本。
+
+隐私问题，/tmp是公共的。
+
+** 为什么使用测试驱动开发？
+？开发tart脚本。
+
+测试驱动开发鼓励变更（缺乏引用）。
+** 什么是bash执行顺序？
+？开发tart脚本，使用eval执行，选择使用单引号还是双引号。
+** 如何选择bash eval执行命令字符串时，字符串内部是单引号还是双引号？
+？开发tart脚本，开发单元测试脚本，使用eval。
+
+- https://www.google.com/search?q=eval+quote+bash
+- https://stackoverflow.com/questions/11065077/eval-command-in-bash-and-its-typical-uses
+#+BEGIN_VERSE
+Always put double quotes around variable and command substitutions, unless you know you need to leave them off. 
+#+END_VERSE
+#+BEGIN_SRC  
+$ ls
+file1 file2 otherfile
+$ set -- 'f* *'
+$ echo "$1"
+f* *
+$ echo $1
+file1 file2 file1 file2 otherfile
+$ n=1
+$ eval echo \${$n}
+file1 file2 file1 file2 otherfile
+$eval echo \"\${$n}\"
+f* *
+$ echo "${!n}"
+f* *
+#+END_SRC
+
+综上，使用双引号，因为会出现替换的替换（shell替换一次，eval新建子进程再替换一次（缺乏引用））。
+
+** DONE 如何命名单元测试的测试目录？
+   CLOSED: [2017-07-13 Thu 22:19]
+？开发tart脚本，测试压缩和解压缩。
+
+#+BEGIN_VERSE
+"${program}_test" # 会破坏后缀，例如func.sh_test
+"${program}.test" # 相对好
+#+END_VERSE
+** DONE 如何选择单元测试目录？
+   CLOSED: [2017-07-13 Thu 22:11]
+？开发tart脚本，测试压缩和解压缩。
+
+可选目录
+#+BEGIN_VERSE
+"$HOME/.$project" # 不好，如果有同名目录，可能会删除掉真实数据。
+"$HOME/.$program" # 不好，如果有同名目录，可能会删除掉真实数据。
+"./${program}_test_dir" # 可以，避免目录重名。
+"$project/test_dir" # 相对当前目录而言，麻烦，但是规范（如果需要保留数据，一般不需要，因为可以重复）。
+
+#+END_VERSE
+** 什么是集成测试和系统测试的区别？
+？开发tart脚本。
+
+** 什么是单元测试和集成测试的区别？
+？开发tart脚本。
+
+** DONE 如何解决linux rm删除文件时，可能误删除的问题？
+   CLOSED: [2017-07-14 Fri 09:36]
+？开发tart脚本，开发单元测试脚本。
+
+- https://www.google.com/search?q=linux+safe+rm&ie=utf-8&oe=utf-8
+- https://serverfault.com/questions/337082/how-do-i-prevent-accidental-rm-rf
+#+BEGIN_VERSE
+
+Don't do that! As a matter of practice, don't use ./
+
+My friend told me he never uses rm -rf *. He always changes the directory first, and uses a specific target.
+
+The best solutions involve changing your habits not to use rm directly.
+
+Yes: Don't work as root and always think twice before acting. 
+
+When I delete a directory recursively, I put the -r, and -f if applicable, at the end of the command, e.g. 
+#+END_VERSE
+
+- https://stackoverflow.com/search?q=safe+rm
+- https://stackoverflow.com/questions/373156/what-is-the-safest-way-to-empty-a-directory-in-nix
+手动操作
+#+BEGIN_SRC  
+alias del="pwd;read;rm"
+#+END_SRC
+
+- https://stackoverflow.com/search?q=safe+rm
+- https://stackoverflow.com/questions/992737/safe-rm-rf-function-in-shell-script
+自动操作（程序）
+#+BEGIN_SRC  
+cd $SOMEPATH && rm -rf *
+#+END_SRC
+
+综上
+- 使用mv代替rm。
+- 如果使用rm，不要使用./，切换目录，指定删除文件，不要使用*。
+** DONE 如何shunit2命名测试文件？
+   CLOSED: [2017-07-13 Thu 18:43]
+？开发tart脚本。
+
+- https://github.com/kward/shunit2
+#+BEGIN_VERSE
+equality_test.sh
+#+END_VERSE
+
+- https://www.google.com/search?q=junit&ie=utf-8&oe=utf-8
+- https://github.com/junit-team/junit4/wiki/Getting-started
+#+BEGIN_VERSE
+CalculatorTest.java
+#+END_VERSE
+
+综上，一般格式为"file_test.sh"
+** 为什么需要单元测试？
+？开发tart脚本。
+
+** 如何bash使用;结尾，";"或" ;"？
+？
+
+** 如何bash cd快速切换目录？
+？使用emacs快速编辑stf.org
+
+** 如何解决emacs dired使用mvt脚本，报错"sudo: no tty present and no askpass program specified"（sudo需要输入密码导致）？
+？emacs dired使用mvt脚本，批量删除art、gtd、phi目录。
+
+- https://www.google.com/search?q=sudo:+no+tty+present+and+no+askpass+program+specified&ie=utf-8&oe=utf-8
+- https://stackoverflow.com/questions/21659637/how-to-fix-sudo-no-tty-present-and-no-askpass-program-specified-error
+sudo visudo
+#+BEGIN_SRC  
+$username ALL = NOPASSWD: /fullpath/to/command, /fullpath/to/othercommand
+#+END_SRC
+
+最优办法，去掉脚本中的sudo命令，如果要使用sudo，在脚本外使用（使整个脚本生效，而不是局部使用）。
+  
+** 如何解决bash ${*}参数中双引号失效问题（空格导致）？
+？开发mvt脚本，批量mv时，双引号失效。
+
+t.sh
+#+BEGIN_SRC  
+echo ${*}
+#+END_SRC
+
+#+BEGIN_SRC  
+bash t.sh
+#+END_SRC
+
+使用"${@}"，使用${@}无效
+#+BEGIN_SRC  
+for i in "${@}"; do
+	cmd="sudo mv -f -t \"${date_dir}\" \"${i}\""
+	echo "${cmd}"
+	eval "${cmd}"
+done
+
+#+END_SRC
+？引用？
+** 如何测试bash的BASH_SOURCE变量，不写脚本？
+？开发mvt脚本，自动生成配置目录路径。
+
+https://stackoverflow.com/questions/11065077/eval-command-in-bash-and-its-typical-uses
+#+BEGIN_VERSE
+bash$ set -- one two three  # sets $1 $2 $3
+bash$ echo $1
+#+END_VERSE
+** 什么是bash ${!var}含义？
+？开发mvt脚本，自动生成配置目录路径。
+
+** DONE 如何bash获取执行脚本的文件路径？
+   CLOSED: [2017-07-13 Thu 15:44]
+？开发mvt脚本，自动生成配置目录路径。
+
+- https://www.google.com/search?q=bash+current+script+path&ie=utf-8&oe=utf-8
+- https://stackoverflow.com/questions/59895/getting-the-source-directory-of-a-bash-script-from-within
+#+BEGIN_SRC  
+"$(readlink --canonicalize-missing "${BASH_SOURCE[0]}")"
+#+END_SRC
+** 如何emacs dired检索并标记文件？
+？删除ken_script多余的org文档。
+** 为什么使用bash脚本mvt作为emacs dired删除命令，而不是直接写elisp脚本？
+？使用emacs dired删除文件到回收站。
+
+shell和emacs都可以通用，移植性好。（需要解决windows不通用）。
+** 如何命名软件程序的配置目录名？
+？命名mvt的配置目录。
+
+#+BEGIN_SRC 
+.$program 
+#+END_SRC
+** DONE 如何emacs shell输入密码时使用*代替？
+   CLOSED: [2017-07-17 Mon 19:41]
+？用于git push，发布ken_script。
+
+#+BEGIN_SRC  
+https://www.google.com/search?q=emacs+shell+password+asterisk
+https://emacs.stackexchange.com/questions/21116/how-to-prevent-emacs-from-showing-passphrase-in-m-x-shell
+
+(setq comint-password-prompt-regexp
+      (concat comint-password-prompt-regexp
+              "\\|^.*Password.*\\'"))
+#+END_SRC
+** 如何emacs dired使用git push？
+？使用gitt，发布ken_script
+** 如何emacs dired使用backspace返回上一级？
+？模拟windows的资源管理器。
+** 如何emacs org快速排序item项？
+？编写ken_script文档时，排序软件名。
+** 如何emacs dired光标快速定位目标文件（或目录）？
+？编写ken_script文档时，需要阅读源代码，需要定位、切换目录。
+** 什么是括号是否换行的最佳实践？
+？开发gnomet脚本，if语句的then不换行。
+
+if和then形状不如{}那么对称，因此不换行
+** 为什么bash if语句中常量放谓语前面，变量谓语后面？
+？开发gnomet。
+** 什么是bash脚本开发时选项规范？
+？开发grepr，使用posix规范和缩写规范。
+** 为什么开发bash脚本时，命令的选项尽量使用完整名，而不是缩写？
+？阅读grepr时，更快理解grep命令中的选项含义。
+** 什么是sed -En 's|x|y|g'和sed -E 's|x|y|gp'的区别？
+？findr中，使用-En代替p。
+** DONE 什么是realpath -m含义？
+	 CLOSED: [2017-07-13 Thu 11:40]
+？使得findr输出绝对路径，快速使用emacs编辑文件。
+
+- https://www.google.com/search?q=--canonicalize-missing+mean&ie=utf-8&oe=utf-8
+- https://unix.stackexchange.com/questions/202855/explain-the-options-of-readlink-command
+#+BEGIN_VERSE
+-m option is the opposite of -e. No test will be made to check if the components of path exist
+#+END_VERSE
+#+BEGIN_SRC  
+$ readlink -m ./subdir/link/fakedir/fakefile
+/tmp/realdir/fakedir/fakefile
+
+$ ln -s /nonexistent /tmp/subdir/brokenlink
+
+$ readlink -m ./subdir/brokenlink/foobar
+/nonexistent/foobar
+#+END_SRC
+** DONE 如何linux bash转换相对路径.为绝对路径？
+	 CLOSED: [2017-07-13 Thu 11:35]
+？使得findr输出绝对路径，快速使用emacs编辑文件。
+
+- https://www.google.com/search?q=convert+relative+path+to+absolute+bash&ie=utf-8&oe=utf-8
+- https://stackoverflow.com/questions/6643853/how-to-convert-in-path-names-to-absolute-name-in-a-bash-script
+#+BEGIN_VERSE
+readlink -m $relative_path
+#+END_VERSE
+
+
+** 如何emacs org删除文件到回收站目录，而不是直接删除文件？
+？用于备份文件，类似windows的回收站目录。
+** 如何emacs org检索文档时，仅仅检索item项标题？
+？快速检索目标内容，例如检索nohup。
+
+** 如何linux nohup不输出nohup.out？
+？避免污染git repo。
+
+
+- https://www.google.com/search?q=nohup&ie=utf-8&oe=utf-8
+- http://www.cnblogs.com/allenblogs/archive/2011/05/19/2051136.html
+#+BEGIN_SRC  
+nohup $command > $out_file &
+
+# 测试
+nohup ls > /dev/null &
+#+END_SRC
+** DONE 什么是linux网站dir.com和man7.org的区别？
+   CLOSED: [2017-07-05 Wed 12:03]
+？用于引用。
+
+- https://www.die.net/
+- http://man7.org
+  
+使用google搜索，dir.net的结果多些。
+
+** 什么是总结和读书笔记的区别？
+？分类文档，需要区分概念。
+
+参考"阮一峰的网络日志 - 阮一峰的个人网站"
+
+- 总结是实践日志，例如linux应用总结。（智慧、act）
+- 读书笔记是读书日志，例如鸟哥的linux私房菜读书笔记。（知识、nonact）
+** 如何linux快速打开历史文件？
+？关闭文档，删除刺激。
+** 如何linux bash判断目录是否是git工程？
+** 如何linux bash清屏？
+？开发pingt脚本，需要循环输出。
+
+- https://www.google.com/search?q=bash+clear+screen
+- https://stackoverflow.com/questions/6367046/cls-equivalent-in-bash
+clear
+- http://man7.org/linux/man-pages/man1/clear.1.html
+** 是否linux管道是子进程？
+？开发pingt脚本，需要后台挂起进程。
+** DONE 什么是linux man数字区别？
+   CLOSED: [2017-07-01 Sat 00:26]
+
+- 鸟哥的Linux私房菜 基础学习篇 3ed-鸟哥 p123
+  
+- http://man7.org/linux/man-pages/man1/man.1.html
+#+BEGIN_VERSE
+1   Executable programs or shell commands
+2   System calls (functions provided by the kernel)
+3   Library calls (functions within program libraries)
+4   Special files (usually found in /dev)
+5   File formats and conventions eg /etc/passwd
+6   Games
+7   Miscellaneous (including macro packages and conventions), e.g.
+man(7), groff(7)
+8   System administration commands (usually only for root)
+9   Kernel routines [Non standard]
+#+END_VERSE
+** DONE 如何linux bash延迟或挂起脚本？
+   CLOSED: [2017-07-01 Sat 00:22]
+？开发pingt脚本，需要循环创建脚本，避免过多进程。
+
+- https://www.google.com/search?q=bash+delay&ie=utf-8&oe=utf-8
+- https://stackoverflow.com/questions/32359374/how-could-i-run-a-shell-script-with-delay
+sleep
+
+- http://man7.org/linux/man-pages/man3/sleep.3.html
+- http://man7.org/linux/man-pages/man1/sleep.1.html
+#+BEGIN_SRC  
+sleep $sec
+#+END_SRC
+
+** DONE 如何bash使用while循环？
+   CLOSED: [2017-07-01 Sat 00:11]
+？开发pingt脚本，循环显示域名平均延时。
+
+- https://www.gnu.org/software/bash/manual/bash.html
+- 3.2.4.1 Looping Constructs
+#+BEGIN_SRC  
+while test-commands; do consequent-commands; done
+
+while true
+do
+	printf "1"
+done
+#+END_SRC
+** DONE 如何linux bash排序文本行？
+   CLOSED: [2017-07-01 Sat 00:00]
+？开发pingt脚本，排序延时最低域名。
+
+- 鸟哥的Linux私房菜 基础学习篇 3ed-鸟哥 p336
+- http://man7.org/linux/man-pages/man1/sort.1.html
+
+#+BEGIN_SRC  
+sort --key=2 --numeric-sort --reverse<<end
+a 2
+b 3
+c 1
+end
+#+END_SRC
+
+** DONE 如何awk使用数组？
+   CLOSED: [2017-06-30 Fri 22:52]
+？开发pingt脚本，分组计算时需要使用。
+
+- https://www.google.com/search?q=awk+分组&ie=utf-8&oe=utf-8
+- http://6226001001.blog.51cto.com/9243584/1659824
+#+BEGIN_SRC  
+awk '{s[$1] += $2}END{ for(i in s){  print i, s[i] } }'
+#+END_SRC
+
+- https://www.gnu.org/software/gawk/manual/gawk.html#Arrays
+8.1.4 Basic Array Example
+#+BEGIN_SRC  
+awk 'BEGIN{ a["b"]=1; print a["b"] }'
+#+END_SRC
+
+- https://www.gnu.org/software/gawk/manual/gawk.html
+4.2 Examining Fields
+#+BEGIN_VERSE
+You use a dollar sign (‘$’) to refer to a field in an awk program, followed by the number of the field you want.
+#+END_VERSE
+#+BEGIN_SRC  
+awk '/li/ { print $1, $NF }' <<<'li 1 2 3'
+#+END_SRC
+
+- https://www.gnu.org/software/gawk/manual/gawk.html#Regexp
+3.1 How to Use Regular Expressions
+#+BEGIN_SRC  
+awk '/li/ { print $2 }' <<<'li 2'
+awk '$1 ~ /J/' <<<'J1'
+awk '{ if ($1 ~ /J/) print }'<<<'J1'
+#+END_SRC
+
+** DONE 什么是bash <<<含义？
+   CLOSED: [2017-06-30 Fri 23:29]
+？开发pingt脚本，测试awk命令。
+？开发pingt脚本，测试awk时用到。
+
+- https://www.google.com/search?q=treble+left+arrow+bash
+- https://stackoverflow.com/questions/16045139/redirector-in-ubuntu
+  
+- https://www.gnu.org/software/bash/manual/bashref.html#Here-Strings
+3.6.6 Here Documents
+
+- https://www.gnu.org/software/bash/manual/bashref.html#Here-Strings
+3.6.7 Here Strings
+
+** DONE 如何vim返回历史光标位置？
+   CLOSED: [2017-06-30 Fri 20:25]
+？emacs evil编写awk日志时，被中断，需要返回。
+
+- Vim实用技巧-Neil p125
+C-i C-o
+
+- liberator://help/all
+- History
+	
+- http://vimdoc.sourceforge.net/htmldoc/help.html
+- http://vimdoc.sourceforge.net/htmldoc/motion.html#CTRL-O
+8. Jumps			|jump-motions|
+#+BEGIN_SRC  
+
+#+END_SRC
+
+** DONE 如何vim m标记光标位置？
+   CLOSED: [2017-06-30 Fri 20:59]
+？emacs evil编写awk日志时，被中断，需要返回。
+
+- VI和VIM编辑器 p59
+mx
+
+- http://vimdoc.sourceforge.net/htmldoc/usr_03.html
+- |03.10|	Using marks
+#+BEGIN_SRC  
+ma
+`a
+#+END_SRC
+
+** 如何linux bash编辑pdf的页码？
+？使用开源软件代替acrobat pro。
+** DONE 如何sed输出正则匹配的字符串组？
+   CLOSED: [2017-06-30 Fri 18:26]
+？获取ping结果中的ip和time。
+
+- 鸟哥的Linux私房菜 基础学习篇 3ed-鸟哥 p357
+-r
+
+#+BEGIN_SRC  
+ping baidu.com | sed -E "s/.*\((.+)\).*time=([^ ]+).*/\1\t\2/g"
+#+END_SRC
+
+- https://www.gnu.org/software/sed/manual/sed.html
+-E
+#+BEGIN_VERSE
+    Historically this was a GNU extension, but the -E extension has since been added to the POSIX standard (http://austingroupbugs.net/view.php?id=528), so use -E for portability. GNU sed has accepted -E as an undocumented option for years, and *BSD seds have accepted -E for years as well, but scripts that use -E might not port to other older systems. See Extended regular expressions.
+#+END_VERSE
+
+- https://www.gnu.org/software/sed/manual/sed.html#The-_0022s_0022-Command
+3.3 s/regexp/replacement/flags
+
+- https://www.gnu.org/software/sed/manual/sed.html#The-_0022s_0022-Command
+3.3 flags
+
+- https://www.gnu.org/software/sed/manual/sed.html#The-_0022s_0022-Command
+3.3 \1 \n 
+#+BEGIN_VERSE
+The replacement can contain \n (n being a number from 1 to 9, inclusive) references, which refer to the portion of the match which is contained between the nth \( and its matching \). Also, the replacement can contain unescaped & characters which reference the whole matched portion of the pattern space. 
+#+END_VERSE
+
+- https://www.gnu.org/software/sed/manual/sed.html#BRE-syntax
+5.3 regexp syntax
+
+- https://www.gnu.org/software/sed/manual/sed.html#BRE-syntax
+5.3 group \(\)
+
+- https://www.gnu.org/software/sed/manual/sed.html#ERE-syntax
+5.4 group -E或-r ()
+
+- https://www.gnu.org/software/sed/manual/sed.html#BRE-vs-ERE
+5.2 BRE vs ERE
+
+** DONE 如何使用bash grep sed awk？
+   CLOSED: [2017-06-30 Fri 17:10]
+？开发pingt脚本。
+
+- https://www.google.com/search?q=代替+awk&ie=utf-8&oe=utf-8
+- https://www.zhihu.com/question/19911992
+#+BEGIN_SRC  
+比如在处理文本时有可能你会先用sed进行初步处理，然后再使用awk就会降低逻辑复杂度。
+#+END_SRC
+
+- https://www.google.com/search?q=代替+awk&ie=utf-8&oe=utf-8
+- https://www.v2ex.com/t/160899
+q（python的sql工具）
+
+总结：
+- grep筛选数据。
+- sed格式化数据为表。
+- awk计算数据，类似sql。
+- bash控制。
+** DONE 如何linux ping输出显示域名而不是ip？
+   CLOSED: [2017-06-30 Fri 16:09]
+？开发pingt脚本，查看域名知道ss服务器国家。
+
+#+BEGIN_SRC  
+domain=jp01-22.ssv7.net; ping $domain  | sed -E "s/(.*\()(.*)(\).*)/\1${domain}\3/g"
+#+END_SRC
+注意：这个案例后面接上重定向，会阻塞。
+** DONE 如何awk设置分隔符？
+   CLOSED: [2017-06-30 Fri 16:57]
+？开发pingt脚本，sed处理后的数据分隔符为\t。
+
+- 鸟哥的Linux私房菜 基础学习篇 3ed-鸟哥 p365
+  
+#+BEGIN_SRC  
+printf "1 2"| awk 'BEGIN {FS=" "}{printf "%s\n", $1}'
+#+END_SRC
+
+- https://www.gnu.org/software/gawk/manual/gawk.html
+- https://www.gnu.org/software/gawk/manual/gawk.html#BEGIN_002fEND
+7.1.4 The BEGIN and END Special Patterns 
+#+BEGIN_VERSE
+A BEGIN rule is executed once only, before the first input record is read. Likewise, an END rule is executed once only, after all the input is read. 
+#+END_VERSE
+#+BEGIN_SRC  
+awk '  
+BEGIN { print "Analysis of \"li\"" }
+/li/  { ++n }
+END   { print "\"li\" appears in", n, "records." }' <<end
+1
+li
+3
+end
+
+#+END_SRC
+
+- https://www.gnu.org/software/gawk/manual/gawk.html#Command-Line-Field-Separator
+4.5 Specifying How Fields Are Separated
+#+BEGIN_SRC  
+awk 'BEGIN { FS = "," } ; { print $2 }' <<<'John Q. Smith, 29 Oak St., Walamazoo, MI 42139'
+#+END_SRC
+4.5.4 Setting FS from the Command Line
+#+BEGIN_SRC  
+awk -F, 'program' input-files #
+#+END_SRC
+
+- https://www.gnu.org/software/gawk/manual/gawk.html#Basic-Printf
+5.5.1 printf
+
+** 如何linux查看后台进程？
+？中止ping进程。
+** 如何bash for变量标准输入stdin的内容？
+？开发pingt脚本，遍历ip。
+** DONE 如何判断bash的变量是数组或非数组？
+   CLOSED: [2017-06-30 Fri 13:19]
+？开发pingt，从pipe读取数据，用于for循环读取。
+
+- https://www.google.com/search?q=bash+how+to+know+array+var
+- https://stackoverflow.com/questions/14525296/bash-check-if-variable-is-array
+#+BEGIN_SRC  
+declare -p variable-name 2> /dev/null | grep -q '^declare \-a'
+#+END_SRC
+实际上判断bash变量属性是否是数组没有意义，因为for循环遍历变量，不检查变量是数组还是非数组。参考 https://stackoverflow.com/questions/44838045/what-is-the-difference-between-a-non-array-var-and-an-array-var-in-bash
+
+以下经验信息可以参考，但是对题目意义不大。
+  
+
+- https://www.google.com/search?q=bash+array+length&ie=utf-8&oe=utf-8
+- https://unix.stackexchange.com/questions/193039/how-to-count-the-length-of-an-array-defined-in-bash
+${#array[@]} ${!array[@]}
+#+BEGIN_SRC  
+#!/bin/bash
+
+array=( item1 item2 item3 )
+for index in ${!array[@]}; do
+    echo $index/${#array[@]}
+done
+#+END_SRC
+
+- https://www.gnu.org/software/bash/manual/bash.html#Arrays
+#+BEGIN_VERSE
+${#name[subscript]} expands to the length of ${name[subscript]}.
+数组长度len
+
+${!name[@]} and ${!name[*]} expand to the indices assigned in array variable name.
+替换为0 1 2...
+#+END_VERSE
+
+NOTE：变量也能当数组使用
+#+BEGIN_SRC  
+a=aa
+printf "a len: ${#a[*]}\n"
+for i in ${a[*]}
+do
+	echo $i
+done
+
+a=(aaa)
+printf "a len: ${#a[*]}\n"
+for i in ${a[*]}
+do
+	echo $i
+done
+#+END_SRC
+
+** DONE 什么是bash中数组变量和非数组变量的区别？
+   CLOSED: [2017-06-30 Fri 12:44]
+？判断bash变量是否是数组。
+
+- https://stackoverflow.com/questions/44838045/what-is-the-difference-between-a-non-array-var-and-an-array-var-in-bash
+数组变量拥有attribute（属性）
+
+- https://www.google.com/search?q=bash+how+to+use+declare&ie=utf-8&oe=utf-8
+- https://unix.stackexchange.com/questions/254367/in-bash-script-whats-the-different-between-declare-and-a-normal-variable
+declare赋予变量属性，例如declare -r。  
+
+** DONE 如何解决emacs执行linux命令不输出结果，"Shell command succeeded with no output"？
+   CLOSED: [2017-06-30 Fri 12:21]
+？测试declare -p的脚本（判断数组）。
+
+自己的错误，-p后没有加变量名v
+#+BEGIN_SRC  
+#!/usr/bin/env bash
+
+v=()
+declare -p # 需要变量名，所以这里是错误的。
+#+END_SRC
+** 如何bash -c使用pipe管道？
+？测试mapfile脚本（没有权限）。
+
+** DONE 什么是mapfile(readarray)和mapfile -t的区别？
+   CLOSED: [2017-06-30 Fri 11:42]
+？开发pingt脚本。
+   
+- https://www.gnu.org/software/bash/manual/html_node/Bash-Builtins.html  
+
+#+BEGIN_SRC  
+readarray -t v </dev/stdin
+
+for i in "${v[@]}"
+do
+	printf "$i\n"
+done
+#+END_SRC
+
+printf "1\n2 3\n" | t.sh | od -c
+#+BEGIN_SRC  
+0000000   1  \n   2       3  \n 
+0000006    
+#+END_SRC
+
+#+BEGIN_SRC  
+readarray v </dev/stdin
+
+for i in "${v[@]}"
+do
+	printf "$i\n"
+done
+#+END_SRC
+
+printf "1\n2 3\n" | t.sh | od -c
+#+BEGIN_SRC  
+0000000   1  \n  \n   2       3  \n  \n     
+0000010
+# 8进制，是8个字符
+#+END_SRC
+** DONE 什么是bash中数组${name[*]}和"${name[@]}"的区别？
+   CLOSED: [2017-06-30 Fri 11:17]
+？开发pingt脚本，使用从stdin读取的数组。
+
+- https://www.google.com/search?q=bash+array+at+asterisk&ie=utf-8&oe=utf-8
+- https://stackoverflow.com/questions/3348443/a-confusion-about-array-versus-array-in-the-context-of-a-bash-comple
+
+#+BEGIN_SRC  
+echo "with quotes around myarray[*]"
+for x in "${myarray[*]}"; do
+        echo "ARG[*]: '$x'"
+done
+
+echo "with quotes around myarray[@]"
+for x in "${myarray[@]}"; do
+        echo "ARG[@]: '$x'"
+done
+
+echo "without quotes around myarray[*]"
+for x in ${myarray[*]}; do
+        echo "ARG[*]: '$x'"
+done
+
+echo "without quotes around myarray[@]"
+for x in ${myarray[@]}; do
+        echo "ARG[@]: '$x'"
+done
+#+END_SRC
+
+输出
+#+BEGIN_SRC  
+with quotes around myarray[*]
+ARG[*]: 'one two three four'
+with quotes around myarray[@]
+ARG[@]: 'one'
+ARG[@]: 'two'
+ARG[@]: 'three four'
+without quotes around myarray[*]
+ARG[*]: 'one'
+ARG[*]: 'two'
+ARG[*]: 'three'
+ARG[*]: 'four'
+without quotes around myarray[@]
+ARG[@]: 'one'
+ARG[@]: 'two'
+ARG[@]: 'three'
+ARG[@]: 'four'
+#+END_SRC
+- https://www.gnu.org/software/bash/manual/bash.html#Arrays
+** 如何bash cat here doc使用pipe传递结果？
+** 如何emacs dired快速跳转指定行？
+？开发pingt脚本。
+
+** DONE 如何使用shunit2？
+   CLOSED: [2017-06-30 Fri 00:11]
+？开发pingt脚本。
+
+- https://github.com/kward/shunit2
+
+#+BEGIN_SRC  
+git clone https://github.com/kward/shunit2.git
+cd shunit2/source/2.1/examples
+
+# 测试一个
+./equality_test.sh
+# 测试所有
+ls *.sh| xargs -n1 -i bash {}
+#+END_SRC
+
+** DONE 什么是bash的单元测试框架？
+   CLOSED: [2017-06-30 Fri 00:01]
+？开发pingt脚本。
+
+- 驱动测试开发-Beck
+xUnit p93
+
+- https://www.google.com/search?q=xunit
+- https://en.wikipedia.org/wiki/XUnit
+- https://en.wikipedia.org/wiki/List_of_unit_testing_frameworks
+
+- https://www.google.com/search?q=bash+xunit&ie=utf-8&oe=utf-8
+- https://stackoverflow.com/questions/971945/unit-testing-for-shell-scripts
+shunit2
+
+** DONE 如何vimp处理编写映射脚本时的冒号:？
+   CLOSED: [2017-06-29 Thu 20:39]
+？设置firefox的图片显示。
+
+- https://www.google.com/search?q=vimperator+script+tutorial&ie=utf-8&oe=utf-8
+- https://en.wikipedia.org/wiki/Vimperator
+Vimscript
+
+- http://vimdoc.sourceforge.net/htmldoc/help.html
+- http://vimdoc.sourceforge.net/htmldoc/usr_41.html
+- *41.11*	Writing a plugin
+  
+- https://www.google.com/search?q=vim+script+without+colon&ie=utf-8&oe=utf-8
+- https://stackoverflow.com/questions/14051712/why-some-commands-in-vim-require-a-colon-while-some-dont 
+#+BEGIN_SRC  
+Best I can find is :help vimrc: "A file that contains initialization commands is called a "vimrc" file. Each line in a vimrc file is executed as an Ex command line." Note the Ex command, that implies that the normal mode : command to enter Ex mode is optional.
+#+END_SRC
+
+结论：脚本可以使用也可以不使用。
+
+** DONE 如何vimp映射leader key快捷键？
+   CLOSED: [2017-06-29 Thu 20:33]
+？设置firefox的图片显示。
+
+liberator://help/all
+- 11 Key mappings, abbreviations, and user-defined commands
+- 11.1.4 Special characters
+  
+command line模式
+#+BEGIN_SRC  
+:map \h :echo "Hello"<CR>
+#+END_SRC
+
+脚本模式
+#+BEGIN_SRC  
+nnoremap <leader>p0 :set! permissions.default.image=2<CR>
+nnoremap <leader>pp :set! permissions.default.image=1<CR>
+#+END_SRC
+** DONE 如何vimp设置firefox的option选项？
+   CLOSED: [2017-06-29 Thu 20:39]
+？设置firefox的图片显示。
+
+liberator://help/all
+- 7.2 Setting Firefox options
+  
+command line模式
+#+BEGIN_SRC  
+" 开启图片
+:set! permissions.default.image=1
+#+END_SRC
+
+- http://vimdoc.sourceforge.net/htmldoc/help.html
+- http://vimdoc.sourceforge.net/htmldoc/usr_20.html
+Command line
+
+** DONE 如何vimp映射按键？
+   CLOSED: [2017-06-29 Thu 19:07]
+？设置=为缩放增加
+   
+liberator://help/all#:map-commands
+- 4.4 Zooming
+- 11 Key mappings, abbreviations, and user-defined commands
+  
+#+BEGIN_SRC  
+:nnoremap = zi
+#+END_SRC
+** DONE 如何vimp设置firefox的缩放比例为150%？
+   CLOSED: [2017-06-29 Thu 18:36]
+？看django、flask的manual。
+
+- liberator://help/all#zooming
+keywords: zoom
+ 
+单个tab
+#+BEGIN_SRC  
+:zoom $percent_num
+#+END_SRC
+
+- https://www.google.com/#q=firefox+set+default+zoom+level
+- https://support.mozilla.org/en-US/questions/963759
+  
+所有tab，vimp代码
+#+BEGIN_SRC  
+:set! layout.css.devPixelsPerPx=1.5
+#+END_SRC
+** DONE 如何使用emacs org的字段引用？
+   CLOSED: [2017-06-29 Thu 00:18]
+？引用英语语法解释。
+
+- https://www.google.com/search?q=org+quote&ie=utf-8&oe=utf-8
+- http://orgmode.org/manual/Paragraphs.html
+
+** DONE 如何markdown使用url超链接引用？
+   CLOSED: [2017-06-28 Wed 22:34]
+？回答statckoverflow引用manual。https://stackoverflow.com/questions/13363267/how-to-remove-footer-details-in-org-mode-html-export
+
+- https://www.google.com/search?q=official+markdown+syntax
+- https://daringfireball.net/projects/markdown/syntax
+- https://daringfireball.net/projects/markdown/syntax#link
+#+BEGIN_SRC  
+[This link](http://example.net/) has no title attribute.
+#+END_SRC
+
+stackoverflow comment的help
+- https://stackoverflow.com/editing-help#comment-formatting
+
+** DONE 如何emacs org导出html，取消显示作者？
+   CLOSED: [2017-06-28 Wed 22:34]
+？取消blog.org导出的html的作者。
+- https://www.google.com/search?q=org+mode+export+without+author&ie=utf-8&oe=utf-8
+- https://stackoverflow.com/questions/13363267/how-to-remove-footer-details-in-org-mode-html-export
+- http://orgmode.org/manual/Publishing-options.html
+#+BEGIN_SRC  
+(setq org-export-with-author nil)
+#+END_SRC
+
+
+** 如何使用marmalade或melpa安装emacs插件？
+？安装smex。
+
+https://github.com/nonsequitur/smex
+** 什么是marmalade和melpa的区别？
+？安装smex。
+
+- https://www.google.com/search?q=mamarlade+melpa+difference&ie=utf-8&oe=utf-8
+- https://emacs.stackexchange.com/questions/268/what-are-the-practical-differences-between-the-various-emacs-package-repositorie
+
+
+** DONE 如何emacs org使用firefox预览org文件？
+   CLOSED: [2017-06-29 Thu 15:38]
+？预览ken_el repo的README.org。
+
+- https://www.google.com/search?q=set+org+mode+preview+default+html+export+open
+- https://stackoverflow.com/questions/8834633/how-do-i-make-org-mode-open-pdf-files-in-evince
+  org-mode-hook
+  
+#+BEGIN_SRC  
+(add-hook 'org-mode-hook
+	'(lambda ()
+		(setq org-file-apps
+			'((auto-mode . emacs)
+			("\\.mm\\'" . default)
+			("\\.x?html?\\'" . "/usr/bin/firefox %s")
+			("\\.pdf\\'" . "evince %s")))))
+#+END_SRC
+
+- https://www.google.com/search?q=org+mode+open+html+firefox&ie=utf-8&oe=utf-8
+- https://emacs.stackexchange.com/questions/2387/browser-not-opening-when-exporting-html-from-org-mode
+  org-file-apps
+
+#+BEGIN_SRC  
+(setq org-file-apps
+	(quote
+		((auto-mode . emacs)
+		("\\.mm\\'" . default)
+		("\\.x?html?\\'" . "/usr/bin/firefox %s")
+		("\\.pdf\\'" . default))))
+#+END_SRC
+  
+
+** DONE 如何bash转换url后缀为文件名？
+   CLOSED: [2017-06-27 Tue 20:46]
+？安装emacs color-theme。
+
+- https://www.google.com/search?q=bash+convert+url+filename
+- https://stackoverflow.com/questions/1199613/extract-filename-and-path-from-url-in-bash-script
+echo ${FILE##/*/} # ==> prog.c
+https://www.gnu.org/software/bash/manual/bash.html#Shell-Parameter-Expansion
+#+BEGIN_SRC  
+url="http://download.savannah.nongnu.org/releases/color-theme/color-theme-6.6.0.tar.gz"
+echo "${url##http*/}"
+#+END_SRC
+
+** DONE 如何linux tar指定解压目录？
+   CLOSED: [2017-06-27 Tue 19:50]
+？安装emacs color-theme。
+
+m-! man tar
+#+BEGIN_SRC  
+-C
+#+END_SRC
+** DONE 什么是emacs命令load和require的区别？
+   CLOSED: [2017-06-27 Tue 19:29]
+？用于配置emacs的插件。
+
+- https://www.google.com/search?q=emacs+load+require&ie=utf-8&oe=utf-8
+- https://emacs.stackexchange.com/questions/364/when-should-i-use-autoload-instead-of-require
+
+- https://www.google.com/search?q=emacs+require+load+区别&ie=utf-8&oe=utf-8
+- http://forum.ubuntu.org.cn/viewtopic.php?f=68&t=310023
+#+BEGIN_SRC  
+如果el文件中有，provide XXX,那么可以require XXX就可以加载了，否则，就要直接用load来加载文件。
+#+END_SRC
+
+** 如何判断英语which修饰的词语？
+？学习emacs load require的区别。
+
+http://ergoemacs.org/emacs/elisp_library_system.html
+#+BEGIN_SRC  
+For example, the command comment-dwim is defined in newcomment.el, which is a library of functions.
+#+END_SRC
+
+** 什么是emacs的默认插件目录？
+？安装
+
+https://www.gnu.org/software/emacs/manual/html_node/emacs/index.html
+
+** 如何安装proxychains-ng？
+？加速git clone。
+
+** DONE 如何git添加github远程仓库链接地址到本地仓库？
+   CLOSED: [2017-06-27 Tue 15:35]
+？push本地仓库到github仓库（el脚本）
+
+github新建repo后有提示
+
+- https://git-scm.com/book/en/v2
+- https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes
+#+BEGIN_SRC  
+git remote add origin $repo_url
+#+END_SRC
+** DONE 如何emacs org查看代码块支持的语言种类？
+   CLOSED: [2017-06-27 Tue 15:17]
+？编写yas日志，使用elisp配置yas。
+
+https://www.google.com/search?q=org+manual&ie=utf-8&oe=utf-8
+http://orgmode.org/manual/index.html#Top
+http://orgmode.org/manual/Working-With-Source-Code.html
+http://orgmode.org/manual/Languages.html#Languages
+#+BEGIN_SRC  
+Org supports the following languages for the ‘src’ code blocks:
+
+Language 	Identifier 	Language 	Identifier
+Asymptote 	asymptote 	Awk 	awk
+C 	C 	C++ 	C++
+Clojure 	clojure 	CSS 	css
+D 	d 	ditaa 	ditaa
+Graphviz 	dot 	Emacs Calc 	calc
+Emacs Lisp 	emacs-lisp 	Fortran 	fortran
+gnuplot 	gnuplot 	Haskell 	haskell
+Java 	java 	Javascript 	js
+LaTeX 	latex 	Ledger 	ledger
+Lisp 	lisp 	Lilypond 	lilypond
+Lua 	lua 	MATLAB 	matlab
+Mscgen 	mscgen 	Objective Caml 	ocaml
+Octave 	octave 	Org mode 	org
+Oz 	oz 	Perl 	perl
+Plantuml 	plantuml 	Processing.js 	processing
+Python 	python 	R 	R
+Ruby 	ruby 	Sass 	sass
+Scheme 	scheme 	GNU Screen 	screen
+Sed 	sed 	shell 	sh
+SQL 	sql 	SQLite 	sqlite 
+
+#+END_SRC
+** DONE 什么是emacs org org-sparse-tree函数源代码中#含义？
+   CLOSED: [2017-06-27 Tue 12:09]
+
+https://www.google.com/search?q=sharp+emacs+lisp+mean&ie=utf-8&oe=utf-8
+https://emacs.stackexchange.com/questions/3595/when-to-sharp-quote-a-lambda-expression
+Once upon a time, the sharp quote was necessary for lambdas, now that's no longer the case.
+
+
 ** DONE 如何emacs lisp导入el文件？
    CLOSED: [2017-06-27 Tue 11:33]
 ？研发emacs插件。
 
 https://www.google.com/search?q=emacs+import+el+file&ie=utf-8&oe=utf-8
 https://stackoverflow.com/questions/7252793/importing-files-in-emacs-lisp-emacs-configuration-file-in-the-same-directory
+
+https://www.gnu.org/software/emacs/manual/html_node/emacs/index.html#Top
+https://www.gnu.org/software/emacs/manual/html_node/emacs/Building.html#Building
+https://www.gnu.org/software/emacs/manual/html_node/emacs/Lisp-Libraries.html
 #+BEGIN_SRC  
 (load-file "/el/path")
 #+END_SRC
@@ -291,8 +1932,6 @@ https://en.wikipedia.org/wiki/Software_documentation
 https://zh.wikipedia.org/wiki/软件文档
 软件工程 9ed
 需求工程
-unix编程艺术
-卓有成效的程序员
 
 #+BEGIN_SRC  
 目录结构
@@ -365,7 +2004,7 @@ http://www.linuxask.com/questions/how-to-adjust-the-argument-position-in-xargs
 echo "foo" | xargs -i echo {} "bar"
 #+END_SRC
 
-** DONE 如何bash读取内联输入重定向<<的内容？（如何bash从标准输入stdin读取多行内容？）
+** DONE 如何bash读取cat here doc内联输入重定向<<的内容？（如何bash从标准输入stdin读取多行内容？）
    CLOSED: [2017-06-22 Thu 12:16]
 ？用于批量生成ss脚本。
 
@@ -374,13 +2013,10 @@ Linux命令行与Shell脚本编程大全 2ed p209
 https://stackoverflow.com/questions/41563044/how-to-use-shell-keyword-select-to-get-parameters-by-pipeline
 #+BEGIN_SRC  
 mapfile -t input </dev/stdin
+readarray -t input </dev/stdin
 #+END_SRC
 
-man mapfile
-mapfile readarray
-
-
-https://www.gnu.org/software/bash/manual/html_node/Bash-Builtins.html
+- https://www.gnu.org/software/bash/manual/html_node/Bash-Builtins.html
 readarray
 A synonym for mapfile. 
 

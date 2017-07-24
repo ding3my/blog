@@ -1,0 +1,74 @@
+* 序言
+vimperator增强firefox的定制性。
+* 日志实例
+** DONE 如何vimp设置firefox的about config配置？
+   CLOSED: [2017-07-05 Wed 15:57]
+？自动设置页面缩放等级。
+
+https://www.google.com/search?q=vimperator+about+config&ie=utf-8&oe=utf-8
+https://evanhahn.com/configure-firefox-with-vimperator/
+#+BEGIN_SRC  
+:set! browser.startup.homepage=https://duckduckgo.com/
+:set! browser.startup.homepage
+#+END_SRC
+
+liberator://help/all#Firefox-options
+7.2 Setting Firefox options
+#+BEGIN_SRC  
+:se[t]! {preference}={value}
+#+END_SRC
+
+** DONE 如何vimp检索已打开的tab？
+   CLOSED: [2017-07-05 Wed 15:19]
+？根据关键字切换已打开tab。
+
+liberator://help/all#changing-tabs
+9.3 Changing tabs
+#+BEGIN_SRC  
+:b 百度
+#+END_SRC
+快捷键b
+** DONE 如何vimp检索历史url？
+   CLOSED: [2017-07-05 Wed 15:14]
+？使用关键字快速检索url，并新建该url的tab，类似fasd。
+
+liberator://help/all#opening
+3.2 Opening web pages
+#+BEGIN_SRC  
+:tabopen 百度
+#+END_SRC
+快捷键t
+** DONE 如何source引用文件，类似bash？
+   CLOSED: [2017-07-05 Wed 12:45]
+？开发evil vimp插件。
+   
+liberator://help/all#repeating
+:so[urce][!] {file}
+测试
+#+BEGIN_SRC  
+# 创建测试文件
+echo 'echo 1' > ~/vimp
+
+# firefox中
+:source ~/vimp
+#+END_SRC
+输出1
+
+* 火狐选项
+** 检索火狐选项
+#+BEGIN_SRC  
+:pref[erences]
+#+END_SRC
+** 检索高级火狐选项
+#+BEGIN_SRC  
+:pref[erences]!
+#+END_SRC
+** 新增火狐选项（暂无）
+** 删除火狐选项（暂无）
+** 修改火狐选项
+#+BEGIN_SRC  
+set! permissions.default.image=2
+" 禁止显示图片
+#+END_SRC
+* 参考
+liberator://help/all

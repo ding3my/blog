@@ -4,26 +4,11 @@ liberator://help/all
 [toc]
 #1 introduction
 #2 Starting Vimperator
-##2-1 Initialization
-###:source
-```
-echo 'echo 1' > ~/vimp
-```
-:source ~/vimp
 #3 Browsing
-##3-2 Opening web pages
-###:tabopen
-`:tabopen www.baidu.com`
 #4 buffer
 #5 command-line mode
 #6 insert mode
 #7 Options
-google vimperator  about config
-https://evanhahn.com/configure-firefox-with-vimperator/
-```
-:set! browser.startup.homepage=https://duckduckgo.com/
-:set! browser.startup.homepage
-```
 ##7-3 List of options
 ###'focuscontent' 'fc'
 `set fc=true`

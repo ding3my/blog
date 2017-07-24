@@ -1,0 +1,189 @@
+* 日志实例
+** 是否变量必须定义在宏之前？
+？
+
+测试失败，无法显示v值：
+#+BEGIN_SRC  
+#if WinActive("ahk_exe explorer.exe")
+	1::
+		ttt()
+		msgbox % v
+	return
+	
+	ttt()
+	{
+		msgbox % "iamttt"
+	}
+	
+	v := 123
+	
+	2::
+		ttt()
+		msgbox % v
+	return
+#if
+#+END_SRC
+缺乏引用
+** 如何ahk定义函数？
+？开发富甲天下3V5.0宏，征兵。
+
+#+BEGIN_SRC  
+https://autohotkey.com/docs/Functions.htm
+
+Add(x, y)
+{
+    return x + y   ; "Return" expects an expression.
+}
+#+END_SRC
+
+** 如何ahk send输入特殊按键？
+？
+
+#+BEGIN_SRC  
+https://autohotkey.com/docs/KeyList.htm
+https://autohotkey.com/docs/commands/Send.htm
+
+{}
+#+END_SRC
+** 如何ahk避免键盘宏无限重复输入？
+？
+
+无限输入案例：
+#+BEGIN_SRC  
+v := 1234
+1::send % v
+#+END_SRC
+
+#+BEGIN_SRC  
+https://autohotkey.com/docs/Hotkeys.htm
+
+~RButton::MsgBox You clicked the right mouse button.
+~RButton & C::MsgBox You pressed C while holding down the right mouse button.
+#+END_SRC
+
+波浪线解决。
+
+** 如何ahk解决#if内变量失效或无效？
+？开发富甲天下3V5.0宏，点击锦囊，在#if范围内定义变量。
+
+#+BEGIN_SRC  
+#If WinActive("M3K3")
+	tip1_x := 632
+	tip1_y := 260
+	width_tip1_tip2 := 20
+	...
+#+END_SRC
+
+变量需要放在#if命令的下面，而不能放在键盘宏之间。（缺乏引用）
+
+** 什么是ahk变量的生命周期？
+？开发富甲天下3V5.0宏，点击锦囊，在#if范围内定义变量。
+
+#+BEGIN_SRC  
+https://autohotkey.com/docs/Variables.htm
+Variable scope and declarations
+
+
+#+END_SRC
+
+** 如何ahk定义键盘宏？
+？解决virtualbox windows无法使用Win-r。
+
+
+** DONE 如何ahk宏生效，在指定窗口（激活）？
+   CLOSED: [2017-07-14 Fri 22:30]
+？开发富甲天下3V5.0宏，避免与pdf宏冲突。
+
+https://autohotkey.com/docs/Tutorial.htm
+#+BEGIN_SRC  
+#IfWinActive Untitled - Notepad
+#space::
+   MsgBox You pressed Win+Spacebar in Notepad.
+Return
+#IfWinActive
+#+END_SRC
+
+测试案例，在桌面生效。
+#+BEGIN_SRC  
+https://autohotkey.com/docs/commands/_If.htm
+https://autohotkey.com/docs/commands/WinActive.htm
+
+#if WinActive("ahk_class Progman")
+	1::msgbox % "hi"
+#if
+#+END_SRC
+
+推荐使用#if命令，更加灵活。
+** DONE 如何ahk检索WinActive命令中，激活的窗口？
+   CLOSED: [2017-07-14 Fri 22:14]
+？开发富甲天下3V5.0宏，避免与pdf宏冲突。
+
+#+BEGIN_SRC  
+https://www.baidu.com/s?wd=ahk%20教程
+https://zhuanlan.zhihu.com/p/19792473?columnSlug=autohotkey
+
+Q：用什么工具来获得目标控件的这些信息呢？
+A：AHK 用户请使用 Window Spy，AU3 用户则请使用 AutoIt Window Info，你可以在相应的开始菜单项目里找到它们，或者到安装目录下寻找。
+#+END_SRC
+** DONE 如何ahk进行数字常量计算？
+   CLOSED: [2017-07-14 Fri 20:48]
+？开发富甲天下3V5.0宏，点击锦囊，设置坐标变量。
+
+成功案例
+#+BEGIN_SRC  
+MouseClick, % "right", 120, 120
+#+END_SRC
+
+https://autohotkey.com/docs/Variables.htm
+#+BEGIN_SRC  
+Sleep MillisecondsToWait
+Sleep %MillisecondsToWait%
+Sleep % MillisecondsToWait
+#+END_SRC
+
+综上，用于计算的标准格式如下：
+#+BEGIN_SRC  
+command % var
+#+END_SRC
+%表示将字符串当变量处理，使用字符串则使用双引号。
+** DONE 如何ahk引用变量？
+   CLOSED: [2017-07-14 Fri 20:49]
+？开发富甲天下3V5.0宏，点击锦囊，设置坐标变量。
+
+https://autohotkey.com/docs/Variables.htm
+#+BEGIN_SRC  
+MsgBox The value in the variable named Var is %Var%.
+CopyOfVar = %Var%
+
+MsgBox % "The value in the variable named Var is " . Var . "."  ; A period is used to concatenate (join) two strings.
+CopyOfVar := Var
+#+END_SRC
+
+综上，ahk引用变量分为bash风格（字符串当字符串处理），c风格（字符串当变量处理）。
+** DONE 如何ahk定义变量？
+   CLOSED: [2017-07-14 Fri 22:31]
+？开发富甲天下3V5.0宏，点击锦囊。
+
+#+BEGIN_SRC  
+https://autohotkey.com/docs/Variables.htm
+
+MyNumber = 123
+MyString = This is a literal string.
+CopyOfVar = %Var%  ; With the = operator, percent signs are required to retrieve a variable's contents.
+
+MyNumber := 123
+MyString := "This is a literal string."
+CopyOfVar := Var  ; Unlike its counterpart in the previous section, percent signs are not used with the := operator.
+#+END_SRC
+** DONE 如何ahk解决输入enter无效？
+   CLOSED: [2017-07-14 Fri 19:41]
+？开发富甲天下3V5.0宏，输入锦囊密码。
+
+#+BEGIN_VERSE
+https://www.google.com/search?q=ahk+send+enter&ie=utf-8&oe=utf-8
+https://autohotkey.com/docs/commands/Send.htm#Parameters
+
+Send {TAB down}{TAB up}
+#+END_VERSE
+
+综上，使用{enter down}{enter up}代替{enter}
