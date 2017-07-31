@@ -1,0 +1,103 @@
+* 日志实例
+？认知screen。解决gnome terminal无法指定新建tab位置问题。
+
+** DONE 如何linux screen关闭所有的screen？
+   CLOSED: [2017-07-28 Fri 13:55]
+？测试screen指定名字。
+
+#+BEGIN_VERSE
+https://www.google.com/search?q=linux+screen+kill+all+sessions
+https://unix.stackexchange.com/questions/94527/how-do-i-kill-all-screens
+killall screen
+
+#+END_VERSE
+** DONE 如何linux screen指定screen的名字？
+   CLOSED: [2017-07-28 Fri 13:54]
+？快速恢复某个screen。
+
+#+BEGIN_VERSE
+https://stackoverflow.com/questions/3202111/how-to-assign-name-for-a-screen
+screen -S foo
+
+修改已存在的screen session
+C-a :sessionname $name
+#+END_VERSE
+** TODO 如何linux screen上下滚动翻页？
+？
+
+#+BEGIN_VERSE
+https://www.google.com/search?q=linux+screen+page+scroll&ie=utf-8&oe=utf-8
+https://unix.stackexchange.com/questions/40242/scroll-inside-screen-or-pause-output
+c-a <esc>
+#+END_VERSE
+** DONE 如何linux screen输出日志？
+   CLOSED: [2017-07-28 Fri 13:03]
+？
+
+#+BEGIN_VERSE
+https://www.google.com/search?q=linux+screen+tutorial&ie=utf-8&oe=utf-8
+https://www.rackaid.com/blog/linux-screen-tutorial-and-how-to/
+c-a H
+
+https://www.google.com/search?q=log+file+location+linux+screen&ie=utf-8&oe=utf-8
+https://unix.stackexchange.com/questions/198881/where-can-i-find-the-screenlog-0-file
+You can find the screenlog.0 file in screen's current working directory (cwd). 
+#+END_VERSE
+** TODO 如何linux screen设置提醒？
+？
+
+#+BEGIN_VERSE
+https://www.google.com/search?q=linux+screen+tutorial&ie=utf-8&oe=utf-8
+https://www.rackaid.com/blog/linux-screen-tutorial-and-how-to/
+
+This is great if you are downloading large files, compiling, or waiting for output.
+c-a M
+
+
+
+#+END_VERSE
+
+** TODO 如何linux screen挂起和恢复？
+？
+
+
+#+BEGIN_VERSE
+https://www.google.com/search?q=linux+screen+tutorial&ie=utf-8&oe=utf-8
+https://www.rackaid.com/blog/linux-screen-tutorial-and-how-to/
+
+This is great when you are using rsync for server migration.
+c-a d
+screen -r
+
+https://www.google.com/search?q=linux+screen+分离&ie=utf-8&oe=utf-8
+http://www.cnblogs.com/mchina/archive/2013/01/30/2880680.html
+同样在暂时离开的时候，也可以执行分离命令detach，在保证里面的程序正常运行的情况下让Screen挂起（切换到后台）。这一点和图形界面下的VNC很相似。
+#+END_VERSE
+** 如何linux screen切换窗口？
+？
+
+#+BEGIN_VERSE
+https://www.google.com/search?q=linux+screen+tutorial&ie=utf-8&oe=utf-8
+https://www.rackaid.com/blog/linux-screen-tutorial-and-how-to/
+
+c-a n
+c-a p
+#+END_VERSE
+
+** 如何linux screen创建窗口？
+？
+
+#+BEGIN_VERSE
+https://www.google.com/search?q=linux+screen+tutorial&ie=utf-8&oe=utf-8
+https://www.rackaid.com/blog/linux-screen-tutorial-and-how-to/
+
+c-a c
+#+END_VERSE
+** 如何linux screen查看帮助信息？
+？
+
+#+BEGIN_VERSE
+https://www.google.com/search?q=linux+screen+tutorial&ie=utf-8&oe=utf-8
+https://www.rackaid.com/blog/linux-screen-tutorial-and-how-to/
+c-a ?
+#+END_VERSE

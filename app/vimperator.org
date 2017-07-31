@@ -54,18 +54,19 @@ echo 'echo 1' > ~/vimp
 #+END_SRC
 输出1
 
-* 火狐选项
-** 检索火狐选项
+* 理论
+** 火狐选项
+*** 检索火狐选项
 #+BEGIN_SRC  
 :pref[erences]
 #+END_SRC
-** 检索高级火狐选项
+*** 检索高级火狐选项
 #+BEGIN_SRC  
 :pref[erences]!
 #+END_SRC
-** 新增火狐选项（暂无）
-** 删除火狐选项（暂无）
-** 修改火狐选项
+*** 新增火狐选项（暂无）
+*** 删除火狐选项（暂无）
+*** 修改火狐选项
 #+BEGIN_SRC  
 set! permissions.default.image=2
 " 禁止显示图片
