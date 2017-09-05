@@ -1,0 +1,839 @@
+* 日志实例
+
+
+** DONE 如何emacs client修改title标题名？
+   CLOSED: [2017-07-27 Thu 17:49]
+？解决gnome m-`切换时，多个emacs同名标题造成歧义而无法切换，例如处理材料时，文本相互剪切粘贴。
+#+BEGIN_VERSE
+man emacs
+emacs --name $title
+#+END_VERSE
+
+
+#+BEGIN_VERSE
+
+#+END_VERSE
+
+** DONE 如何emacs org设置导出的html的作者名？
+   CLOSED: [2017-06-29 Thu 23:27]
+？设置作者名为非linux用户名（默认是linux用户名）。
+
+- https://emacs.stackexchange.com/search?q=org+author
+- https://emacs.stackexchange.com/questions/29386/where-does-org-mode-get-the-author-field-for-latex-output
+- https://www.gnu.org/software/emacs/manual/html_node/elisp/User-Identification.html list
+  
+#+BEGIN_SRC  
+(setq user-full-name "Your Name")
+#+END_SRC
+** DONE 如何emacs org取消导出的html的作者名？
+   CLOSED: [2017-06-29 Thu 15:38]
+？取消blog.org导出的html的作者。
+- https://www.google.com/search?q=org+mode+export+without+author&ie=utf-8&oe=utf-8
+- https://stackoverflow.com/questions/13363267/how-to-remove-footer-details-in-org-mode-html-export
+- http://orgmode.org/manual/Publishing-options.html
+
+#+BEGIN_SRC  
+(setq org-export-with-author nil)
+#+END_SRC
+
+** DONE 如何emacs org使用firefox直接预览org文档的html格式？
+   CLOSED: [2017-06-29 Thu 15:37]
+？预览ken_el repo的README.org。
+
+- https://www.google.com/search?q=set+org+mode+preview+default+html+export+open
+- https://stackoverflow.com/questions/8834633/how-do-i-make-org-mode-open-pdf-files-in-evince
+  org-mode-hook
+  
+方案1
+#+BEGIN_SRC  
+(add-hook 'org-mode-hook
+	'(lambda ()
+		(setq org-file-apps
+			'((auto-mode . emacs)
+			("\\.mm\\'" . default)
+			("\\.x?html?\\'" . "/usr/bin/firefox %s")
+			("\\.pdf\\'" . "evince %s")))))
+#+END_SRC
+
+- https://www.google.com/search?q=org+mode+open+html+firefox&ie=utf-8&oe=utf-8
+- https://emacs.stackexchange.com/questions/2387/browser-not-opening-when-exporting-html-from-org-mode
+  org-file-apps
+
+方案2（推荐）
+#+BEGIN_SRC  
+(setq org-file-apps
+	(quote
+		((auto-mode . emacs)
+		("\\.mm\\'" . default)
+		("\\.x?html?\\'" . "/usr/bin/firefox %s")
+		("\\.pdf\\'" . default))))
+#+END_SRC
+
+** DONE 如何emacs shell mode切换dired mode时，默认目录为shell mode当前目录？
+   CLOSED: [2017-06-29 Thu 14:54]
+？解决shell mode打开文件报错"emacs: Terminal type "dumb" is not powerful enough to run Emacs."
+
+- https://www.google.com/search?q=emacs+shell+default+directory&ie=utf-8&oe=utf-8
+- https://emacs.stackexchange.com/questions/5589/automatically-update-default-directory-when-pwd-changes-in-shell-mode-and-term-m https://snarfed.org/why_i_run_shells_inside_emacs
+- https://www.gnu.org/software/emacs/manual/html_node/emacs/Directory-Tracking.html
+
+配置emacs
+#+BEGIN_SRC  
+(set-variable 'dirtrack-list '("^.*[^ ]+:\\(.*\\)]" 1 nil))
+(dirtrack-mode 1)
+#+END_SRC
+
+- https://www.google.com/search?q=zsh+ps1&ie=utf-8&oe=utf-8
+- https://wiki.gentoo.org/wiki/Zsh/Guide
+  zsh
+
+配置shell
+#+BEGIN_SRC  
+export PS1="[%m:%~] $ " # zsh
+export PS1="[\h:\w] $ " # bash
+#+END_SRC
+
+** DONE 如何退出emacs时，不提示Active processes exist; kill them and exit anyway? (yes or no)？
+   CLOSED: [2017-06-29 Thu 14:22]
+？使用emacs作为加载器。   
+
+- https://www.google.com/search?q=Active+processes+exist;+kill+them+and+exit+anyway?+(yes+or+no)+&ie=utf-8&oe=utf-8
+- https://stackoverflow.com/questions/2706527/make-emacs-stop-asking-active-processes-exist-kill-them-and-exit-anyway
+  
+#+BEGIN_SRC  
+(require 'cl-lib)
+(defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
+  "Prevent annoying \"Active processes exist\" query when you quit Emacs."
+  (cl-letf (((symbol-function #'process-list) (lambda ())))
+    ad-do-it))
+#+END_SRC
+** DONE 如何配置emacs默认shell mode（非eshell）？
+   CLOSED: [2017-06-29 Thu 14:38]
+？使用emacs作为加载器，补全反引号。
+
+
+- 学习GNU Emacs 2ed-Cameron p174
+#+BEGIN_SRC  
+(shell)
+#+END_SRC
+
+参考
+- https://www.google.com/search?q=difference+eshell+shell+term
+- https://unix.stackexchange.com/questions/104325/what-is-the-difference-between-shell-eshell-and-term-in-emacs
+** DONE 如何emacs取消备份文件~和自动保存文件#？
+   CLOSED: [2017-06-29 Thu 12:41]
+？避免git repo出现非相关文件，避免手动删除文件。
+
+- https://www.google.com/search?q=cancel+emacs+backup&ie=utf-8&oe=utf-8
+- http://ergoemacs.org/emacs/emacs_set_backup_into_a_directory.html
+  
+#+BEGIN_SRC  
+(setq make-backup-files nil) ; stop creating backup~ files
+(setq auto-save-default nil) ; stop creating #autosave# files
+#+END_SRC
+
+** DONE 如何emacs org设置item项的状态集合？
+   CLOSED: [2017-06-29 Thu 12:34]
+？实施gtd。
+
+- https://www.google.com/search?q=gtd+emacs+org+流程图
+- https://www.reddit.com/r/emacs/comments/42qr9h/orgmode_for_gtd/
+- http://doc.norang.ca/org-mode.html
+  
+- https://www.google.com/search?q=emacs+org+item+state+set
+- http://orgmode.org/manual/index.html#toc_Introduction
+- http://orgmode.org/manual/Tracking-TODO-state-changes.html
+  
+在init.el配置。
+#+BEGIN_SRC  
+(setq org-todo-keywords
+      (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+              (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "PHONE" "MEETING"))))
+#+END_SRC
+  
+- http://orgmode.org/manual/Fast-access-to-TODO-states.html#Fast-access-to-TODO-states
+full manual
+** DONE 如何emacs设置默认buffer为Message？
+   CLOSED: [2017-06-29 Thu 11:59]
+？调试init.el配置文件。
+
+- https://www.google.com/search?q=emacs+default+buffer&ie=utf-8&oe=utf-8
+- https://www.gnu.org/software/emacs/manual/html_node/emacs/Select-Buffer.html
+- 如何配置emacs启动仅显示一个窗口？inhibit-splash-screen
+#+BEGIN_SRC  
+(setq inhibit-splash-screen t) ; 先关闭，因为启动窗口会自动打开。
+(switch-to-buffer "*Messages*")
+#+END_SRC
+
+** DONE 如何配置emacs启动仅显示一个窗口？
+   CLOSED: [2017-06-29 Thu 10:54]
+？用于emacs shell mode（非eshell）和写org文档。
+
+- https://www.google.com/search?q=emacs+boot+one+window&ie=utf-8&oe=utf-8
+- https://askubuntu.com/questions/4820/keeping-emacs-from-splitting-the-window-when-openning-multiple-files
+  emacs-startup-hook
+- https://emacs.stackexchange.com/questions/7154/open-a-file-from-the-desktop-in-a-single-window-without-home-screen-splitscreen
+  inhibit-startup-screen 
+
+#+BEGIN_SRC  
+(setq inhibit-splash-screen t) ; 先关闭，因为启动窗口会自动打开。
+(add-hook 'emacs-startup-hook (lambda () (delete-other-windows)) t)
+#+END_SRC
+
+- https://www.google.com/search?q=+inhibit-startup-screen+&ie=utf-8&oe=utf-8
+- https://emacs-china.org/t/inhibit-splash-screen/1642
+我把它们看作 GNU 的广告，所以 Emacs 增加了关闭它们的难度。P.S inhibit-splash-screen 是 inhibit-startup-screen 的 alias，感觉后者意思更清楚。
+
+** DONE 如何emacs根据上下文补全？
+   CLOSED: [2017-06-29 Thu 11:22]
+？写org文档。
+
+- https://www.google.com/search?q=emacs+补全&ie=utf-8&oe=utf-8
+- http://blog.binchen.org/posts/emacs-zhong-de-zi-dong-wan-chen-wan-quan-zhi-nan.html
+   hippie-expand是Emacs自带的自动完成框架. 
+- https://www.gnu.org/software/emacs/manual/html_node/autotype/Hippie-Expand.html
+#+BEGIN_SRC  
+M-/
+#+END_SRC
+** DONE 如何安装auto complete？
+   CLOSED: [2017-06-29 Thu 10:32]
+？补全代码，自动提示不需要快捷键。
+
+- https://www.zhihu.com/question/21943533
+- https://github.com/auto-complete/auto-complete
+
+安装（melpa）
+#+BEGIN_SRC  
+m-x list-packages或package-list-packages 后者是前者别名
+#+END_SRC
+配置
+#+BEGIN_SRC  
+(ac-config-default)
+;(setq ac-auto-start nil) ;取消自动提示补全 Trigger key will be enabled after inserting characters. https://github.com/auto-complete/auto-complete/blob/master/doc/manual.md
+#+END_SRC
+** DONE 如何使用package-install安装emacs插件？
+   CLOSED: [2017-06-29 Thu 10:12]
+？安装auto complete。
+
+- https://www.google.com/search?q=emacs+plugin+management&ie=utf-8&oe=utf-8
+- https://www.emacswiki.org/emacs/InstallingPackages
+  
+#+BEGIN_VERSE
+Type M-x list-packages to open the package list. Press ‘i’ to mark for installation, ‘u’ to unmark, and ‘x’ to perform the installation. Press ‘RET’ to read more about installing and using each package.
+#+END_VERSE
+
+ELPA资源点
+- https://www.google.com/search?q=emacs+plugin+management&ie=utf-8&oe=utf-8
+- https://www.emacswiki.org/emacs/ELPA
+
+#+BEGIN_SRC  
+(add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t) ; Org-mode's repository
+#+END_SRC
+** DONE 什么是package中list-package和package-list-packages的区别？
+   CLOSED: [2017-06-29 Thu 10:17]
+？安装auto complete。
+
+- 如何使用package-install安装emacs插件？
+list-package
+
+- 如何配置melpa？
+package-list-packages
+
+- c-h f package-list-packages
+package-list-packages is an alias for ‘list-packages’ in ‘package.el’.
+
+** DONE 如何配置melpa？
+   CLOSED: [2017-06-29 Thu 09:33]
+？安装auto complete。
+
+- https://www.zhihu.com/question/21943533
+- https://github.com/auto-complete/auto-complete
+- https://github.com/melpa/melpa
+配置
+#+BEGIN_SRC  
+(require 'package)
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (url (concat (if no-ssl "http" "https") "://melpa.org/packages/")))
+  (add-to-list 'package-archives '("melpa" . url) t))
+(when (< emacs-major-version 24)
+  ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
+(package-initialize)
+#+END_SRC
+M-x package-list-packages来查看
+** DONE 如何设置emacs org item done时，自动添加时间？
+   CLOSED: [2017-06-29 Thu 09:10]
+？用于记录日志。
+
+- https://www.google.com/search?q=org+mode+done+time&ie=utf-8&oe=utf-8
+- http://orgmode.org/manual/Closing-items.html
+#+BEGIN_SRC  
+(setq org-log-done 'time)
+#+END_SRC
+** DONE 如何安装xclip插件？
+   CLOSED: [2017-06-29 Thu 08:52]
+？共享X11的剪切板，复制粘贴浏览器的文本。
+
+- https://www.google.com/search?q=emacs+nw+clipboard
+- https://stackoverflow.com/questions/4580835/emacs-copy-kill-ring-to-system-clipboard-in-nowindow-mode
+- https://stackoverflow.com/questions/5288213/how-can-i-paste-the-selected-region-outside-of-emacs/14659015#14659015
+  
+安装（package-install或者https://github.com/emacsmirror/xclip）
+#+BEGIN_SRC  
+package-list-packages
+#+END_SRC
+配置
+#+BEGIN_SRC  
+(xclip-mode 1)
+#+END_SRC
+
+** DONE 如何emacs显示行号？
+   CLOSED: [2017-06-29 Thu 08:19]
+？evil跳转行。
+
+- https://www.google.com/search?q=emacs+show+line+num&ie=utf-8&oe=utf-8
+- https://superuser.com/questions/212193/how-do-i-display-line-numbers-in-emacs-not-in-the-mode-line
+配置
+#+BEGIN_SRC  
+(global-linum-mode 1)
+#+END_SRC
+** 如何安装emacs fcitx插件？
+？insert mode转换为normal mode时，自动切换中文为英文。
+
+- https://www.google.com/search?q=evil+fcitx&ie=utf-8&oe=utf-8
+- https://github.com/cute-jumper/fcitx.el
+  
+git安装
+#+BEGIN_SRC  
+git clone https://github.com/cute-jumper/fcitx.el.git ~/.emacs.d/fcitx
+#+END_SRC
+配置
+#+BEGIN_SRC  
+(add-to-list 'load-path "~/.emacs.d/fcitx")
+(require 'fcitx)
+(fcitx-default-setup)
+#+END_SRC
+** WAITING 如何安装el-get？
+   - State "WAITING"    from ""           [2017-06-29 Thu 08:06] \\
+	 待测试
+？管理官方和第三方插件，类似apt-get、yum。
+
+- https://www.google.com/search?q=emacs+下载+插件
+- http://dbkaiser.github.io/emacs/2013/09/23/el-getemacs/
+el-get
+
+- https://www.google.com/search?q=el+get+elpa+区别
+- http://vmlinz.is-programmer.com/posts/23797.html
+GNU Project的一个重要代表，它要求随它发行的所有lisp都要作者签名用GPL授权给FSF，但是并不是所有的作者都支持GPL，而且这个过程给第三方贡献增加了不少阻碍。
+
+- https://github.com/dimitri/el-get
+  
+安装
+#+BEGIN_SRC  
+git clone https://github.com/dimitri/el-get.git $HOME/.emacs.d/el-get/el-get
+#+END_SRC
+
+配置
+#+BEGIN_SRC  
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
+
+(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+(el-get 'sync)
+#+END_SRC
+
+卡在了"contacting host: raw.githubusercontent.com:443"
+Error (el-get): while installing el-get: El-get can not find a recipe for package "el-get"
+
+#+BEGIN_SRC  
+https://www.google.com/search?q=Error+(el-get):+while+installing+el-get:+El-get+can+not+find+a+recipe+for+package+"el-get"&ie=utf-8&oe=utf-8
+https://github.com/dimitri/el-get/issues/2232
+#+END_SRC
+
+** DONE 如何使用winner-mode？
+   CLOSED: [2017-06-28 Wed 20:17]
+？用于恢复从c-x1后的窗口布局。
+
+- https://www.zhihu.com/question/21943533
+- https://www.google.com/search?q=winner-mode&ie=utf-8&oe=utf-8
+- https://www.gnu.org/software/emacs/manual/html_node/emacs/Window-Convenience.html
+#+BEGIN_SRC  
+(winner-mode)
+#+END_SRC 
+
+- https://www.google.com/search?q=winner-mode&ie=utf-8&oe=utf-8
+- http://www.cnblogs.com/bamanzi/archive/2011/08/20/some-emacs-window-utils.html
+
+** DONE 如何安装window-numbering？
+   CLOSED: [2017-06-28 Wed 19:12]
+？快捷键切换指定窗口，不用c-xo一个一个跳转。
+
+- https://www.zhihu.com/question/21943533
+- https://github.com/nschum/window-numbering.el
+  
+下载安装
+#+BEGIN_SRC  
+url=https://github.com/nschum/window-numbering.el.git
+
+dir="${url}"
+dir="${dir##http*/}"
+dir="${dir%%.el.git}"
+
+cat<<end
+git clone "${url}" "$HOME/.emacs.d/${dir}"
+end
+#+END_SRC
+
+配置
+#+BEGIN_SRC  
+(add-to-list 'load-path "~/.emacs.d/window-numbering")
+(require 'window-numbering);
+(window-numbering-mode)
+#+END_SRC
+
+** DONE 如何安装smex？
+   CLOSED: [2017-06-28 Wed 17:48]
+？提示m-x的函数提示和记忆。
+
+- https://www.zhihu.com/question/21943533
+- https://github.com/nonsequitur/smex
+
+git下载安装
+#+BEGIN_SRC  
+url=https://github.com/nonsequitur/smex.git
+
+dir="${url}"
+dir="${dir##http*/}"
+dir="${dir%%.git}"
+
+cat<<end
+git clone "${url}" "$HOME/.emacs.d/${dir}" # $HOME不能使用~代替。
+end
+#+END_SRC
+
+配置smex
+#+BEGIN_SRC  
+(require 'smex) ; Not needed if you use package.el
+(smex-initialize) ; Can be omitted. This might cause a (minimal) delay
+				; when Smex is auto-initialized on its first run.
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; This is your old M-x.
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+#+END_SRC
+** DONE 如何安装evil-leader？
+   CLOSED: [2017-06-27 Tue 23:58]
+？使用vim的leader key，例如切换窗口。
+
+- https://disqus.com/home/discussion/chenbin0/emacs_82/#comment-3206525219
+evil的leader+数字键
+
+- https://www.zhihu.com/question/21943533
+- https://github.com/cofi/evil-leader
+#+BEGIN_SRC  
+# 下载、安装
+git clone https://github.com/cofi/evil-leader.git "$HOME/.emacs.d/evil-leader"
+
+# 配置
+(add-to-list 'load-path "$HOME/.emacs.d/evil-leader")
+(require 'evil-leader)
+(global-evil-leader-mode)
+
+#+END_SRC
+  
+** DONE 如何安装evil？
+   CLOSED: [2017-06-27 Tue 23:41]
+？使用vim编辑文本。
+
+- https://www.zhihu.com/question/21943533
+- https://github.com/emacs-evil/evil
+#+BEGIN_SRC  
+# 下载、安装
+git clone https://github.com/emacs-evil/evil $HOME/.emacs.d/evil
+
+# 配置
+(add-to-list 'load-path "$HOME/.emacs.d/evil")
+(require 'evil)
+(evil-mode 1)
+
+#+END_SRC
+** DONE 如何安装color-theme color-theme-dark-blue2主题？
+   CLOSED: [2017-06-27 Tue 23:27]
+？解决默认颜色主题刺眼（emacs -nw -q测试）
+
+- https://www.zhihu.com/search?type=content&q=emacs+主题
+- https://www.zhihu.com/question/19943432
+Dark
+
+- https://www.google.com/search?q=emacs+主题+推荐&ie=utf-8&oe=utf-8
+- https://emacs-china.org/t/emacs/263
+solarized-dark 呀，科学家说对眼睛好的主题。tomorrow-night 也不错的说。黑暗系
+
+- http://www.nongnu.org/color-theme/
+color-theme is an emacs-lisp mode for skinning your emacs.
+
+安装配置color-theme插件
+#+BEGIN_SRC  
+# 设置下载url
+url="http://download.savannah.nongnu.org/releases/color-theme/color-theme-6.6.0.tar.gz"
+
+# 自动设置
+file="${url##http*/}"
+dir="$HOME/.emacs.d/${file%%.tar.gz}"
+
+# 下载、安装color-theme
+cat<<end
+wget http://download.savannah.nongnu.org/releases/color-theme/color-theme-6.6.0.tar.gz -O "${file}"
+tar -xvf "${file}" -C $HOME/.emacs.d/
+end
+
+echo # 换行
+
+# 配置color-theme，添加到emacs配置文件init.el
+cat<<end
+(add-to-list 'load-path "${dir}")
+(require 'color-theme)
+(eval-after-load "color-theme"
+  '(progn
+     (color-theme-initialize)
+     (color-theme-dark-blue2))) ; 默认color-theme-dark-blue2
+end
+#+END_SRC
+
+安装配置emacs solarized
+** DONE 如何检索查看emacs color theme主题？
+   CLOSED: [2017-06-27 Tue 21:35]
+？配置emacs主题，需要选择主题。
+
+- http://www.nongnu.org/color-theme/index.html
+#+BEGIN_SRC  
+Then you can choose your color-theme theme by issuing M-x color-theme-<TAB> RET
+#+END_SRC
+
+- https://www.google.com/search?q=color-theme-select
+- http://lifegoo.pluskid.org/wiki/EmacsColorTheme.html
+  M-x color-theme-select 来选择你喜欢的颜色主题
+** DONE 如何检索查看emacs默认的颜色主题？
+   CLOSED: [2017-06-27 Tue 23:20]
+？用于color-theme插件的备用。
+
+- https://www.google.com/search?q=how+to+view+color+theme+emacs
+- https://superuser.com/questions/320288/how-to-find-out-the-current-color-theme-in-emacs
+#+BEGIN_SRC  
+M-x customize-theme
+#+END_SRC
+
+- https://www.google.com/search?q=emacs+推荐+颜色&ie=utf-8&oe=utf-8
+- https://www.zhihu.com/question/19943432
+tango-dark
+
+** DONE 什么是color theme和solarized的区别？
+   CLOSED: [2017-06-27 Tue 23:10]
+？配置emacs颜色主题。
+
+- https://github.com/sellout/emacs-color-theme-solarized
+solarized是建立在color-theme插件基础上的。
+
+** DONE 如何安装yasnippet？
+   CLOSED: [2017-06-27 Tue 15:20]
+？管理bash脚本模板的缩写。
+
+https://www.zhihu.com/search?type=content&q=emacs%20插件
+有哪些是必备的emacs扩展？ https://www.zhihu.com/question/21943533
+https://github.com/joaotavora/yasnippet
+
+安装
+#+BEGIN_SRC  
+cd ~/.emacs.d/plugins
+git clone --recursive https://github.com/joaotavora/yasnippet
+#+END_SRC
+
+配置
+#+BEGIN_SRC  lisp
+(add-to-list 'load-path
+              "~/.emacs.d/plugins/yasnippet")
+(require 'yasnippet)
+(yas-global-mode 1)
+#+END_SRC
+** DONE 如何设置emacs evil的insert模式的操作为emacs的默认操作？
+   CLOSED: [2017-06-27 Tue 14:42]
+？使用emacs的C-a和C-e等操作，evil（vim）的insert模式没有。
+   
+https://www.google.com/search?q=evil+insert+mode+emacs&ie=utf-8&oe=utf-8
+https://stackoverflow.com/questions/25542097/emacs-evil-mode-how-to-change-insert-state-to-emacs-state-automatically
+#+BEGIN_SRC  
+(setcdr evil-insert-state-map nil) ; by Charles Stewart
+(define-key evil-insert-state-map [escape] 'evil-normal-state) ; by cbauer
+#+END_SRC
+
+** DONE 什么是emacs shell term eshell区别？
+   CLOSED: [2017-07-31 Mon 20:51]
+？使用emacs代替gnome terminal。解决gnome-terminal无法补全引号。
+
+#+BEGIN_VERSE
+https://unix.stackexchange.com/questions/104325/what-is-the-difference-between-shell-eshell-and-term-in-emacs
+
+shell：使用emacs来操作shell subprocess，能使用别名（不能补全），能使用yas模板（不能tab替换，只能自动替换）。例如可以使用m-x命令，dumb。
+term：使用键盘（直接）来操作shell subprocess，能使用别名（能补全）。例如无法使用m-x命令，但可以打开emacs -nw或vim，not dumb。
+eshell：和bash、zsh一个级别的shell，不能使用bash、zsh的别名，能使用yas目标（能tab替换），能跨平台可移植（自带工具包）。例如类似shell，dumb。
+#+END_VERSE
+
+** DONE 如何检索emacs m-! shell-command时使用的shell？
+   CLOSED: [2017-07-31 Mon 20:53]
+？避免bash、zsh存在产生歧义。
+
+#+BEGIN_VERSE
+https://emacs.stackexchange.com/questions/28647/how-do-i-change-the-default-shell-for-shell-command
+https://stackoverflow.com/questions/37409085/how-to-define-a-default-shell-for-emacs
+
+https://www.gnu.org/software/emacs/manual/html_node/emacs/Interactive-Shell.html
+m-! shell-file-name
+#+END_VERSE
+
+** DONE 如何emacs使用已定义的宏？
+   CLOSED: [2017-07-31 Mon 20:49]
+？批量修改，例如批量增加org level。
+
+#+BEGIN_VERSE
+https://www.gnu.org/software/emacs/manual/html_node/emacs/index.html#Top
+https://www.gnu.org/software/emacs/manual/html_node/emacs/Basic-Keyboard-Macro.html
+17 Keyboard Macros
+17.1 Basic Use
+
+num c-xe
+#+END_VERSE
+
+* 理论
+** 概念
+** 流程
+* TODO 帮助文档
+* Emacs
+** 新建emacs X11进程
+   emacs
+** 新建emacs cli进程
+   emacs -nw
+** 删除emacs进程
+   cxcc
+* 文件
+** 新建文件，在启动Emacs后
+   emacs -nw filename
+** 新建文件
+   cxcf cxcs
+** 新建文件，在其他窗口打开
+   cx4f cxcs
+* 缓冲区
+** 检索缓冲区集合，在其他窗口显示
+   cxcb
+** 新建缓冲区
+   cxcf
+** 删除当前缓冲区
+   cxk
+** 修改缓冲区名字
+* 窗口
+** 新建窗口，在当前窗口之下
+   c-x2
+** TODO 新建窗口，在当前窗口之下，并修改新建的窗口为当前窗口
+** 新建窗口，在当前窗口之右
+   c-x3
+** 删除当前窗口
+   c-x0
+** 删除其他窗口
+   c-x1
+** 修改其他窗口为当前窗口
+   c-xo
+** 修改窗口集合排列，平均排列
+   balance-windows
+   
+   ref Emacs 学习笔记：Emacs 编辑操作 https://wolfsonliu.github.io/archive/emacs-xue-xi-bi-ji-emacs-bian-ji-cao-zuo.html ref google emacs 平均 窗口
+* 光标
+** 修改光标位置，字符
+   c-f c-b
+   c-n c-p
+** 修改光标位置，词
+   m-f m-b
+** 修改光标位置，行
+   c-e c-a
+   m-m 移动到可见字符行首
+** 修改光标位置，句
+   m-e m-a
+   
+   句子以.或双换行为间隔
+** 修改光标位置，段
+   m-} m-{
+** 修改光标位置，页
+   c-x ]
+   c-x [
+** 修改光标位置，文章
+   m-> m-<
+* 文本
+** 检索文本，关键字
+c-s
+** 检索文本，正则表达式
+C-M-s Begin incremental regexp search (isearch-forward-regexp).
+C-M-r Begin reverse incremental regexp search (isearch-backward-regexp).
+
+ref GNU Emacs Manual 17ed 100
+** 删除字符
+   c-d BS
+** 删除词
+   m-d m-BS
+** 删除到行尾
+   c-k
+** 删除句
+   m-k c-x BS
+** 删除段
+   kill-paragraph
+   backward-kill-paragraph
+* 文本块
+** 新增文本块
+   c-@ 或 c-SPC 设置文本标记，移动参考光标
+** 删除文本块
+   BS
+** 删除文本块，并复制文本块到剪切环
+   c-w
+** 修改文本块光标位置，文本块开头和结尾
+   cxcx
+
+* Unix/Linux命令
+** 使用Emacs执行Unix命令
+   m-!
+** 使用Emacs执行Unix命令，并插入输出
+   1 m-!
+   ref With prefix argument, insert the COMMAND’s output at point. ref c-hk m-!
+** 使用Emacs执行unix命令，文本块作为输入
+   m-|
+** 使用Emacs执行unix命令，文本块作为输入，并插入输出
+   1 m-|
+ 
+   
+* 包
+** 检索可安装的包
+   m-x list-packages
+** 检索已安装的包
+   m-x list-packages
+   c-s installed
+** 检索已安装的包的版本
+   m-x list-packages
+   c-s installed
+** 检索已安装的包的文件内容
+   m-! ls ~/.emacs.d/elpa/
+** 检索包的默认安装路径
+   m-: package-user-dir
+   m-: package-directory-list
+   package-directory-list for sys administrators
+
+* 包源
+** 检索所有的包源
+   m-: package-archives
+** 新增包源到配置文件
+   (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
+** 新增包源到配置文件，交互式
+   m-x customize-variable [RET] package-archives [RET]
+   [INS] RET
+   
+
+* 模式
+** 检索所有当前的模式
+   c-hm
+** 新增模式
+* 宏
+ 
+** 检索宏，输出到当前缓冲区
+   m-x insert-kbd-macro macroname
+** 检索匿名宏，输出到当前缓冲区
+   m-x insert-kbd-macro
+   插入是完整的elisp宏代码
+** 检索匿名宏，输出到mini缓冲区、message缓冲区
+   m-: last-kbd-macro
+   插入是宏参数代码
+** 新建匿名宏
+   c-x( ops c-x) 或 F3 F4
+** 新建匿名宏，并命名
+   c-x( ops c-x)
+   name-last-kbd-macro
+** 新建匿名宏，并保存
+   c-x( ops c-x)
+   c-x c-f macro_filename
+   insert-kbd-macro
+   c-x c-s
+** 新建匿名宏，并命名，并保存
+   c-x( ops c-x)
+   name-last-kbd-macro
+   c-x c-f macro_filename
+   insert-kbd-macro macroname
+   c-x c-s
+** 删除宏
+   (fmakunbound 'name-of-macro)
+
+   google emacs remove macro
+** 删除匿名宏
+   C-x C-k C-d
+
+** 运行宏
+   m-x macroname
+** 运行匿名宏
+   c-xe
+* 别名
+* DONE 按键绑定 这个不是emacs考虑而是elisp
+** 检索所有的按键绑定
+   c-hb
+   ref google emacs show all key map
+** 检索指定函数的按键绑定
+   c-hf
+** 检索当前模式的按键绑定
+   c-hm
+** 新增全局按键绑定
+(global-set-key "\C-cg" 'goto-line)
+
+ref An Introduction to Programming in Emacs Lisp 3ed 191
+** 新增按键绑定，指定keymap
+(define-key global-map "\C-cg" 'goto-line)
+
+ref 学习GNU Emacs 2ed-Cameron 355
+** 删除全局按键绑定
+(global-unset-key "\C-cg")
+** 删除按键绑定，指定keymap
+(define-key global-map "\C-cg" nil)
+
+ref GNU Emacs Lisp Reference Manual 3ed 413
+* TODO 按键映射表 keymap 这个不是emacs考虑而是elisp
+** TODO 检索所有的按键映射表
+
+
+
+* 前缀按键 这个不是emacs考虑而是elisp
+A prefix key is a key sequence whose binding is a keymap.
+** TODO 检索前缀按键
+** 检索不冲突按键前缀
+c-hk
+** 新增前缀按键
+(define-prefix-command 'ctl-z-map)
+(global-set-key (kbd "C-z") 'ctl-z-map)
+(global-set-key (kbd "C-z C-c") 'find-file)
+
+(global-set-key [f2] 'dired-jump)
+(global-set-key (kbd "<f2>") 'open-init-file)
+ref google emacs 绑定 f2
+
+ref google emacs 前缀 按键 http://jixiuf.github.io/blog/00005-emacs-keybind.html/
+** 新增前缀按键，覆盖已有快捷键
+例如evil的c-z
+
+
+
+** 删除前缀按键
+
+* 参考
+  ref 为什么不少程序员极度推崇 Vim 和 Emacs，却对 IDE 嗤之以鼻？
+  ref GNU Emacs Lisp Reference Manual 3ed
+  ref https://www.emacswiki.org/emacs/ELPA
+  ref http://longlycode.github.io/2016/02/02/emacs完全补完计划-三/

@@ -1,0 +1,27 @@
+*
+？测试富甲天下3hack文档。
+
+#+BEGIN_VERSE
+https://www.google.com/search?q=emacs+16进制&ie=utf-8&oe=utf-8
+http://blog.csdn.net/gxp/article/details/6893421
+hexl-mode
+
+https://www.gnu.org/software/emacs/manual/html_node/emacs/Editing-Binary-Files.html
+C-M-d
+    Insert a byte with a code typed in decimal.
+C-M-o
+    Insert a byte with a code typed in octal.
+C-M-x
+    Insert a byte with a code typed in hex.
+C-x [
+    Move to the beginning of a 1k-byte page.
+C-x ]
+    Move to the end of a 1k-byte page.
+M-g
+    Move to an address specified in hex.
+M-j
+    Move to an address specified in decimal.
+C-c C-c
+    Leave Hexl mode, going back to the major mode this buffer had before you invoked hexl-mode. 
+
+#+END_VERSE

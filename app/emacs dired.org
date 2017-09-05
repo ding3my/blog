@@ -1,75 +1,122 @@
-* 序言
-搭建本地知识库，代替evernote，结合github。
-* dired mode
-** 如何进入dired mode？
+* 日志实例
+** DONE 如何emacs dired c-s默认检索文件名，而不是整行字符串？
+   CLOSED: [2017-07-27 Thu 01:16]
+？光标快速检索定位文件。
+
+#+BEGIN_VERSE
+https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired-Navigation.html#Dired-Navigation
+30 Dired, the Directory Editor
+30.2 Navigation in the Dired Buffer
+
+(setq dired-isearch-filenames t)
+#+END_VERSE
+
+** DONE 如何emacs dired c-s检索文件名，而不是整行字符串？
+   CLOSED: [2017-07-27 Thu 01:17]
+？光标快速检索定位文件。
+
+#+BEGIN_VERSE
+https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired-Navigation.html#Dired-Navigation
+30 Dired, the Directory Editor
+30.2 Navigation in the Dired Buffer
+
+M-s f C-s (dired-isearch-filenames)
+M-s f M-C-s (dired-isearch-filenames-regexp)
+#+END_VERSE
+
+** DONE 如何emacs dired对当前文件执行shell命令？
+   CLOSED: [2017-07-27 Thu 00:49]
+？打开pdf、mvt删除文件。
+
+#+BEGIN_VERSE
+学习GNU Emacs 2ed p161
+!
+
+https://www.gnu.org/software/emacs/manual/html_node/emacs/Shell-Commands-in-Dired.html#Shell-Commands-in-Dired
+30 Dired, the Directory Editor
+30.8 Shell Commands in Dired
+
+! 同步
+& 异步
+#+END_VERSE
+** DONE 如何emacs dired按时间排序文件？
+   CLOSED: [2017-08-01 Tue 09:38]
+？查看最新的参考资料文章。
+
+#+BEGIN_VERSE
+学习GNU Emacs 2ed p156
+https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired-Updating.html
+30 Dired, the Directory Editor
+30.15 Updating the Dired Buffer
+
+s或m-x dired-sort-toggle-or-edit
+#+END_VERSE
+* 理论
+** dired mode
+*** 如何进入dired mode？
 c-x c-f
-** 如何刷新dired mode？
+*** 如何刷新dired mode？
 g
-* 文件行
-** 检索当前文件夹的文件的所有行，指定关键字
+** 文件行
+*** 检索当前文件夹的文件的所有行，指定关键字
 grep-find find . -type f -exec grep --color -nH -e  {} +
 find-grep find . -type f -exec grep --color -nH -e  {} +
 
-* 普通文件
+** 普通文件
 ref google non folder file
-** 检索当前文件夹的所有文件，时间排序
+*** 检索当前文件夹的所有文件，时间排序
 s键
 
 默认是命名排序
-** 检索，查看文件
+*** 检索，查看文件
 v，无法修改，q键退出
-** 检索，查看文件，在其他窗口
+*** 检索，查看文件，在其他窗口
 c-o
-** DONE 检索指定文件名关键字的所有文件
+*** DONE 检索指定文件名关键字的所有文件
 find-name-dired *key*
 需要补全通配符
 
-** DONE 检索指定文件内容关键字的所有文件
+*** DONE 检索指定文件内容关键字的所有文件
 find-grep-dired
-** 新增文件
+*** 新增文件
 c-x c-f
 
 ref google emacs dired new file
-** 删除文件
+*** 删除文件
 D 或 d x
-** 修改文件名
+*** 修改文件名
 R
-** 修改文件为压缩包
+*** 修改文件为压缩包
 Z
-** 修改文件，编辑
+*** 修改文件，编辑
 f 或 e
-** 修改文件，编辑，在其他窗口
+*** 修改文件，编辑，在其他窗口
 o
-** 如何复制文件？
+*** 如何复制文件？
 C
 
-* 目录文件
-  
-** 新增目录
+** 目录文件
+   
+*** 新增目录
 +
 
-* 标记
-** 新增操作标记
+** 标记
+*** 新增操作标记
 m
-** 新增操作标记，正则表达式
+*** 新增操作标记，正则表达式
 %m
-** 新增删除标记，正则表达式
+*** 新增删除标记，正则表达式
 %d
-** 新增删除标记，所有自动保存文件
+*** 新增删除标记，所有自动保存文件
 \#
-** 新增删除标记，所有备份文件
+*** 新增删除标记，所有备份文件
 ~
-** 删除标记
+*** 删除标记
 u
-** 删除所有标记
+*** 删除所有标记
 U
 
+** unix命令
    
-* unix命令
-  
-** 如何运行unix命令？
+*** 如何运行unix命令？
 !
-* 参考
-学习GNU Emacs 2ed-Cameron
-GNU Emacs Manual 17ed
-* 版本

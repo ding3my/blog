@@ -1,5 +1,5 @@
 * 日志实例
-？认知screen。解决gnome terminal无法指定新建tab位置问题。
+？解决gnome terminal无法指定新建tab位置问题。
 
 ** DONE 如何linux screen关闭所有的screen？
    CLOSED: [2017-07-28 Fri 13:55]
@@ -22,8 +22,9 @@ screen -S foo
 修改已存在的screen session
 C-a :sessionname $name
 #+END_VERSE
-** TODO 如何linux screen上下滚动翻页？
-？
+** DONE 如何linux screen上下滚动翻页？
+   CLOSED: [2017-08-01 Tue 10:00]
+？查看输出。
 
 #+BEGIN_VERSE
 https://www.google.com/search?q=linux+screen+page+scroll&ie=utf-8&oe=utf-8

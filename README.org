@@ -21,6 +21,43 @@ perl -pe 's|(http://.*?/).*|\1|'
 printf 孙 | iconv -f utf-8 -t gbk | od -h --endian=big
 http://tool.haooyou.com/code?group=convert&type=strToHex&charset=GB2312
 
+** DONE 为什不要购买手托架？
+   CLOSED: [2017-08-14 Mon 10:54]
+？解决肘部悬空问题，但是引入一系列问题。
+
+#+BEGIN_SRC  
+1 使用鼠标不自由，例如要么把鼠标放在放在手托架上、要么放在手托架下，用起来磕磕碰碰。
+2 使用外界键盘不自由，参考鼠标。
+3 不通用，无法保证每个办公桌都有手托架。
+#+END_SRC
+** DONE 为什么临时键盘不要买hyundai？
+   CLOSED: [2017-08-14 Mon 10:38]
+？扔掉。
+
+#+BEGIN_SRC  
+京东 hyundai 键盘
+
+现代键盘的布局是非标准的，反斜杠不是在回车的上方。
+#+END_SRC
+** DONE 什么是github.io？
+   CLOSED: [2017-07-31 Mon 10:49]
+？收藏作者的项目（删除多余参考wsgzao.github.io）
+
+#+BEGIN_VERSE
+https://www.google.com/#q=github.io
+https://pages.github.com/
+Websites for you and your projects.
+Hosted directly from your GitHub repository. Just edit, push, and your changes are live.
+#+END_VERSE
+** DONE 如何使用xclip复制输出到剪切板且同时输出？
+   CLOSED: [2017-06-09 Fri 20:25]
+？开发xct脚本。
+
+#+BEGIN_VERSE
+man xclip
+-out
+#+END_VERSE
+
 ** DONE 如何emacs dired快速复制文件，类似windows的两个窗口的拖动？
    CLOSED: [2017-07-31 Mon 08:06]
 ？整理合并参考资料。
@@ -127,14 +164,6 @@ sudo pip3 install scrapy
 firefox $url
 
 emacs m-!
-#+END_VERSE
-** DONE 如何emacs client修改title标题名？
-   CLOSED: [2017-07-27 Thu 17:49]
-？m-`切换多个emacs client。切换工作流程环境。
-
-#+BEGIN_VERSE
-man emacs
-emacs --name $title
 #+END_VERSE
 ** DONE 什么是常用软件的检索帮助文档方法？
    CLOSED: [2017-07-27 Thu 15:42]

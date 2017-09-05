@@ -1,0 +1,78 @@
+* 日志实例
+** DONE 如何linux gnome快捷键切换用户？
+   CLOSED: [2017-07-31 Mon 21:14]
+？快速切换隐私账户和公共账户。
+C-M-1
+
+** DONE 如何linux gnome cli设置字体大小？
+   CLOSED: [2017-07-31 Mon 22:19]
+？linux gnome gui设置指定倍数字体。
+
+#+BEGIN_SRC  
+https://www.google.com/search?q=gnome+set+config+cli&ie=utf-8&oe=utf-8
+http://ask.xmodulo.com/change-system-proxy-settings-command-line-ubuntu-desktop.html
+https://developer.gnome.org/gio/stable/gsettings-tool.html
+
+先使用gsettings get来grep对应的schema key value
+
+gsettings set org.gnome.desktop.interface text-scaling-factor 1.5
+#+END_SRC
+
+缺少文档。
+** DONE 如何linux gnome gsettings设置SCHEMA KEY VALUE？
+？linux gnome gui设置指定倍数字体。
+
+#+BEGIN_VERSE
+https://www.google.com/search?q=how+to+gsetting+get+schema&ie=utf-8&oe=utf-8
+https://askubuntu.com/questions/155305/where-can-i-get-a-list-of-schema-path-key-to-use-with-gsettings
+man gsettings
+
+gsettings set $schema $key $value
+#+END_VERSE
+
+** DONE 如何linux gnome gsettings检索SCHEMA KEY VALUE？
+   CLOSED: [2017-07-31 Mon 21:46]
+？linux gnome gui设置指定倍数字体。
+
+#+BEGIN_VERSE
+https://www.google.com/search?q=how+to+gsetting+get+schema&ie=utf-8&oe=utf-8
+https://askubuntu.com/questions/155305/where-can-i-get-a-list-of-schema-path-key-to-use-with-gsettings
+man gsettings
+
+# for range
+for schema in $(gsettings list-schemas | sort)
+do
+    for key in $(gsettings list-keys $schema | sort)
+    do
+        value="$(gsettings range $schema $key | tr "\n" " ")"
+        echo "$schema :: $key :: $value"
+    done
+done
+
+# for value
+v=xxx ;for schema in $(gsettings list-schemas | sort)       
+do
+    for key in $(gsettings list-keys $schema | sort)
+    do
+        value="$(gsettings get $schema $key)"         
+        echo "$schema $key $value"
+    done
+done | grep -i "$v"       
+#+END_VERSE
+** DONE 如何linux gnome cli修改触摸触摸板为单击鼠标左键？
+   CLOSED: [2017-07-31 Mon 21:17]
+？解决点击触摸板低效率。
+https://askubuntu.com/questions/403113/how-do-you-enable-tap-to-click-via-command-line-with-xmodmap
+#+BEGIN_SRC  
+gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+#+END_SRC
+
+** DONE 如何linux gnome cli取消alt f1按键绑定？
+   CLOSED: [2017-07-31 Mon 21:20]
+？设置m-f1为emacs shell加载器快捷键，代替m-f2（没有提示）。
+
+['<Super>s', '<Alt>F1']
+gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "['<Super>s']"
+gsettings get org.gnome.desktop.wm.keybindings panel-main-menu
+
+缺少文档。

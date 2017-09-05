@@ -1,5 +1,3 @@
-* 序言
-vimperator增强firefox的定制性。
 * 日志实例
 ** DONE 如何vimp设置firefox的about config配置？
    CLOSED: [2017-07-05 Wed 15:57]
@@ -71,5 +69,3 @@ echo 'echo 1' > ~/vimp
 set! permissions.default.image=2
 " 禁止显示图片
 #+END_SRC
-* 参考
-liberator://help/all

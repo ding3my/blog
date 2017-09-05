@@ -1,283 +1,298 @@
-* 序言
-linux summary
-* 文件
-** 检索指定目录的所有文件
+* 日志实例
+** 什么目录适合安装自定义的共享的脚本？
+？
+
+/opt
+
+http://www.pathname.com/fhs/pub/fhs-2.3.html
+google linux opt usr 区别
+http://mystery888.blog.51cto.com/9560453/1835223
+
+** 什么目录适合放置共享的配置文件？
+？
+/etc
+
+/root不合适，权限问题。
+http://www.pathname.com/fhs/pub/fhs-2.3.html
+* 理论
+** 文件
+*** 检索指定目录的所有文件
 #+BEGIN_SRC  
 find $dir
 #+END_SRC
-** 检索指定文件的文件名
+*** 检索指定文件的文件名
 #+BEGIN_SRC  
 basename $file
 #+END_SRC
-** 检索指定文件的目录名
+*** 检索指定文件的目录名
 #+BEGIN_SRC  
 dirname $file
 #+END_SRC
-** 检索指定文件的文件类型
+*** 检索指定文件的文件类型
 #+BEGIN_SRC  
 file $file
 #+END_SRC
 ref 鸟哥的Linux私房菜 基础学习篇 3ed-鸟哥 187
-** 新增文件
+*** 新增文件
 参考目录文件、常规文件。
-** 删除文件
+*** 删除文件
 危险操作！尽量使用mv代替。
 #+BEGIN_SRC  
 rm $file
 #+END_SRC
-** 删除文件，强制
+*** 删除文件，强制
 危险操作！尽量使用mv代替。
 #+BEGIN_SRC  
 rm $dir -rf
 #+END_SRC
-** 修改文件路径
+*** 修改文件路径
 #+BEGIN_SRC  
 mv $file_old $file_new
 #+END_SRC
-** 修改文件的拥有者和用户组
+*** 修改文件的拥有者和用户组
 #+BEGIN_SRC  
 chown $user:$group $file
 #+END_SRC
 
 ref 鸟哥的Linux私房菜 基础学习篇 3ed-鸟哥 145
-** 修改文件的拥有者和用户组，递归所有子文件
+*** 修改文件的拥有者和用户组，递归所有子文件
 #+BEGIN_SRC  
 chown $user:$group $file -R
 #+END_SRC
-** 修改文件的拥有者
+*** 修改文件的拥有者
 #+BEGIN_SRC  
 chown $user $file
 #+END_SRC
-** 修改文件的用户组
+*** 修改文件的用户组
 #+BEGIN_SRC  
 chgrp $user $file
 #+END_SRC
-* 目录文件
-** 检索指定目录下的所有目录文件路径
+** 目录文件
+*** 检索指定目录下的所有目录文件路径
 #+BEGIN_SRC  
 find $dir -type d
 #+END_SRC
-** 新增目录
+*** 新增目录
 #+BEGIN_SRC  
 mkdir $dir
 #+END_SRC
-** 删除目录
+*** 删除目录
 参考文件
-** 删除空目录
+*** 删除空目录
 #+BEGIN_SRC  
 rmdir $dir
 #+END_SRC
-** 修改目录
+*** 修改目录
 参考文件
-* 当前目录文件
-** 检索当前目录
+** 当前目录文件
+*** 检索当前目录
 #+BEGIN_SRC  
 pwd
 #+END_SRC
-** 新增当前目录（暂无）
-** 删除当前目录（暂无）
-** 修改当前目录
+*** 新增当前目录（暂无）
+*** 删除当前目录（暂无）
+*** 修改当前目录
 #+BEGIN_SRC  
 cd $dir
 #+END_SRC
-* 常规文件
+** 常规文件
 regular file
-** 检索指定目录下的所有常规文件路径
+*** 检索指定目录下的所有常规文件路径
 #+BEGIN_SRC  
 find $dir -type f
 #+END_SRC
-** 检索指定目录下的所有配置目录路径
+*** 检索指定目录下的所有配置目录路径
 #+BEGIN_SRC  
 find $dir -name ".*"
 #+END_SRC
 
 google find linux command name dot
 https://www.cyberciti.biz/faq/linux-unix-bsd-appleosx-ksh-csh-bash-find-hidden-dotfiles/
-** 检索指定文件的所有内容
+*** 检索指定文件的所有内容
 #+BEGIN_SRC  
 cat $file
 #+END_SRC
-** 检索指定文件的所有内容，显示编号
+*** 检索指定文件的所有内容，显示编号
 空行不编号。
 #+BEGIN_SRC  
 nl -ba $file
 #+END_SRC
 google nl command empty line
-** 检索指定文件的所有内容，显示编号，不显示空行编号
+*** 检索指定文件的所有内容，显示编号，不显示空行编号
 空行不编号。
 #+BEGIN_SRC  
 nl $file
 #+END_SRC
-** 检索指定文件的所有内容，反向显示
+*** 检索指定文件的所有内容，反向显示
 #+BEGIN_SRC  
 tac $file
 #+END_SRC
-** 检索指定文件的所有内容，查看模式
+*** 检索指定文件的所有内容，查看模式
 less is more
 #+BEGIN_SRC  
 less $file
 #+END_SRC
-** 检索指定文件的所有内容，二进制模式
+*** 检索指定文件的所有内容，二进制模式
 #+BEGIN_SRC  
 od $file
 #+END_SRC
-** 检索指定文件的所有内容，ascii码模式
+*** 检索指定文件的所有内容，ascii码模式
 #+BEGIN_SRC  
 od $file
 #+END_SRC
-** 检索指定文件的开头内容
+*** 检索指定文件的开头内容
 #+BEGIN_SRC 
 head $file -n$num
 #+END_SRC
-** 检索指定文件的结尾内容
+*** 检索指定文件的结尾内容
 #+BEGIN_SRC 
 tail $file -n$num
 #+END_SRC
-** 新建常规文件
+*** 新建常规文件
 #+BEGIN_SRC  
 touch $file
 #+END_SRC
-** 删除常规文件
+*** 删除常规文件
 参考文件
-** 修改常规文件
+*** 修改常规文件
 参考文件
-* TODO 常规文件内容
-* 文件权限（属性）
-** 检索指定文件的权限
+** TODO 常规文件内容
+** 文件权限（属性）
+*** 检索指定文件的权限
 #+BEGIN_SRC  
 ls -l $file
 #+END_SRC
-** 新增指定文件的权限
+*** 新增指定文件的权限
 #+BEGIN_SRC  
 chmod +x $file
 # 等价于
 chmod a+x $file
 chmod ugo+x $file
 #+END_SRC
-** 删除指定文件的权限
+*** 删除指定文件的权限
 #+BEGIN_SRC  
 chmod -x $file
 #+END_SRC
-** 修改指定文件的权限
+*** 修改指定文件的权限
 #+BEGIN_SRC  
 chmod =x $file
 #+END_SRC
-** 修改指定文件的权限，数字表示权限
+*** 修改指定文件的权限，数字表示权限
 #+BEGIN_SRC  
 chmod 111 $file
 #+END_SRC
-* 文件默认权限
+** 文件默认权限
 默认文件权限是022
 常规文件权限是666
 目录文件权限是777
 
 ref http://1123697506.blog.51cto.com/3783048/882064
-** 检索新增文件的默认权限，数字表示权限
+*** 检索新增文件的默认权限，数字表示权限
 #+BEGIN_SRC  
 umask
 #+END_SRC
-** 检索新增文件的默认权限，符号表示权限
+*** 检索新增文件的默认权限，符号表示权限
 #+BEGIN_SRC  
 umask -S
 #+END_SRC
-** 新增默认文件权限
+*** 新增默认文件权限
 参考"修改默认文件权限"
-** 删除默认文件权限
+*** 删除默认文件权限
 参考"修改默认文件权限"
-** 修改默认文件权限
+*** 修改默认文件权限
 #+BEGIN_SRC  
 umask 002
 # 同用户组可写
 #+END_SRC
-* 文件隐藏属性
-** 检索指定文件的隐藏属性
+** 文件隐藏属性
+*** 检索指定文件的隐藏属性
 #+BEGIN_SRC  
 lsattr $file
 #+END_SRC
-** 新增指定文件的隐藏属性
+*** 新增指定文件的隐藏属性
 #+BEGIN_SRC  
 sudo chattr +i $file
 #+END_SRC
-** 删除指定文件的隐藏属性
+*** 删除指定文件的隐藏属性
 #+BEGIN_SRC  
 sudo chattr -i $file
 #+END_SRC
-** 修改指定文件的隐藏属性
+*** 修改指定文件的隐藏属性
 #+BEGIN_SRC  
 sudo chattr =i $file
 #+END_SRC
-* 文件特殊权限
-** 检索指定文件的特殊权限
+** 文件特殊权限
+*** 检索指定文件的特殊权限
 #+BEGIN_SRC  
 ls -l $file
 #+END_SRC
-** 新增指定文件的特殊权限
+*** 新增指定文件的特殊权限
 #+BEGIN_SRC  
 chmod a+s $file
 #+END_SRC
-** 删除指定文件的特殊权限
+*** 删除指定文件的特殊权限
 #+BEGIN_SRC  
 chmod a-s $file
 #+END_SRC
-** 修改指定文件的特殊权限
+*** 修改指定文件的特殊权限
 没有数字权限好用。
 #+BEGIN_SRC  
 chmod a=s $file
 #+END_SRC
-** 修改指定文件的特殊权限，数字表示权限
+*** 修改指定文件的特殊权限，数字表示权限
 #+BEGIN_SRC  
 chmod 7755 $file
 #+END_SRC
-* TODO 文本行
-** 新增指定文本行，到指定文件
-** 删除指定文本行，从指定文件
-** 修改指定文本行，从指定文件
-* 文本行字段
-** 检索指定列的字段，awk
+** TODO 文本行
+*** 新增指定文本行，到指定文件
+*** 删除指定文本行，从指定文件
+*** 修改指定文本行，从指定文件
+** 文本行字段
+*** 检索指定列的字段，awk
 #+BEGIN_SRC  
 echo 'a b c'|awk '{print $1d}'
 #+END_SRC
-** 检索指定列的字段，awk，指定分隔符
+*** 检索指定列的字段，awk，指定分隔符
 #+BEGIN_SRC  
 echo 'a b c'|awk 'BEGIN {FS=" "}{print $1d}'
 #+END_SRC
-* 用户
+** 用户
 ref 鸟哥的Linux私房菜 基础学习篇 3ed-鸟哥 14章
-** 检索所有用户
+*** 检索所有用户
 #+BEGIN_SRC 
 cat /etc/passwd
 #+END_SRC
-** 新增用户
+*** 新增用户
 #+BEGIN_SRC 
 sudo useradd $username
 #+END_SRC
-** 删除用户
+*** 删除用户
 #+BEGIN_SRC 
 sudo userdel $username
 #+END_SRC
-** 删除用户，包括用户目录
+*** 删除用户，包括用户目录
 危险操作！尽量先删除用户，后手动删除用户目录。
 #+BEGIN_SRC  
 sudo userdel $username -r
 #+END_SRC
-** 删除用户有效性（禁用用户）
+*** 删除用户有效性（禁用用户）
 #+BEGIN_SRC  
 sudo passwd -l $username
 # 解锁或激活为 sudo passwd -u $username
 #+END_SRC
 ref 鸟哥的Linux私房菜 基础学习篇 3ed-鸟哥 413
-** 修改当前用户，切换用户
+*** 修改当前用户，切换用户
 #+BEGIN_SRC  
 su $user
 #+END_SRC
 
 ref 鸟哥的Linux私房菜 基础学习篇 3ed-鸟哥 428
-** 运行指定用户的命令
+*** 运行指定用户的命令
 #+BEGIN_SRC  
 su $user -c "$command"
 #+END_SRC
-* sudo用户
-** 检索所有sudo用户
+** sudo用户
+*** 检索所有sudo用户
 #+BEGIN_SRC  
 sudo grep "ALL=(ALL)" /etc/sudoers| grep -v "#"
 #+END_SRC
@@ -286,9 +301,9 @@ sudo grep "ALL=(ALL)" /etc/sudoers| grep -v "#"
 
 google sudoers percent sign
 https://superuser.com/questions/177253/what-are-the-percentage-signs-for-in-the-sudoers-file
-** 新增sudo用户，/etc/sudoers
+*** 新增sudo用户，/etc/sudoers
 参考"修改sudo用户"
-** 新增sudo用户，gpasswd
+*** 新增sudo用户，gpasswd
 #+BEGIN_SRC  
 gpasswd -a $user $sudo_group
 # 没有生效则需要重启。
@@ -296,87 +311,87 @@ gpasswd -a $user $sudo_group
    
 fedora 24 默认sudo group是wheel
 https://en.wikipedia.org/wiki/Wheel_(Unix_term)
-** 删除sudo用户，/etc/sudoers
+*** 删除sudo用户，/etc/sudoers
 参考"修改sudo用户"
-** 删除sudo用户，gpasswd
+*** 删除sudo用户，gpasswd
 #+BEGIN_SRC  
 gpasswd -d $user $sudo_group
 #+END_SRC
-** 修改sudo用户
+*** 修改sudo用户
 #+BEGIN_SRC  
 sudo vim /etc/sudoers
 #+END_SRC
 ref 鸟哥的Linux私房菜 基础学习篇 3ed-鸟哥 430
-* 用户密码
-** 检索所有用户密码锁定状态
+** 用户密码
+*** 检索所有用户密码锁定状态
 #+BEGIN_SRC 
 sudo cat /etc/shadow
 # 查看第二列，感叹号表示锁定
 #+END_SRC
 ref 鸟哥的Linux私房菜 基础学习篇 3ed-鸟哥 413
-** 新增用户密码
+*** 新增用户密码
 #+BEGIN_SRC  
 sudo passwd $username
 #+END_SRC
-** 删除用户密码（置空）
+*** 删除用户密码（置空）
 #+BEGIN_SRC  
 sudo passwd -d $username
 #+END_SRC
 
 baidu root 设置 空 密码
 http://www.linuxdiyf.com/viewarticle.php?id=138245
-** 修改用户密码
+*** 修改用户密码
 #+BEGIN_SRC  
 sudo passwd $username
 #+END_SRC
-* 用户组
-** 检索所有用户组，/etc/group
+** 用户组
+*** 检索所有用户组，/etc/group
 数据是实时的。
 #+BEGIN_SRC  
 cat /etc/group
 #+END_SRC
-** 检索当前用户的所有用户组，groups
+*** 检索当前用户的所有用户组，groups
 数据不是实时的，例如使用gpasswd新增或删除用户后，需要注销才能查看
 #+BEGIN_SRC  
 groups
 #+END_SRC
-** 检索指定用户的初始用户组，/etc/passwd /etc/group
+*** 检索指定用户的初始用户组，/etc/passwd /etc/group
 #+BEGIN_SRC  
 grep $user /etc/passwd /etc/group
 cat /etc/passwd
 cat /etc/passwd | grep $user | cut -d : -f 4
 #+END_SRC
-** 检索指定用户的有效用户组，su groups
+*** 检索指定用户的有效用户组，su groups
 #+BEGIN_SRC  
 su $user -c groups
 #+END_SRC
-** 检索当前用户的有效用户组，groups
+*** 检索当前用户的有效用户组，groups
 #+BEGIN_SRC  
 groups
 # 第一个用户组就是
 #+END_SRC
-** 新建用户组
+*** 新建用户组
 #+BEGIN_SRC  
 sudo groupadd $group
 #+END_SRC
 鸟哥的Linux私房菜 基础学习篇 3ed-鸟哥 420
-** 删除非初始用户组
+*** 删除非初始用户组
 #+BEGIN_SRC  
 sudo groupdel $group
 #+END_SRC
-** 修改用户组名字
+*** 修改用户组名字
 #+BEGIN_SRC  
 sudo groupmod $group -n $groupname
 #+END_SRC
-** 修改用户组gid
+*** 修改用户组gid
 #+BEGIN_SRC  
 sudo groupmod $group -g $gid
 #+END_SRC
-** 修改当前用户的有效用户组，newgrp
+*** 修改当前用户的有效用户组，newgrp
 #+BEGIN_SRC  
 newgrp $group
 #+END_SRC
-** 修改用户组，新增用户到用户组，usermod
+*** 修改用户组，新增用户到用户组，usermod
 #+BEGIN_SRC  
 sudo usermod $user -a -G $groupname
 # groups查看，需要注销后。使用"cat /etc/group"直接查看
@@ -384,43 +399,26 @@ sudo usermod $user -a -G $groupname
 
 google add user to group
 https://askubuntu.com/questions/79565/how-to-add-existing-user-to-an-existing-group
-** 修改用户组，新增用户到用户组，gpasswd
+*** 修改用户组，新增用户到用户组，gpasswd
 #+BEGIN_SRC  
 gpasswd -a $user $group
 #+END_SRC
 https://unix.stackexchange.com/questions/29570/how-do-i-remove-a-user-from-a-group
-** 修改用户组，新增用户到用户组，/etc/group
+*** 修改用户组，新增用户到用户组，/etc/group
 #+BEGIN_SRC  
 sudo vim /etc/group
 # 第四列新增
 #+END_SRC
 https://unix.stackexchange.com/questions/29570/how-do-i-remove-a-user-from-a-group
-** 修改用户组，删除用户从用户组，gpasswd
+*** 修改用户组，删除用户从用户组，gpasswd
 #+BEGIN_SRC  
 gpasswd -d $user $group
 #+END_SRC
 https://unix.stackexchange.com/questions/29570/how-do-i-remove-a-user-from-a-group
-** 修改用户组，删除用户从用户组，/etc/group
+*** 修改用户组，删除用户从用户组，/etc/group
 #+BEGIN_SRC  
 sudo vim /etc/group
 # 第四列删除
 #+END_SRC
 https://unix.stackexchange.com/questions/29570/how-do-i-remove-a-user-from-a-group
-* TODO 用户组密码
-* FAQ
-** 什么目录适合安装自定义的共享的脚本？
-/opt
-
-http://www.pathname.com/fhs/pub/fhs-2.3.html
-google linux opt usr 区别
-http://mystery888.blog.51cto.com/9560453/1835223
-** 什么目录适合放置共享的配置文件？
-/etc
-
-/root不合适，权限问题。
-http://www.pathname.com/fhs/pub/fhs-2.3.html
-* 参考
-鸟哥的Linux私房菜 基础学习篇 3ed-鸟哥
-Linux系统管理技术手册 4ed-Nemeth
-
-
+** TODO 用户组密码

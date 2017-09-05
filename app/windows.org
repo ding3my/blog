@@ -1,0 +1,23 @@
+* 日志实例
+** DONE 如何解决virtual box windows删除共享文件到垃圾箱？
+   CLOSED: [2017-07-31 Mon 22:46]
+？避免误删参考资料，例如pdf。
+
+#+BEGIN_VERSE
+https://www.google.com/search?q=shared+folder+windows++delete+trash
+https://superuser.com/questions/160990/put-files-deleted-over-the-network-into-a-windows-trash-can
+
+https://www.google.com/search?q=virtualbox+shared+folder+windows+trash+delete
+https://www.virtualbox.org/ticket/13829
+不使用删除，使用剪切
+#+END_VERSE
+
+** DONE 如何win7默认foxit为第一个图标？
+   CLOSED: [2017-07-31 Mon 22:49]
+？使用m-1切换foxit reader。
+
+#+BEGIN_VERSE
+https://www.google.com/search?q=windows+fixed+icon+desktop
+https://answers.microsoft.com/en-us/windows/forum/windows_xp-desktop/how-can-i-lock-desktop-icons/75c03648-1478-4c7b-a8f2-392616b30728
+固定到任务栏。
+#+END_VERSE

@@ -1,0 +1,140 @@
+* 日志实例
+** DONE 如何emacs dired前进或后退目录？
+   CLOSED: [2017-07-31 Mon 20:44]
+？模拟windows的后退键。
+^ q
+https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired-Visiting.html
+https://stackoverflow.com/questions/9992041/dired-backward-forward-function
+
+* 理论
+** 列表处理
+*** 引用的列表
+   引用的列表被当做常量处理
+   '(+ 2 2)
+   (quote (+ 2 2))
+   
+ref http://cache.baiducontent.com/c?m=9f65cb4a8c8507ed4fece7631046893b4c4380146d8d8b492c93cf13d9735b361b31a5a660794613d3b37c630aa94c58e8f32172415876a09bbe894ad9ba94222c9f27432a5ad91f069644ef9d49749c7cd14de9de48b0e4ae73&p=8f78c54ad5c246dd18b9c82d021497&newp=882a9644d1db2dec01adc7710f5e83231610db2151d6d6116b82c825d7331b001c3bbfb423241200d7c07a6c00ac4e56ecf73d78350025a3dda5c91d9fb4c57479904b77295c&user=baidu&fm=sc&query=Cons+Cells&qid=d343d13f0007c231&p1=2
+*** 函数的列表
+   	函数的列表被当做函数调用处理
+   	(+ 2 2)
+*** 如何运行程序？
+   	c-x c-e 光标需要在最后一个括号上或括号后
+   	(+ 2 2))
+*** 如何运行内部的列表程序？
+   	将光标放置内部列表程序的最后一个括号上（parenthesis） c-x c-e
+   	(+ 2 (+ 3 3))
+*** 如何检索错误信息？
+   	Backtrace缓冲区
+** 缓冲区
+*** 检索缓冲区名字
+   	(buffer-name)
+*** 检索缓冲区对应文件路径
+   	(buffer-file-name)
+*** 检索缓冲区对象
+   	(current-buffer)
+*** 检索其他缓冲区对象
+   	(other-buffer)
+*** 检索缓冲区大小
+   	(buffer-size)
+*** 修改缓冲区为其他缓冲区
+   	(switch-to-buffer (other-buffer (current-buffer) t))
+** 光标
+*** 检索光标位置
+   	(point)
+
+** 函数
+*** 检索函数帮助文档
+   	c-hf
+*** 新增定义函数
+(defun multiply-by-seven (number)
+"Multiply NUMBER by seven."
+(* 7 number))
+
+c-x c-e
+*** 新增定义交互函数
+(defun multiply-by-seven (number) ; Interactive version.
+"Multiply NUMBER by seven."
+(interactive "n")
+(message "The result is %d" (* 9 number)))
+
+(consp '(rose . violet))
+(length '(rose . violet . buttercup))
+(length '(rose . (violet)))
+'(rose violet . buttercup)
+(length '(1 . (2 . (3 . nil))))
+manual有误
+*** 删除已安装的函数
+   	(fmakunbound 'function)
+   	
+   	ref google emacs remove function http://batsov.com/articles/2012/10/20/emacs-tip-number-6-remove-variable-and-function-definitions/
+*** 修改已安装的函数
+   	c-x c-e
+** 列表
+*** 检索列表长度
+   	(length '(daisy buttercup))
+*** 检索列表第一个元素
+   	(first '(pine fir oak maple))
+   	(car '(pine fir oak maple))
+   	(nth 0 '(pine fir oak maple))
+   	Contents of the Address part of Register number
+*** 检索列表第n个元素
+   	(nth 1 '(pine fir oak maple))
+   	下标从0开始
+*** 检索列表除第一个元素的列表
+   	(rest '(pine fir oak maple))
+   	(cdr '(pine fir oak maple))
+   	(nthcdr 1 '(pine fir oak maple))
+   	Contents of the Decrement part of Register number
+*** 检索列表除n个元素的列表
+   	(nthcdr 2 '(pine fir oak maple))
+   	下标从1开始
+*** 检索新增元素后的列表
+   	(cons 'violet '(daisy buttercup))
+   	(cons '(violet) '(daisy buttercup))
+   	Constructing a list. 
+*** 修改列表，替换列表的第一个元素
+(progn
+    (setq animals '(antelope giraffe lion tiger))
+    (setcar animals 'hippopotamus)
+    animals)
+*** 修改列表，替换列表的除第一个元素的所有元素
+(progn
+    (setq domesticated-animals '(horse cow sheep goat))
+    (setcdr domesticated-animals '(cat dog))
+    domesticated-animals)
+** 文本
+
+** 顺序结构
+*** 新增顺序结构
+(progn
+    (print "The first form")
+    (print "The second form")
+    (print "The third form"))
+
+(prog2
+    (print "The first form")
+    (print "The second form")
+    (print "The third form"))
+** TODO 控制结构
+*** if else
+(if nil
+    (print 'true)
+    'very-false)
+*** if elseif else
+(progn
+    (set 'a 0)
+    (cond
+         ((eq a 1) "1")
+         ((eq a 2) "2")
+         (t 3)))
+*** while
+(progn
+    (setq num 0)
+    (while (< num 4)
+        (princ (format "Iteration %d." num))
+        (setq num (1+ num))))
+*** for
+(loop for i in '(1 2 3 4 5 6)
+    collect (* i i))            ;  结果为 (1 4 9 16 25 36)        
+
+

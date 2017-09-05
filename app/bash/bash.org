@@ -1,0 +1,105 @@
+* 日志实例
+** 什么是sudo bash中bash的意思？
+？
+
+sudo /bin/bash This means that you call sudo with the command /bin/bash
+
+google sudo bash mean
+https://askubuntu.com/questions/376199/sudo-su-vs-sudo-i-vs-sudo-bin-bash-when-does-it-matter-which-is-used
+
+** 如何sudo运行function函数？
+？
+
+http://stackoverflow.com/questions/9448920/how-can-i-execute-a-bash-function-using-sudo
+** 如何sudo运行alias缩写？
+？
+
+#+BEGIN_VERSE
+alias sudo='sudo '
+#+END_VERSE
+https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
+** 如何检验当前bash是否是login shell？
+？
+
+#+BEGIN_VERSE
+shopt -q login_shell && echo 'Login shell' || echo 'Not login shell'
+#+END_VERSE
+https://unix.stackexchange.com/questions/26676/how-to-check-if-a-shell-is-login-interactive-batch
+
+** 什么是sudo su的区别？
+？
+http://www.jb51.net/LINUXjishu/12713.html
+** 什么是su -中的-？
+？认知su。
+- -l --login
+
+man su
+** 如何检验bash是否是interactive shell？
+？
+
+#+BEGIN_SRC  
+[[ $- == *i* ]] && echo 'Interactive' || echo 'Not interactive'
+#+END_SRC
+** 如何检验bash是否是login shell？
+？
+
+#+BEGIN_SRC  
+shopt -q login_shell && echo 'Login shell' || echo 'Not login shell'
+#+END_SRC
+https://unix.stackexchange.com/questions/26676/how-to-check-if-a-shell-is-login-interactive-batch
+** 如何login shell bash读取配置文件？
+？
+
+#+BEGIN_VERSE
+/etc/profile
+$HOME/.bash_profile（会读取$HOME/.bashrc；$HOME/.bashrc会读取/etc/bashrc）
+
+6.2 Bash Startup Files
+Linux命令行与Shell脚本编程大全 2ed 112
+#+END_VERSE
+
+** 如何interactive non-login shell bash读取配置文件？
+？
+
+$HOME/.bashrc
+** 如何non-interactive non-login shell bash读取配置文件？
+？
+
+不读取
+** 如何运行interactive login shell？
+？
+
+#+BEGIN_SRC  
+su -
+#+END_SRC
+https://unix.stackexchange.com/questions/38175/difference-between-login-shell-and-non-login-shell
+
+** 什么是bash查找命令的顺序？
+？
+
+相对路径或绝对路径
+alias
+bash内置
+$PATH
+
+鸟哥的Linux私房菜 基础学习篇 3ed 320
+** 如何使用split分割文件？
+？分割pdf上传。
+
+#+BEGIN_VERSE
+split -b $size $file $prefix
+# split -b 50k /usr/bin/ls ls
+#+END_VERSE
+
+缺少参考。
+
+** 如何合并split分割的文件？
+？分割pdf上传。
+
+#+BEGIN_VERSE
+split -b $size $file $prefix
+cat ls*>>ls
+# split -b 50k /usr/bin/ls ls
+#+END_VERSE
+
+缺少参考。

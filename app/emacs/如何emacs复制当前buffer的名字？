@@ -1,0 +1,18 @@
+* DONE 如何emacs复制当前buffer的名字？ 
+  CLOSED: [2017-08-01 Tue 11:12]
+？使用文件表示材料（目录表示清单），以文件名作为item项的名字。 
+
+#+BEGIN_VERSE
+https://www.google.com/search?q=emacs+copy+current+buffer+name
+https://unix.stackexchange.com/questions/9738/is-there-a-user-interface-in-emacs-allowing-one-to-grab-the-buffers-filename
+
+    C-x C-v (find-alternate-file)
+    C-a (move-beginning-of-line)
+    C-k (kill-line)
+    C-g (keyboard-quit)
+
+https://stackoverflow.com/questions/2416655/file-path-to-clipboard-in-emacs
+In the Spacemacs distribution, you can press Spacefy to display the buffer name in the minibuffer and another y to yank it to the clipboard.
+
+
+#+END_VERSE

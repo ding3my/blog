@@ -1,0 +1,17 @@
+* DONE 如何bash for使用pipeline管道？
+  CLOSED: [2017-07-31 Mon 22:13]
+？gsettings循环检索schema。linux gnome gui设置指定倍数字体。
+
+#+BEGIN_VERSE
+https://www.google.com/search?biw=1280&bih=532&q=bash+for+output+do+done+pipeline
+http://www.linuxprogrammingblog.com/pipe-in-bash-can-be-a-trap
+
+while read size
+do
+	if [ $size -gt $max ]
+	then
+		max=$size
+		echo $max
+	fi
+done | tail -n 1
+#+END_VERSE
