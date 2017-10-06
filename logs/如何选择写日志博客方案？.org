@@ -1,6 +1,6 @@
 * 历史
 ** Unreleased
-** 0.1
+** 0.1 - 2017-10-06
 * 方案
 https://www.google.com/search?q=写博客+推荐&ie=utf-8&oe=utf-8
 - https://www.zhihu.com/question/24179143
