@@ -1,0 +1,5 @@
+* DONE 如何取消emacs自动备份文件~？
+   CLOSED: [2017-06-09 Fri 17:42]
+？避免git项目出现多余文件。
+
+http://ergoemacs.org/emacs/emacs_set_backup_into_a_directory.html

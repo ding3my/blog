@@ -2136,21 +2136,12 @@ done
 
 https://stackoverflow.com/questions/11065077/eval-command-in-bash-and-its-typical-uses
 #+BEGIN_VERSE
-bash$ set -- one two three  # sets $1 $2 $3
-bash$ echo $1
+set -- one two three  # sets $1 $2 $3
+echo $1
 #+END_VERSE
 ** 什么是bash ${!var}含义？
 ？开发mvt脚本，自动生成配置目录路径。
 
-** DONE 如何bash获取执行脚本的文件路径？
-   CLOSED: [2017-07-13 Thu 15:44]
-？开发mvt脚本，自动生成配置目录路径。
-
-- https://www.google.com/search?q=bash+current+script+path&ie=utf-8&oe=utf-8
-- https://stackoverflow.com/questions/59895/getting-the-source-directory-of-a-bash-script-from-within
-#+BEGIN_SRC  
-"$(readlink --canonicalize-missing "${BASH_SOURCE[0]}")"
-#+END_SRC
 ** 如何emacs dired检索并标记文件？
 ？删除ken_script多余的org文档。
 ** 为什么使用bash脚本mvt作为emacs dired删除命令，而不是直接写elisp脚本？

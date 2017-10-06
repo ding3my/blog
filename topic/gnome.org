@@ -72,7 +72,11 @@ gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 ？设置m-f1为emacs shell加载器快捷键，代替m-f2（没有提示）。
 
 ['<Super>s', '<Alt>F1']
+
+#+BEGIN_SRC  
 gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "['<Super>s']"
 gsettings get org.gnome.desktop.wm.keybindings panel-main-menu
 
+gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "['<Super>s', '<Alt>F1']"
+#+END_SRC
 缺少文档。

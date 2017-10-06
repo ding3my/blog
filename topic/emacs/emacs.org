@@ -1,5 +1,54 @@
 * 日志实例
+** 如何emacs定义快捷键
+Key Bindings
+51.3 Customizing Key Bindings
 
+Init Rebinding: Rebinding keys with your initialization file. 
+51.3.6 Rebinding Keys in Your Init File
+
+Key Binding Commands: Interactive interfaces for redefining keys. 
+21.15 Commands for Binding Keys
+#+BEGIN_SRC  
+(define-key dired-mode-map (kbd "<mouse-1>") 'next-line) ; 测试成功
+
+(global-set-key (kbd "<mouse-1>") 'next-line) ; 测试成功
+(global-set-key (kbd "<mouse-1>") ) ; 测试成功
+
+(dired-do-async-shell-command COMMAND &optional ARG FILE-LIST)
+
+; 测试成功
+  (dired-do-async-shell-command
+   "setsid -w xdg-open" current-prefix-arg
+   (dired-get-marked-files t current-prefix-arg)) 
+
+如何emacs使用dired-do-async-shell-command函数开发elisp脚本？
+？实现鼠标单击执行setsid -w xdg-open
+https://www.google.com/search?q=dired-do-async-shell-command+keybind
+(defun dired-open ()
+  (interactive)
+  (dired-do-async-shell-command
+   "open" current-prefix-arg
+   (dired-get-marked-files t current-prefix-arg)))
+(define-key dired-mode-map (kbd "C-o") 'dired-open)
+
+
+如何解决Wrong type argument: commandp？
+？解决emacs绑定快捷键，lambda使用async-shell-command来测试时失败。
+https://www.google.com/search?q=+Wrong+type+argument:+commandp&ie=utf-8&oe=utf-8
+(lambda () (interactive) (forward-line 5))
+
+; 测试成功
+(global-set-key (kbd "1") (lambda()(interactive)(async-shell-command "echo hi")))
+
+; 测试成功
+(define-key dired-mode-map (kbd "<mouse-1>") (lambda()(interactive)(async-shell-command "echo hi")))
+
+; 测试成功
+(define-key dired-mode-map (kbd "<mouse-1>") (lambda()(interactive)(dired-do-async-shell-command
+   "setsid -w xdg-open" current-prefix-arg
+   (dired-get-marked-files t current-prefix-arg)) 
+))
+#+END_SRC
 
 ** DONE 如何emacs client修改title标题名？
    CLOSED: [2017-07-27 Thu 17:49]
@@ -615,7 +664,6 @@ num c-xe
 * 理论
 ** 概念
 ** 流程
-* TODO 帮助文档
 * Emacs
 ** 新建emacs X11进程
    emacs

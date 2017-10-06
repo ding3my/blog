@@ -1,0 +1,9 @@
+* DONE 
+  CLOSED: [2017-07-31 Mon 15:30]
+？转换gtd形式，一个文件表示一个材料，而不是文本项（item）。
+
+#+BEGIN_VERSE
+https://www.google.com/#q=emacs+set+mode+default
+https://emacs.stackexchange.com/questions/14013/change-the-default-mode-used-when-opening-a-new-buffer
+(setq-default major-mode 'org-mode)
+#+END_VERSE
