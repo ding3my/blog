@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>index</title>
+<title>如何维护更新日志？</title>
 <!-- 2017-10-06 Fri 15:49 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
@@ -137,31 +137,96 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">index</h1>
+<h1 class="title">如何维护更新日志？</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. 日期目录</a>
+<li><a href="#sec-1">1. 历史</a></li>
+<li><a href="#sec-2">2. 参考</a></li>
+<li><a href="#sec-3">3. 概念</a>
 <ul>
-<li><a href="#sec-1-1">1.1. 2017-10-06 如何维护更新日志？</a></li>
-<li><a href="#sec-1-2">1.2. 2017-10-06 如何选择写日志博客方案？</a></li>
+<li><a href="#sec-3-1">3.1. 版本号</a></li>
+<li><a href="#sec-3-2">3.2. 变更类型</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<p>
-<a href="https://ding3my.github.io/pub-insights/">https://ding3my.github.io/pub-insights/</a>
-</p>
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> 日期目录</h2>
+<h2 id="sec-1"><span class="section-number-2">1</span> 历史</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 2017-10-06 <a href="./logs/%E5%A6%82%E4%BD%95%E7%BB%B4%E6%8A%A4%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97%EF%BC%9F.html">如何维护更新日志？</a></h3>
+<p>
+Unreleased
+</p>
+
+<p>
+0.1 - 2017-10-06
+</p>
 </div>
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2"><span class="section-number-3">1.2</span> 2017-10-06 <a href="./logs/%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E5%86%99%E6%97%A5%E5%BF%97%E5%8D%9A%E5%AE%A2%E6%96%B9%E6%A1%88%EF%BC%9F.html">如何选择写日志博客方案？</a></h3>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 参考</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>google 软件 日志 维护 <a href="https://www.google.com/search?biw=1280&bih=514&q=%E8%BD%AF%E4%BB%B6+%E6%97%A5%E5%BF%97+%E7%BB%B4%E6%8A%A4">https://www.google.com/search?biw=1280&bih=514&q=%E8%BD%AF%E4%BB%B6+%E6%97%A5%E5%BF%97+%E7%BB%B4%E6%8A%A4</a>
+</li>
+<li>如何维护更新日志？ <a href="http://keepachangelog.com/zh-CN/0.3.0/">http://keepachangelog.com/zh-CN/0.3.0/</a>
+</li>
+<li>案例 <a href="https://github.com/olivierlacan/keep-a-changelog/blob/master/CHANGELOG.md">https://github.com/olivierlacan/keep-a-changelog/blob/master/CHANGELOG.md</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 概念</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 版本号</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+x.y.z - yyyy-mm-dd
+</p>
+
+<p>
+Ref
+</p>
+<ul class="org-ul">
+<li><a href="http://keepachangelog.com/zh-CN/0.3.0/">http://keepachangelog.com/zh-CN/0.3.0/</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> 变更类型</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>标明日期（要用上面说过的规范）
+</li>
+<li>标明分类（采用英文）。规范如下：
+</li>
+<li>'Added' 添加的新功能
+</li>
+<li>'Changed' 功能变更
+</li>
+<li>'Deprecated' 不建议使用，未来会删掉
+</li>
+<li>'Removed' 之前不建议使用的功能，这次真的删掉了
+</li>
+<li>'Fixed' 改的bug
+</li>
+<li>'Security' 改的有关安全相关bug
+</li>
+</ul>
+
+<p>
+Ref 
+</p>
+<ul class="org-ul">
+<li><a href="http://keepachangelog.com/zh-CN/0.3.0/">http://keepachangelog.com/zh-CN/0.3.0/</a>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
