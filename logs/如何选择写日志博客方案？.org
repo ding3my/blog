@@ -24,4 +24,4 @@ https://www.zhihu.com/search?type=content&q=写博客
 - Emacs org功能强大，文档完整。
 
 缺点：
-- Org通用性不如Markdown，例如bitbucket、gitee（osc码云）、CSDN等不支持。但是可以通过导出为html文件来解决（html更通用，只是需要静态服务器支持）。
+- Org通用性不如Markdown，例如bitbucket、gitee（osc码云）等不支持。但是可以通过导出为html文件来解决（html更通用，只是需要静态服务器支持）。

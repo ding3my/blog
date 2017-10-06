@@ -1,3 +1,5 @@
+* Home Page
+https://ding3my.github.io/pub-insights/
 * Blog
   
 m-9 vimp返回最后一个tab
