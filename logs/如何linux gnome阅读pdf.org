@@ -1,0 +1,68 @@
+* 历史
+Unreleased
+- Added Linux下编辑pdf页码(abc转换为123)
+
+0.1 - 2017-10-07
+* 实例
+** evince操作
+Ref
+- 快捷键官方手册 https://help.gnome.org/users/evince/stable/shortcuts.html.en
+- 快捷键总结 http://blog.csdn.net/u014015972/article/details/50659952
+
+打开目录栏 F9
+
+保存（实质是另存为，目录为pdf所在目录，如果是从Cli或evince打开的）
+#+BEGIN_SRC  
+C-s Ret 
+#+END_SRC
+
+如何解决evince添加书签保存时，目录不正确？
+#+BEGIN_SRC  
+从Cli shell或evince open打开pdf文件，而不是从evince中的recent documents中打开。
+#+END_SRC
+
+** foxit操作
+Ref:
+- linux foxit 官方手册 https://www.google.com/search?q=linux+foxit+manual&ie=utf-8&oe=utf-8 https://help.foxitsoftware.com/manuals/pdf-reader/foxit-reader-for-mac-linux/en-us/2.4/
+
+** 编辑pdf
+*** DONE 如何解决pdf页与正文页不一致？
+	 CLOSED: [2017-10-07 Sat 18:14]
+？解决evince或foxit跳转页面不正确。
+
+Ref:
+- https://github.com/ding3my/ken-pdf-tools
+
+emacs dired将pdf正文页第一页设置为pdf页第一页。
+#+BEGIN_SRC  
+& 选择目标pdf
+
+pdft sync-page $the_first_page_num
+#+END_SRC
+
+adobe acrobat XI Pro将pdf正文页第一页设置为pdf页第一页。
+- acrobat打开pdf
+- 页面缩略图：shift框选页面
+- 右键 - 编排页码 - 页面：选定的页面
+- 右键 - 编排页码 - 编码 - 开始新节 - 样式：一般选择abc类型，方便字母跳转。
+- 确定然后保存
+
+Ref
+- adobe acrobat 教程 https://www.google.com/search?q=pdf+编辑+页码&ie=utf-8&oe=utf-8 http://blog.sina.com.cn/s/blog_64197b740100i5nw.html
+
+*** 如何删除pdft备份的pdf？
+
+emacs dired删除pdft备份的pdf文件
+
+#+BEGIN_SRC  
+M-x find-name-dired 检索备份的pdf文件
+
+*pdf*pdf*
+
+U t 全选文件
+#+END_SRC
+
+Ref:
+- emacs dired操作卡 https://www.google.com/search?q=emacs+dired+mark+all  https://www.gnu.org/software/emacs/refcards/pdf/dired-ref.pdf
+- emacs dired标记手册 https://www.google.com/search?q=emacs+dired+mark+all https://www.gnu.org/software/emacs/manual/html_node/emacs/Marks-vs-Flags.html
+
