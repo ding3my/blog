@@ -31,7 +31,7 @@ chmod 700 ~/.ssh/id_rsa
 #+END_SRC
 
 #+BEGIN_SRC  
-git push Ret
+git push
 
 T=9
 #+END_SRC
