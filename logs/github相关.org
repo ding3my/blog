@@ -1,0 +1,40 @@
+* 历史
+Unreleased
+
+0.1 - 2017-10-07
+* 实例
+** 如何github git push？
+？上传blog。
+
+方法1 git push
+#+BEGIN_SRC  
+git push Ret 9
+输入账户 Ret 2
+输入密码 Ret 8
+
+T=19
+#+END_SRC
+
+Ref
+- 帐号密码字符数 https://github.com/join
+
+方法2 ssh key
+#+BEGIN_SRC  
+# 生成密钥对（私钥密钥）。
+ssh-keygen # 根据提示操作。
+
+# 修改git访问远程仓库的协议为git协议。
+git remote set-url origin git@github.com:<Username>/<Project>.git
+
+# 修改私钥权限为个人权限。
+chmod 700 ~/.ssh/id_rsa
+#+END_SRC
+
+#+BEGIN_SRC  
+git push Ret
+
+T=9
+#+END_SRC
+
+Ref
+- ssh key 教程 https://www.google.com/search?q=linux+ssh+key&ie=utf-8&oe=utf-8 http://blog.csdn.net/leexide/article/details/17252369

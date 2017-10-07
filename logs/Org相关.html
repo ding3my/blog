@@ -3,8 +3,8 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>index</title>
-<!-- 2017-10-07 Sat 12:00 -->
+<title>Org相关</title>
+<!-- 2017-10-07 Sat 10:06 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Ken Young" />
@@ -137,28 +137,125 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">index</h1>
-<ul class="org-ul">
-<li>主页:<a href="https://ding3my.github.io/pub-insights/">https://ding3my.github.io/pub-insights/</a>
+<h1 class="title">Org相关</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. 历史</a></li>
+<li><a href="#sec-2">2. 参考</a></li>
+<li><a href="#sec-3">3. 实例</a>
+<ul>
+<li><a href="#sec-3-1">3.1. 如何Emacs Org导出取消目录（TOC）</a></li>
+<li><a href="#sec-3-2">3.2. 如何Emacs Org导出取消标题序号（Headline）</a></li>
+<li><a href="#sec-3-3">3.3. 如何Emacs Org取消签名？</a></li>
+</ul>
 </li>
-<li>Issues页:<a href="https://github.com/ding3my/pub-insights/issues">https://github.com/ding3my/pub-insights/issues</a>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 历史</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Unreleased
+</p>
+
+<p>
+0.1 - 2017-10-07
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 参考</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>Guide <a href="http://orgmode.org/guide/">http://orgmode.org/guide/</a>
+</li>
+<li>Manual <a href="http://orgmode.org/org.html">http://orgmode.org/org.html</a>
+</li>
+<li>Google <a href="https://www.google.com/search?q=org+toc+cancel+export">https://www.google.com/search?q=org+toc+cancel+export</a> <a href="http://orgmode.org/manual/Export-settings.html">http://orgmode.org/manual/Export-settings.html</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 实例</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 如何Emacs Org导出取消目录（TOC）</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+(setq org-export-with-toc nil)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> 如何Emacs Org导出取消标题序号（Headline）</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+(setq org-export-with-section-numbers nil)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> 如何Emacs Org取消签名？</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+方法1 大范围变量
+</p>
+<pre class="example">
+(setq org-export-html-postamble nil)
+; 必须放到init.el文件后重启生效，直接M-:设置无效。
+</pre>
+
+<p>
+Ref:
+</p>
+<ul class="org-ul">
+<li>google emacs org 导出 Validate <a href="https://www.google.com/search?q=emacs+org+%E5%AF%BC%E5%87%BA+Validate">https://www.google.com/search?q=emacs+org+%E5%AF%BC%E5%87%BA+Validate</a> <a href="https://stackoverflow.com/questions/13363267/how-to-remove-footer-details-in-org-mode-html-export">https://stackoverflow.com/questions/13363267/how-to-remove-footer-details-in-org-mode-html-export</a>
 </li>
 </ul>
 
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">日期目录</h2>
-<div class="outline-text-2" id="text-1">
-</div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">2017-10-07 <a href="./logs/github相关.html">github相关</a></h3>
+<p>
+方法2 小范围变量
+</p>
+<pre class="example">
+(setq user-full-name nil)
+(setq org-export-time-stamp-file nil)
+(setq org-export-with-creator nil)
+(setq org-html-validation-link nil)
+; 去掉 author
+; 去掉 Created: 2017-10-06 Fri 23:39
+; 去掉版本 Emacs 25.1.1 (Org mode 8.2.10)
+; 去掉 Validate
+</pre>
+
+<p>
+Ref:
+</p>
+<ul class="org-ul">
+<li>google emacs org 导出 Validate <a href="https://www.google.com/search?q=emacs+org+%E5%AF%BC%E5%87%BA+Validate">https://www.google.com/search?q=emacs+org+%E5%AF%BC%E5%87%BA+Validate</a> <a href="https://stackoverflow.com/questions/15134911/in-org-mode-how-do-i-remove-the-validate-xhtml-1-0-message-from-html-export">https://stackoverflow.com/questions/15134911/in-org-mode-how-do-i-remove-the-validate-xhtml-1-0-message-from-html-export</a>
+</li>
+</ul>
+
+<p>
+方法3 使用#+OPTIONS
+</p>
+<pre class="example">
+#+OPTIONS: html-postamble:nil toc:nil
+</pre>
+
+<p>
+Ref:
+</p>
+<ul class="org-ul">
+<li>OPTIONS列表 <a href="https://www.google.com/search?q=emacs+org+export+clear+date">https://www.google.com/search?q=emacs+org+export+clear+date</a> <a href="http://orgmode.org/manual/Export-settings.html">http://orgmode.org/manual/Export-settings.html</a>
+</li>
+<li>OPTIONS格式 <a href="https://www.google.com/search?q=emacs+org+%E5%AF%BC%E5%87%BA+Validate">https://www.google.com/search?q=emacs+org+%E5%AF%BC%E5%87%BA+Validate</a> <a href="https://stackoverflow.com/questions/15134911/in-org-mode-how-do-i-remove-the-validate-xhtml-1-0-message-from-html-export">https://stackoverflow.com/questions/15134911/in-org-mode-how-do-i-remove-the-validate-xhtml-1-0-message-from-html-export</a>
+</li>
+</ul>
 </div>
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2">2017-10-07 <a href="./logs/Org相关.html">Org相关</a></h3>
-</div>
-<div id="outline-container-sec-1-3" class="outline-3">
-<h3 id="sec-1-3">2017-10-06 <a href="./logs/%E5%A6%82%E4%BD%95%E7%BB%B4%E6%8A%A4%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97%EF%BC%9F.html">如何维护更新日志？</a></h3>
-</div>
-<div id="outline-container-sec-1-4" class="outline-3">
-<h3 id="sec-1-4">2017-10-06 <a href="./logs/%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E5%86%99%E6%97%A5%E5%BF%97%E5%8D%9A%E5%AE%A2%E6%96%B9%E6%A1%88%EF%BC%9F.html">如何选择写日志博客方案？</a></h3>
 </div>
 </div>
 </div>

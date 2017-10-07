@@ -1,0 +1,48 @@
+* 历史
+Unreleased
+
+0.1 - 2017-10-07
+* 参考
+- Guide http://orgmode.org/guide/
+- Manual http://orgmode.org/org.html
+- Google https://www.google.com/search?q=org+toc+cancel+export http://orgmode.org/manual/Export-settings.html
+* 实例
+** 如何Emacs Org导出取消目录（TOC）
+(setq org-export-with-toc nil)
+** 如何Emacs Org导出取消标题序号（Headline）
+(setq org-export-with-section-numbers nil)
+** 如何Emacs Org取消签名？
+
+方法1 大范围变量
+#+BEGIN_SRC  
+(setq org-export-html-postamble nil)
+; 必须放到init.el文件后重启生效，直接M-:设置无效。
+#+END_SRC
+
+Ref:
+- (setq org-export-html-postamble nil) https://www.google.com/search?q=emacs+org+导出+Validate https://stackoverflow.com/questions/13363267/how-to-remove-footer-details-in-org-mode-html-export
+
+方法2 小范围变量
+#+BEGIN_SRC  
+(setq user-full-name nil)
+(setq org-export-time-stamp-file nil)
+(setq org-export-with-creator nil)
+(setq org-html-validation-link nil)
+; 去掉 author
+; 去掉 Created: 2017-10-06 Fri 23:39
+; 去掉版本 Emacs 25.1.1 (Org mode 8.2.10)
+; 去掉 Validate
+
+#+END_SRC
+
+Ref:
+- (setq org-html-validation-link nil) https://www.google.com/search?q=emacs+org+导出+Validate https://stackoverflow.com/questions/15134911/in-org-mode-how-do-i-remove-the-validate-xhtml-1-0-message-from-html-export
+
+方法3 使用#+OPTIONS
+#+BEGIN_SRC  
+#+OPTIONS: html-postamble:nil
+#+END_SRC
+
+Ref:
+- OPTIONS列表 https://www.google.com/search?q=emacs+org+export+clear+date http://orgmode.org/manual/Export-settings.html
+- OPTIONS格式 https://www.google.com/search?q=emacs+org+导出+Validate https://stackoverflow.com/questions/15134911/in-org-mode-how-do-i-remove-the-validate-xhtml-1-0-message-from-html-export
